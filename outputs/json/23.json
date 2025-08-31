@@ -1,0 +1,64 @@
+{
+  "company": "Grant Thornton",
+  "role": "servicenow_junior_administrator_junior_developer",
+  "level": "junior",
+  "location": null,
+  "employment_type": null,
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [],
+  "years_experience_min": 1,
+  "years_experience_max": 3,
+  "education_required": "Bachelor’s degree in Information Systems, Computer Science, or related field (or equivalent work experience)",
+  "responsibilities": [
+    "assist_in_the_configuration_and_customization_of_servicenow_applications,_including_itsm,_itom,_sam,_bcm,_now_assist,_secops,_and_others.",
+    "assist_with_testing,_documentation,_and_deployment_of_new_features_and_updates.",
+    "develop_and_maintain_catalog_items,_workflows,_business_rules,_ui_policies,_and_client_server_scripts_under_the_guidance_of_senior_developers.",
+    "help_troubleshoot_and_resolve_platform_issues_and_incidents.",
+    "learn_and_apply_servicenow_best_practices_and_development_standards.",
+    "participate_in_agile_ceremonies_and_collaborate_with_the_servicenow_team_to_deliver_enhancements_and_bug_fixes.",
+    "stay_current_with_servicenow_releases_and_participate_in_platform_upgrade_activities.",
+    "support_day_to_day_administration_tasks_such_as_user_management,_access_controls,_and_platform_maintenance.",
+    "support_integration_efforts_with_other_enterprise_systems_and_tools."
+  ],
+  "required_core_skills": [
+    "1–3_years_of_experience_in_it_support,_system_administration,_or_application_development.",
+    "basic_understanding_of_servicenow_architecture,_modules,_and_scripting_(javascript,_glide).",
+    "excellent_communication_and_documentation_skills.",
+    "exposure_to_servicenow_through_coursework,_internships,_or_hands_on_experience.",
+    "familiarity_with_itil_concepts_and_service_management_processes.",
+    "strong_problem_solving_skills_and_attention_to_detail.",
+    "willingness_to_learn_and_grow_in_a_fast_paced,_collaborative_environment."
+  ],
+  "desirable_skills": [
+    "experience_with_agile_or_scrum_methodologies.",
+    "experience_with_professional_services_firms_or_enterprise_it_environments.",
+    "familiarity_with_rest_apis,_json,_or_integration_concepts.",
+    "servicenow_certified_system_administrator_(csa)_or_working_toward_certification."
+  ],
+  "programming_languages": [
+    "javascript"
+  ],
+  "frameworks_tools": [
+    "servicenow"
+  ],
+  "databases": [],
+  "cloud_platforms": [],
+  "api_protocols": [
+    "rest"
+  ],
+  "methodologies": [
+    "agile",
+    "scrum"
+  ],
+  "mobile_technologies": [],
+  "domain_keywords": [],
+  "remote_work": "hybrid",
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": "professional_services",
+  "language_requirements": []
+}

@@ -1,0 +1,8 @@
+django
+djangorestframework
+pandas
+nltk
+matplotlib
+seaborn
+wordcloud
+numpy

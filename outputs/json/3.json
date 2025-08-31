@@ -1,0 +1,74 @@
+{
+  "company": "Qualio",
+  "role": "fullstack",
+  "level": "junior",
+  "location": "Remote",
+  "employment_type": "full_time",
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [
+    "competitive_salary",
+    "flexible_holidays",
+    "opportunity_to_make_a_difference_through_helping_life_saving_products_to_get_to_market",
+    "professional_development_stipend",
+    "unlimited_time_off",
+    "working_space_allowance_home_office_budget"
+  ],
+  "years_experience_min": 1,
+  "years_experience_max": null,
+  "education_required": null,
+  "responsibilities": [
+    "maintain_a_proactive_and_positive_attitude_in_a_fast_paced,_changing_environment",
+    "partner_with_team_in_designing,_implementing_and_delivering_effective_cloud_based_solutions"
+  ],
+  "required_core_skills": [
+    "agile_methodologies_devsecops_environment",
+    "aws_cloud_based_services_such_as_ecs,_lambda,_ec2",
+    "engineering_best_practices_in_tdd,_clean_code,_ci_cd",
+    "opensearch",
+    "professional_software_development_experience",
+    "programming_languages_like_python,_node.js,_rdbms_and_nosql_databases"
+  ],
+  "desirable_skills": [
+    "application_platforms",
+    "data_management",
+    "event_driven_architecture",
+    "infrastructure_as_code",
+    "integration_patterns"
+  ],
+  "programming_languages": [
+    "node.js",
+    "python"
+  ],
+  "frameworks_tools": [
+    "angularjs",
+    "react"
+  ],
+  "databases": [
+    "nosql",
+    "rdbms"
+  ],
+  "cloud_platforms": [
+    "aws"
+  ],
+  "api_protocols": [
+    "rest"
+  ],
+  "methodologies": [
+    "agile",
+    "devsecops"
+  ],
+  "mobile_technologies": [],
+  "domain_keywords": [
+    "life_sciences",
+    "quality_management_system"
+  ],
+  "remote_work": "remote",
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": "life_sciences",
+  "language_requirements": []
+}

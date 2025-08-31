@@ -1,0 +1,66 @@
+{
+  "company": "State Street",
+  "role": "software_engineer",
+  "level": null,
+  "location": null,
+  "employment_type": null,
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [
+    "development_programs",
+    "educational_support",
+    "flexible_work_programs",
+    "generous_medical_care",
+    "insurance_and_savings_plans"
+  ],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": "Bachelor Degree (BS)",
+  "responsibilities": [
+    "experience_in_monitoring_tools_such_as_autosys,_dynatrace,_splunk",
+    "good_demonstration_and_documentation_skills_(should_be_independent_to_write_rca,_sop's_and_kb_development)",
+    "have_proven_technology_expertise_in_areas_including_systems_engineering_and_full_software_development_life_cycle_(analysis,_design,_and_execution)",
+    "knowledge_of_incident,_problem,_change_process_handling_along_with_devops",
+    "technology_expertise_in_troubleshooting_applications_built_in_java,_autosys,_sql"
+  ],
+  "required_core_skills": [
+    "ability_to_manage_multiple_projects_simultaneously",
+    "ability_to_work_independently_and_as_part_of_a_small,_focused,_global_scrum_team",
+    "passion_for_delivering_results",
+    "self_starter_with_a_keen_sense_of_ownership_and_commitment_to_work",
+    "strong_communication_skills"
+  ],
+  "desirable_skills": [
+    "demonstrated_experience_implementing_large_scale_iam_systems",
+    "experience_working_within_cybersecurity_in_large_financial_organizations"
+  ],
+  "programming_languages": [
+    "java",
+    "sql"
+  ],
+  "frameworks_tools": [
+    "autosys",
+    "dynatrace",
+    "splunk"
+  ],
+  "databases": [],
+  "cloud_platforms": [],
+  "api_protocols": [],
+  "methodologies": [
+    "devops"
+  ],
+  "mobile_technologies": [],
+  "domain_keywords": [
+    "cybersecurity",
+    "financial_services",
+    "identity_and_access_management"
+  ],
+  "remote_work": null,
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": "financial_services",
+  "language_requirements": []
+}

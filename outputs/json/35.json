@@ -1,0 +1,54 @@
+{
+  "company": null,
+  "role": "front_end_engineer",
+  "level": null,
+  "location": "Galway City",
+  "employment_type": "contract",
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": null,
+  "responsibilities": [],
+  "required_core_skills": [
+    "ability_to_write_clean,_testable,_readable,_and_maintainable_code",
+    "comfortable_operating_in_an_agile_environment",
+    "committed_to_collaboration_and_open_communication",
+    "delivering_using_an_acceptance_test–driven_development_(atdd)_approach",
+    "experience_with_messaging_and_streaming_platforms",
+    "exposure_to_aws_cloud_infrastructure_and_services",
+    "exposure_to_test_automation",
+    "familiar_with_common_devops_tools_such_as_maven,_jenkins,_and_github",
+    "strong_experience_with_frontend_technologies:_html,_css_and_angular"
+  ],
+  "desirable_skills": [],
+  "programming_languages": [],
+  "frameworks_tools": [
+    "angular",
+    "css",
+    "github",
+    "html",
+    "jenkins",
+    "maven"
+  ],
+  "databases": [],
+  "cloud_platforms": [
+    "aws"
+  ],
+  "api_protocols": [],
+  "methodologies": [
+    "acceptance_test_driven_development_(atdd)",
+    "agile"
+  ],
+  "mobile_technologies": [],
+  "domain_keywords": [],
+  "remote_work": "hybrid",
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": "[email protected]",
+  "industry": null,
+  "language_requirements": []
+}

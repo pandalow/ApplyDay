@@ -1,0 +1,70 @@
+{
+  "company": "Stryker",
+  "role": "r&d_co_op_student",
+  "level": "intern",
+  "location": "Cork",
+  "employment_type": "internship",
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [
+    "access_to_leaders_for_growth_and_feedback",
+    "attractive_salary_&_vacation_entitlement",
+    "de&i_employee_resource_groups",
+    "flexible_working_hours",
+    "mentorship_opportunities",
+    "sports_&_social_clubs"
+  ],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": "Studying / completed a Bachelor’s or Master's Degree in Biomedical Engineering, Software or Electronic Engineering, Robotics or related discipline",
+  "responsibilities": [
+    "assist_in_the_design,_develop,_modification,_and_verification_of_software_for_medical_devices",
+    "assist_with_prototyping_and_bench_testing",
+    "conduct_research_and_studies_to_support_product_design",
+    "create_or_refine_engineering_documentation_per_company_design_control_procedures",
+    "support_problem_solving,_root_cause_analysis,_identify_potential_solutions,_and_evaluate_them_against_requirements",
+    "understand_the_product’s_intended_use_and_clinical_procedures",
+    "work_with_r&d,_quality,_manufacturing,_regulatory,_clinical,_marketing_and_project_management_to_ensure_project_success"
+  ],
+  "required_core_skills": [
+    "basic_knowledge_of_programming_in_embedded_c_and_c++",
+    "basic_knowledge_of_testing_maintaining_debugging_software_using_hardware_tools",
+    "fluent_in_the_use_of_ms_office",
+    "fundamental_knowledge_of_embedded_software_engineering_practices_and_tools",
+    "pcb_design_including_schematics_and_layout_with_tools_such_as_altium_or_orcad"
+  ],
+  "desirable_skills": [
+    "basic_knowledge_of_analysis_tools_and_statistical_methods",
+    "basic_knowledge_of_python",
+    "experience_working_with_development_boards_e.g._raspberry_pi"
+  ],
+  "programming_languages": [
+    "c++",
+    "embedded_c",
+    "python"
+  ],
+  "frameworks_tools": [
+    "altium",
+    "orcad"
+  ],
+  "databases": [],
+  "cloud_platforms": [],
+  "api_protocols": [],
+  "methodologies": [],
+  "mobile_technologies": [],
+  "domain_keywords": [
+    "medical_devices",
+    "orthopedic_surgeons",
+    "r&d_new_product_development"
+  ],
+  "remote_work": null,
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": "medical_technologies",
+  "language_requirements": [
+    "fluent_in_english"
+  ]
+}

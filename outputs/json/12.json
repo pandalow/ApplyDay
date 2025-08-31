@@ -1,0 +1,48 @@
+{
+  "company": "esteemed clients in the Tech sector",
+  "role": "java_developer",
+  "level": null,
+  "location": null,
+  "employment_type": "contract",
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": null,
+  "responsibilities": [
+    "collaborate_with_cross_functional_teams_to_integrate_new_features_and_improve_existing_systems.",
+    "develop_and_maintain_back_end_functionalities_using_java_and_related_frameworks.",
+    "identify_bottlenecks_and_bugs,_and_devise_solutions_to_these_problems_to_ensure_optimal_application_performance.",
+    "participate_in_all_phases_of_the_software_development_life_cycle,_including_design,_implementation,_testing,_and_deployment.",
+    "support_the_continuous_improvement_of_developer's_tools_and_processes."
+  ],
+  "required_core_skills": [
+    "a_strong_problem_solving_mindset_and_ability_to_work_under_pressure_in_a_fast_paced_banking_environment.",
+    "ability_to_work_in_a_team_and_communicate_effectively_with_other_members_of_the_information_technology_department.",
+    "experience_with_back_end_frameworks_and_technologies,_specifically_those_related_to_java_development.",
+    "knowledge_of_database_management_and_related_technologies.",
+    "proficient_in_java_programming_language_and_object_oriented_design_principles."
+  ],
+  "desirable_skills": [],
+  "programming_languages": [
+    "java"
+  ],
+  "frameworks_tools": [],
+  "databases": [],
+  "cloud_platforms": [],
+  "api_protocols": [],
+  "methodologies": [],
+  "mobile_technologies": [],
+  "domain_keywords": [
+    "banking"
+  ],
+  "remote_work": null,
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": "banking",
+  "language_requirements": []
+}

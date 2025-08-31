@@ -1,0 +1,63 @@
+{
+  "company": null,
+  "role": "backend",
+  "level": "junior",
+  "location": null,
+  "employment_type": null,
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [],
+  "years_experience_min": 1,
+  "years_experience_max": null,
+  "education_required": "Bachelor's or Master's degree in Computer Science, Engineering, or a related field (or equivalent experience)",
+  "responsibilities": [
+    "assist_in_debugging_and_resolving_backend_issues.",
+    "collaborate_with_frontend_developers_and_blockchain_engineers_to_ensure_seamless_integration_with_smart_contracts_and_web_applications.",
+    "develop,_test_and_maintain_backend_services_and_apis_using_node.js_and_typescript.",
+    "stay_up_to_date_with_the_latest_trends_in_defi,_blockchain,_and_backend_technologies.",
+    "work_with_databases_(sql_and_graphql)_to_efficiently_store_and_manage_data."
+  ],
+  "required_core_skills": [
+    "devops",
+    "git",
+    "graphql_apis",
+    "node.js",
+    "restful_apis",
+    "typescript",
+    "web3"
+  ],
+  "desirable_skills": [],
+  "programming_languages": [
+    "typescript"
+  ],
+  "frameworks_tools": [
+    "docker",
+    "node.js"
+  ],
+  "databases": [
+    "graphql",
+    "sql"
+  ],
+  "cloud_platforms": [],
+  "api_protocols": [
+    "graphql",
+    "restful"
+  ],
+  "methodologies": [
+    "agile"
+  ],
+  "mobile_technologies": [],
+  "domain_keywords": [
+    "blockchain",
+    "defi",
+    "smart_contracts"
+  ],
+  "remote_work": null,
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": null,
+  "language_requirements": []
+}

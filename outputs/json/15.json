@@ -1,0 +1,71 @@
+{
+  "company": null,
+  "role": "backend",
+  "level": "junior",
+  "location": "Remote",
+  "employment_type": "contract",
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": "Bachelor’s degree in Computer Science, Software Engineering, or a related field (or equivalent experience)",
+  "responsibilities": [
+    "assist_in_developing_and_implementing_server_side_logic_for_our_platform",
+    "collaborate_with_front_end_engineers,_designers,_and_product_managers_to_deliver_features_on_schedule",
+    "contribute_to_code_reviews_and_maintain_clean,_reusable_code_standards",
+    "support_integration_of_back_end_services_with_front_end_components",
+    "test_and_debug_code_to_ensure_reliability,_scalability,_and_security",
+    "work_with_senior_engineers_to_design,_build,_and_maintain_apis_and_data_integrations",
+    "write_clean,_maintainable,_and_efficient_code_following_best_practices"
+  ],
+  "required_core_skills": [
+    "basic_understanding_of_relational_and_or_nosql_databases_(mysql,_postgresql,_mongodb)",
+    "excellent_communication_skills_and_ability_to_work_effectively_in_a_remote_environment",
+    "familiarity_with_rest_or_graphql_api_development",
+    "knowledge_of_git_for_version_control",
+    "proficiency_in_at_least_one_back_end_programming_language_(javascript_typescript_with_node.js,_python,_java,_or_similar)",
+    "strong_attention_to_detail_and_willingness_to_learn_from_senior_team_members"
+  ],
+  "desirable_skills": [
+    "experience_with_orms_such_as_sequelize,_prisma,_or_hibernate",
+    "exposure_to_containerisation_tools_(docker)_and_cloud_platforms_(aws,_azure,_gcp)",
+    "familiarity_with_automated_testing_frameworks_(jest,_mocha,_pytest)",
+    "understanding_of_authentication_and_authorisation_methods_(oauth,_jwt)"
+  ],
+  "programming_languages": [
+    "java",
+    "javascript",
+    "python",
+    "typescript"
+  ],
+  "frameworks_tools": [
+    "docker",
+    "node.js"
+  ],
+  "databases": [
+    "mongodb",
+    "mysql",
+    "postgresql"
+  ],
+  "cloud_platforms": [
+    "aws",
+    "azure",
+    "gcp"
+  ],
+  "api_protocols": [
+    "graphql",
+    "rest"
+  ],
+  "methodologies": [],
+  "mobile_technologies": [],
+  "domain_keywords": [],
+  "remote_work": "remote",
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": null,
+  "language_requirements": []
+}

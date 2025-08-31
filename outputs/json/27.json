@@ -1,0 +1,48 @@
+{
+  "company": "Microsoft",
+  "role": "software_engineer",
+  "level": null,
+  "location": null,
+  "employment_type": null,
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": "Bachelor's Degree in Computer Science or related technical field",
+  "responsibilities": [
+    "acts_as_a_designated_responsible_individual_(dri)_working_on_call_to_monitor_system_product_feature_service_for_degradation,_downtime,_or_interruptions_and_gains_approval_to_restore_system_product_service_for_simple_problems.",
+    "contributes_to_efforts_to_break_down_larger_work_items_into_smaller_work_items_and_provides_estimation.",
+    "contributes_to_the_identification_of_dependencies,_and_the_development_of_design_documents_for_a_product_area_with_little_oversight.",
+    "creates_and_implements_code_for_a_product,_service,_or_feature,_reusing_code_as_applicable.",
+    "remains_current_in_skills_by_investing_time_and_effort_into_staying_abreast_of_current_developments_that_will_improve_the_availability,_reliability,_efficiency,_observability,_and_performance_of_products_while_also_driving_consistency_in_monitoring_and_operations_at_scale.",
+    "works_with_appropriate_stakeholders_to_determine_user_requirements_for_a_set_of_features."
+  ],
+  "required_core_skills": [
+    "coding_in_languages_including_c,_c++,_c#,_java,_javascript,_or_python"
+  ],
+  "desirable_skills": [],
+  "programming_languages": [
+    "c",
+    "c#",
+    "c++",
+    "java",
+    "javascript",
+    "python"
+  ],
+  "frameworks_tools": [],
+  "databases": [],
+  "cloud_platforms": [],
+  "api_protocols": [],
+  "methodologies": [],
+  "mobile_technologies": [],
+  "domain_keywords": [],
+  "remote_work": null,
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": null,
+  "language_requirements": []
+}

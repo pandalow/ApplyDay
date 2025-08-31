@@ -1,0 +1,67 @@
+{
+  "company": "VusionGroup",
+  "role": "data_scientist",
+  "level": "mid",
+  "location": "Cork, Ireland",
+  "employment_type": "full_time",
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [
+    "flexible_conditions",
+    "hybrid_working",
+    "programs_and_benefits_to_support_life_changes"
+  ],
+  "years_experience_min": 2,
+  "years_experience_max": 5,
+  "education_required": "Computer Science degree or similar qualification",
+  "responsibilities": [
+    "design,_develop,_and_implement_data_driven_solutions",
+    "develop_and_maintain_new_data_integration_pipelines",
+    "develop_data_processing_apps_scripts_using_sql_and_.net",
+    "integrate_structured_and_unstructured_data_from_multiple_systems",
+    "work_closely_with_business_analysts,_data_scientists,_and_other_stakeholders"
+  ],
+  "required_core_skills": [
+    ".net_development",
+    "experience_with_cloud_providers,_preferably_azure",
+    "familiar_with_data_storage_structures_such_as_xml,_json",
+    "python_or_similar_scripting_language",
+    "sql_coding"
+  ],
+  "desirable_skills": [
+    "database_management_skills_and_tools",
+    "experience_coding_or_using_rest_apis",
+    "powershell"
+  ],
+  "programming_languages": [
+    ".net",
+    "java",
+    "python",
+    "sql"
+  ],
+  "frameworks_tools": [],
+  "databases": [],
+  "cloud_platforms": [
+    "azure"
+  ],
+  "api_protocols": [
+    "rest"
+  ],
+  "methodologies": [],
+  "mobile_technologies": [],
+  "domain_keywords": [
+    "data_technologies",
+    "iot",
+    "saas_products"
+  ],
+  "remote_work": "hybrid",
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": "retail_tech",
+  "language_requirements": [
+    "english_fluent"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "company": "Amazon Development Centre Ireland Limited",
+  "role": "front_end_engineer",
+  "level": null,
+  "location": null,
+  "employment_type": null,
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": "Bachelor’s or Master’s Degree in Computer Science, Computer Engineering, or related fields",
+  "responsibilities": [
+    "build_reusable_ui_components_and_libraries_using_modern_frontend_frameworks.",
+    "collaborate_with_ux_designers_and_backend_engineers_to_implement_intuitive_user_interfaces_and_seamless_user_experiences.",
+    "deliver_software_components_and_improvements_to_software_features_with_your_team’s_software.",
+    "help_provide_operational_support_for_your_team_and_work_to_ensure_that_root_causes_are_identified_and_resolved.",
+    "optimize_web_applications_for_maximum_speed_and_scalability.",
+    "participate_in_code_reviews_and_contribute_to_frontend_architecture_decisions.",
+    "stay_up_to_date_with_emerging_frontend_technologies_and_industry_trends."
+  ],
+  "required_core_skills": [
+    "experience_in_at_least_one_object_oriented_programming_language_(e.g.,_javascript,_python,_c#).",
+    "experience_in_html,_css,_or_javascript.",
+    "knowledge_of_computer_science_fundamentals_such_as_object_oriented_design,_algorithm_design,_data_structures,_problem_solving_and_complexity_analysis."
+  ],
+  "desirable_skills": [
+    "customer_obsession_and_strong_problem_solving_skills.",
+    "experience_in_one_or_more_relevant_front_end_frameworks_such_as_react,_angular,_etc.",
+    "knowledge_of_ux_best_practices.",
+    "previous_technical_internships_in_a_related_field_(e.g.,_front_end,_full_stack,_web_development)."
+  ],
+  "programming_languages": [
+    "c#",
+    "javascript",
+    "python"
+  ],
+  "frameworks_tools": [
+    "angular",
+    "react"
+  ],
+  "databases": [],
+  "cloud_platforms": [],
+  "api_protocols": [],
+  "methodologies": [],
+  "mobile_technologies": [],
+  "domain_keywords": [],
+  "remote_work": null,
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": null,
+  "language_requirements": []
+}

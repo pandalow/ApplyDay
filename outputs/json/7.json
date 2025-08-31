@@ -1,0 +1,83 @@
+{
+  "company": "Arista Networks",
+  "role": "graduate_engineer",
+  "level": "junior",
+  "location": null,
+  "employment_type": "full_time",
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": null,
+  "responsibilities": [
+    "accessing_asic_registers_over_spi_bus,_smbus,_pcie_and_i2c.",
+    "building_software_agents_that_mediate_and_translate_between_the_requirements_of_switching_asics,_high_capacity_custom_fpgas,_media_adapters,_and_pcie_bridges.",
+    "developing_configuration_management_services_using_go_and_python.",
+    "developing_routing_protocol_agents_in_c_c++_within_a_fedora_linux_embedded_environment.",
+    "implementing_a_policy_language_used_for_filtering_and_manipulating_routing_data_received_and_advertised_to_peers.",
+    "implementing_communications_protocols_between_routers_and_switches_at_layer_2_and_layer_3.",
+    "programming_networking_chips_to_provide_latency_analysis_and_keep_accurate_counts_of_events_happening_billions_of_times_per_second.",
+    "reconciling_the_linux_kernel_routing_model_with_the_switch's_forwarding_state.",
+    "updating_the_forwarding_state_of_the_hardware,_using_platform_independent_abstractions.",
+    "working_on_the_hardware_software_boundary_for_chips_and_the_kernel.",
+    "writing_linux_user_space_and_kernel_code_to_allow_32_bit_drivers_to_dma_64_bit_virtual_memory_spaces_using_both_intel_and_amd_iommu_controller.",
+    "writing_python_to_bootstrap_new_hardware."
+  ],
+  "required_core_skills": [
+    "algorithms",
+    "c",
+    "c++",
+    "go",
+    "java",
+    "linux_embedded_systems",
+    "networking",
+    "node.js",
+    "programming",
+    "python",
+    "react.js",
+    "redux.js",
+    "software_development"
+  ],
+  "desirable_skills": [],
+  "programming_languages": [
+    "c",
+    "c++",
+    "go",
+    "java",
+    "python"
+  ],
+  "frameworks_tools": [
+    "gerrit",
+    "git",
+    "jenkins",
+    "node.js",
+    "react.js",
+    "redux.js",
+    "slack",
+    "trello"
+  ],
+  "databases": [],
+  "cloud_platforms": [],
+  "api_protocols": [
+    "grpc",
+    "ssh",
+    "ssl"
+  ],
+  "methodologies": [],
+  "mobile_technologies": [],
+  "domain_keywords": [
+    "embedded_systems",
+    "linux",
+    "networking",
+    "software_defined_networking"
+  ],
+  "remote_work": null,
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": null,
+  "language_requirements": []
+}

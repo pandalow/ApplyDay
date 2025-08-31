@@ -1,0 +1,55 @@
+{
+  "company": "A leading electronics company",
+  "role": "software_engineer",
+  "level": "junior",
+  "location": null,
+  "employment_type": null,
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": "Master’s degree in Computer Science, Electrical Engineering, or related discipline",
+  "responsibilities": [
+    "communicate_and_exchange_expertise_with_colleagues",
+    "craft_and_document_innovative_solutions",
+    "ensure_the_delivery_of_robust,_reliable_software",
+    "evaluate_state_of_the_art_ai_tools_and_frameworks",
+    "research,_design,_and_develop_high_performing_ai_infrastructure_and_features",
+    "share_knowledge_on_ai_best_practices",
+    "work_alongside_cross_functional_teams_and_customers"
+  ],
+  "required_core_skills": [
+    "demonstrated_curiosity_and_openness_to_new_technologies_and_tools",
+    "excellent_analytical,_problem_solving,_and_communication_skills",
+    "knowledge_of_ai_ml_concepts_and_frameworks",
+    "proven_ability_to_collaborate_and_work_effectively_in_diverse_teams",
+    "self_motivated,_independent,_and_flexible_approach",
+    "solid_grasp_of_software_development_best_practices_and_object_oriented_design_principles",
+    "strong_programming_skills_in_c,_c++,_and_python"
+  ],
+  "desirable_skills": [
+    "development_experience_in_a_linux_environment",
+    "familiarity_with_electronic_design"
+  ],
+  "programming_languages": [
+    "c",
+    "c++",
+    "python"
+  ],
+  "frameworks_tools": [],
+  "databases": [],
+  "cloud_platforms": [],
+  "api_protocols": [],
+  "methodologies": [],
+  "mobile_technologies": [],
+  "domain_keywords": [],
+  "remote_work": null,
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": "Jack Bird",
+  "contact_email_or_phone": "IC Resources",
+  "industry": null,
+  "language_requirements": []
+}

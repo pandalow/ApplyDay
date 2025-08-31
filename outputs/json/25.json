@@ -1,0 +1,57 @@
+{
+  "company": "Global E-Commerce company",
+  "role": "software_engineer",
+  "level": "senior",
+  "location": "Dublin – West",
+  "employment_type": "contract",
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [],
+  "years_experience_min": 6,
+  "years_experience_max": null,
+  "education_required": "BS, MS, or Ph.D. in Computer Science, Electrical Engineering, or equivalent",
+  "responsibilities": [
+    "communicate_complex_ideas_clearly_to_both_technical_and_non_technical_stakeholders,_including_senior_leadership.",
+    "define,_design,_and_promote_best_practices_that_support_a_scalable,_forward_thinking_data_environment.",
+    "drive_innovation,_encourage_creative_thinking,_and_help_foster_a_high_energy,_solution_oriented_team_culture.",
+    "independently_design_comprehensive_technical_solutions_for_complex_business_challenges_and_mentor_team_members_on_implementation.",
+    "work_closely_with_senior_engineers,_product_managers,_architects,_and_cross_functional_teams_to_ensure_efficient_and_high_quality_product_delivery."
+  ],
+  "required_core_skills": [
+    "big_data_technologies",
+    "java",
+    "problem_solving_skills",
+    "python",
+    "software_development"
+  ],
+  "desirable_skills": [
+    "experience_contributing_to_open_source",
+    "experience_working_in_a_multinational_company"
+  ],
+  "programming_languages": [
+    "java",
+    "python"
+  ],
+  "frameworks_tools": [
+    "spring_boot"
+  ],
+  "databases": [],
+  "cloud_platforms": [],
+  "api_protocols": [],
+  "methodologies": [],
+  "mobile_technologies": [],
+  "domain_keywords": [
+    "big_data",
+    "machine_learning"
+  ],
+  "remote_work": "hybrid",
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": null,
+  "language_requirements": [
+    "english"
+  ]
+}

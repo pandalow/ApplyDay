@@ -1,0 +1,86 @@
+{
+  "company": "Rakuten Kobo Inc.",
+  "role": "software_engineer",
+  "level": "junior",
+  "location": "Dublin, Ireland",
+  "employment_type": "full_time",
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [
+    "3%_pension_matching",
+    "4_extra_long_weekends_around_bank_holiday_weekends",
+    "flexible_hours_and_remote_working_environment",
+    "flexible_spending_account",
+    "free_kobo_device_+_free_weekly_e_book_or_audiobook",
+    "full_benefits_starting_from_your_first_day",
+    "maternity_paternity_leave_top_up",
+    "monthly_internet_allowance",
+    "paid_volunteer_days",
+    "talent_and_development_training_budget",
+    "unlimited_sick_days",
+    "weekly_kobo_tech_university_sessions"
+  ],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": "Computer Science or Computer Engineering Degree (or equivalent practical development experience)",
+  "responsibilities": [
+    "communicate_clearly_and_effectively_with_teammates.",
+    "contribute_to_monitoring_production_systems_through_various_metrics_and_assist_in_debugging_fixing_issues_as_they_arise.",
+    "implement_and_deploy_features_to_production.",
+    "learn_and_apply_best_practices_in_software_development,_including_testing_strategies_and_version_control.",
+    "participate_in_code_reviews;_happy_to_give_and_receive_constructive_feedback.",
+    "participate_in_the_design,_development,_and_testing_of_our_web_applications_for_improvements_and_new_product_features."
+  ],
+  "required_core_skills": [
+    "basic_understanding_of_solid_principles_and_practices,_ioc",
+    "comfortable_with_and_enthusiastic_about_learning_new_technologies",
+    "experience_writing_unit_tests",
+    "good_interpersonal_skills_with_the_ability_to_work_well_in_a_distributed_team_environment",
+    "knowledge_and_some_practical_experience_with_html,_javascript,_and_css_frameworks",
+    "knowledge_and_some_practical_experience_writing_sql_queries",
+    "practical_knowledge_of_c#_or_java",
+    "strong_understanding_of_object_oriented_programming_(oop)",
+    "working_knowledge_of_distributed_version_control_like_git_or_similar"
+  ],
+  "desirable_skills": [
+    "experience_with_ai_powered_coding_assistants_(e.g.,_github_copilot)",
+    "experience_with_modern_js_frameworks_such_as_react_angular",
+    "experience_with_nosql_databases_such_as_ravendb",
+    "exposure_to_docker,_solr,_kubernetes",
+    "familiarity_with_ci_cd_concepts",
+    "previous_e_commerce_work_experience",
+    "working_in_an_agile_environment_and_team",
+    "working_with_github_or_azure_devops"
+  ],
+  "programming_languages": [
+    "c#",
+    "java"
+  ],
+  "frameworks_tools": [
+    "css",
+    "html",
+    "javascript"
+  ],
+  "databases": [
+    "nosql",
+    "sql"
+  ],
+  "cloud_platforms": [],
+  "api_protocols": [],
+  "methodologies": [
+    "agile"
+  ],
+  "mobile_technologies": [],
+  "domain_keywords": [
+    "e_commerce",
+    "web_applications"
+  ],
+  "remote_work": "remote",
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": "e_commerce",
+  "language_requirements": []
+}

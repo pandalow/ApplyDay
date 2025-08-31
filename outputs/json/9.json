@@ -1,0 +1,75 @@
+{
+  "company": "Canonical",
+  "role": "software_engineer",
+  "level": "intern",
+  "location": "Globally Remote",
+  "employment_type": "full_time",
+  "salary_eur_min": null,
+  "salary_eur_max": null,
+  "bonus_percent": null,
+  "benefits": [
+    "annual_compensation_review",
+    "annual_holiday_leave",
+    "maternity_and_paternity_leave",
+    "opportunity_to_travel_to_new_locations_to_meet_colleagues",
+    "personal_learning_and_development_budget_of_usd_2,000_per_year",
+    "priority_pass_and_travel_upgrades_for_long_haul_company_events",
+    "recognition_rewards",
+    "team_member_assistance_program_&_wellness_platform"
+  ],
+  "years_experience_min": null,
+  "years_experience_max": null,
+  "education_required": "Undergraduate degree in Computer Science, Business Informatics, Mathematics or another STEM discipline with programming courses",
+  "responsibilities": [
+    "developing_skills_and_awareness_of_security_in_software_design_and_implementation",
+    "engaging_with_users_and_the_open_source_community_through_code_reviews_and_issue_trackers",
+    "focusing_on_design_and_user_experience,_even_for_developer_tooling_and_command_line_apps",
+    "responding_to_customer_issues_as_a_priority,_develop_an_understanding_of_enterprise_requirements",
+    "shaping_the_roadmap_for_your_product_at_global_sprints_every_six_months",
+    "working_towards_mastery_of_key_programming_languages_and_linux_system_knowledge",
+    "writing_high_quality,_resilient_and_performant_code,_potentially_serving_millions_of_demanding_daily_users"
+  ],
+  "required_core_skills": [
+    "ability_to_travel_internationally_twice_a_year_for_company_events_up_to_two_weeks_long",
+    "confidence_to_get_started_and_deliver_high_quality_code_in_one_of_python,_rust,_c_c++,_golang,_javascript_or_java",
+    "excellent_interpersonal_skills,_curiosity,_flexibility,_and_accountability",
+    "exceptional_academic_track_record_from_both_high_school_and_university",
+    "experience_with_ubuntu_or_another_linux_distribution",
+    "personal_responsibility_and_accountability",
+    "professional_written_and_spoken_english",
+    "result_oriented_and_organized,_with_the_drive_to_meet_commitments",
+    "thoughtfulness,_self_awareness_and_the_ability_to_reflect_and_develop",
+    "track_record_of_going_above_and_beyond_expectations_to_achieve_outstanding_results"
+  ],
+  "desirable_skills": [
+    "business_and_commercial_interests",
+    "leadership_and_organization_skills",
+    "packaging_and_linux_distribution_contributions_debian,_fedora,_arch,_nix_or_another",
+    "presentation_and_writing_skills",
+    "upstream_open_source_contributions"
+  ],
+  "programming_languages": [
+    "c_c++",
+    "golang",
+    "java",
+    "javascript",
+    "python",
+    "rust"
+  ],
+  "frameworks_tools": [],
+  "databases": [],
+  "cloud_platforms": [],
+  "api_protocols": [],
+  "methodologies": [],
+  "mobile_technologies": [],
+  "domain_keywords": [],
+  "remote_work": "remote",
+  "work_permit_required": null,
+  "visa_sponsorship": null,
+  "contact_person": null,
+  "contact_email_or_phone": null,
+  "industry": "technology",
+  "language_requirements": [
+    "professional_written_and_spoken_english"
+  ]
+}
