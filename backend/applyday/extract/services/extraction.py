@@ -1,19 +1,24 @@
-# batch_extract_debug.py
-import os, glob, json, sys, traceback
+#
+
+from datetime import datetime
+import os, sys, traceback
 from pathlib import Path
 import logging
-
 from dotenv import load_dotenv
 from langchain.prompts import PromptTemplate
 from langchain.output_parsers import PydanticOutputParser
 from langchain_openai import ChatOpenAI
-from backend.applyday.extract.schema import JobSchema
+from .schema import JobSchema
+
+from ..models import JobDescriptionText
+from report.models import JobDescription
+
 
 logger = logging.getLogger(__name__)
 load_dotenv()  # Reading env
 
 
-def build_chain() -> str:
+def build_chain():
 
     logger.info("=== Diagnostics ===")
     logger.info("OPENAI_API_KEY set: %s", bool(os.getenv("OPENAI_API_KEY")))
@@ -41,32 +46,35 @@ def build_chain() -> str:
         model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
         chain = prompt | model | parser
         logger.info("✅ Chain constructed.\n")
+        return chain
     except Exception as e:
-        logger.error("❌ Chain construct error:", repr(e))
+        logger.error("❌ Chain construct error: %s", repr(e))
         traceback.print_exc()
-    sys.exit(1)
-
-    return chain
-
+        sys.exit(1)
 
 def extract_job_description(chain, jd_text:str) -> JobSchema:
     try:
         one = chain.invoke({"jd_text": jd_text})
-        logger.info("✅ Single invoke OK. Sample output keys:", list(one.dict().keys())[:5], "...\n")
+        logger.info("✅ Single invoke OK. Sample output keys: %s", list(one.dict().keys())[:5])
+        return one
     except Exception as e:
-        logger.error("❌ Single invoke error:", repr(e))
+        logger.error("❌ Single invoke error: %s", repr(e))
         traceback.print_exc()
         sys.exit(1)
-    return one
 
 
-ok, fail = 0, 0
-for p in paths:
-    try:
-        with open(p, "r", encoding="utf-8") as f:
-            txt = f.read()
-        chain = build_chain()
-        obj: JobSchema = extract_job_description(chain, txt)
-        out_file = out_dir / (Path(p).stem + ".json")
+def process_extract(start, end):
+    qs = JobDescriptionText.objects.all()
+    if start and end:
+        start_dt = datetime.fromisoformat(start)
+        end_dt = datetime.fromisoformat(end)
+        qs = qs.filter(created_at__range = [start_dt, end_dt])
+    
+    logger.info("Found %s job descriptions", qs.count())
 
+    chain = build_chain()
+    for job in qs:
+        obj: JobSchema = extract_job_description(chain, job.text)
 
+        data = obj.model_dump()
+        jd = JobDescription.objects.create(**data)

@@ -3,6 +3,7 @@ import { RouterProvider } from 'react-router-dom'
 import './App.css'
 import RootLayout from './components/RootLayout'
 import Home from './components/Home'
+import AdminPanel from './components/AdminPanel'
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,10 @@ const router = createBrowserRouter([
       {
         path: "/", 
         element: <Home />
+      },
+      {
+        path: "/admin", 
+        element: <AdminPanel />
       }
     ]
   }

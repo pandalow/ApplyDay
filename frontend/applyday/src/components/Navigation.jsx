@@ -1,5 +1,4 @@
-
-
+import { Link } from 'react-router-dom';
 
 function Navigation(){
     return(
@@ -7,8 +6,8 @@ function Navigation(){
             <div>
                 <h1>ApplyDay</h1>
                 <div>
-                    <a href="/">Home</a>
-                    <a href="/dashboard">Application</a>
+                    <Link to="/">Home</Link>
+                    <Link to="/admin">管理面板</Link>
                 </div>
             </div>
         </nav>

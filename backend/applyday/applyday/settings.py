@@ -26,7 +26,46 @@ SECRET_KEY = 'django-insecure-+1*%i%33_v@ernh1s_ns%(2z+u68mtnmj5@$s(z=#ufh-f%bd(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+
+# CORS 配置 - 允许前端跨域访问
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React 默认端口
+    "http://localhost:8080",  # Vue 默认端口  
+    "http://localhost:5173",  # Vite 默认端口
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8080", 
+    "http://127.0.0.1:5173",
+]
+
+# 开发环境下允许所有跨域请求（生产环境请移除）
+CORS_ALLOW_ALL_ORIGINS = DEBUG
+
+# 允许的请求头
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
+
+# 允许的HTTP方法
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
+
+# Allow the credentials sending cookies
+CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
@@ -39,11 +78,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',  # 添加 CORS 支持
     'application',
     'report',
+    'extract'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # CORS 中间件需要放在最上面
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

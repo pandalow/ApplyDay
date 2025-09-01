@@ -184,39 +184,40 @@ class Analyst:
             skills.extend(row["methodologies"])
             job_skills_list.append(skills)
 
-            skill_freq = Counter()
-            pair_freq = Counter()
-            total_docs = len(job_skills_list)
+        skill_freq = Counter()
+        pair_freq = Counter()
+        total_docs = len(job_skills_list)
 
-            for skill_list in job_skills_list:
-                skills = set(skill_list)  # 去重，只考虑“是否出现”
-                for s in skills:
-                    skill_freq[s] += 1
-                for s1, s2 in combinations(sorted(skills), 2):  # 排序 + 两两组合
-                    pair_freq[(s1, s2)] += 1
+        for skill_list in job_skills_list:
+            skills = set(skill_list)  # 去重，只考虑“是否出现”
+            for s in skills:
+                skill_freq[s] += 1
+            for s1, s2 in combinations(sorted(skills), 2):  # 排序 + 两两组合
+                pair_freq[(s1, s2)] += 1
 
-                pmi_scores = {}
+            pmi_scores = {}
 
-                for (s1, s2), co_freq in pair_freq.items():
-                    p_x = skill_freq[s1] / total_docs
-                    p_y = skill_freq[s2] / total_docs
-                    p_xy = co_freq / total_docs
+            for (s1, s2), co_freq in pair_freq.items():
+                p_x = skill_freq[s1] / total_docs
+                p_y = skill_freq[s2] / total_docs
+                p_xy = co_freq / total_docs
 
-                    if p_xy > 0 and p_x > 0 and p_y > 0:
-                        pmi = math.log2(p_xy / (p_x * p_y))
-                        pmi_scores[(s1, s2)] = pmi
+                if p_xy > 0 and p_x > 0 and p_y > 0:
+                    pmi = math.log2(p_xy / (p_x * p_y))
+                    pmi_scores[(s1, s2)] = pmi
 
-            MIN_COFREQ = 3
-            pmi_filtered = {
-                (s1, s2): pmi
-                for (s1, s2), pmi in pmi_scores.items()
-                if pair_freq[(s1, s2)] >= MIN_COFREQ and pmi > 0
-            }
-            G = nx.Graph()
+        MIN_COFREQ = 3
+        pmi_filtered = {
+            (s1, s2): pmi
+            for (s1, s2), pmi in pmi_scores.items()
+            if pair_freq[(s1, s2)] >= MIN_COFREQ and pmi > 0
+        }
+        G = nx.Graph()
 
-            for (s1, s2), pmi in pmi_filtered.items():
-                G.add_edge(s1, s2, weight=pmi)
-
+        for (s1, s2), pmi in pmi_filtered.items():
+            G.add_edge(s1, s2, weight=pmi)
+            
+        return G
 
     def assess_swiss_knife_job(self):
 
@@ -240,5 +241,10 @@ class Analyst:
                 return None
             return round(num_skills / num_verbs, 2)
 
-        self.df["ODI_tools"] = self.df.apply(compute_odi_tools, axis=1)
-        self.df["is_haio_jd"] = self.df["ODI_tools"].apply(lambda x: x > 1.0 if pd.notna(x) else False)
+        odi_tools = self.df.apply(compute_odi_tools, axis=1)
+        is_swiss_jd = self.df["ODI_tools"].apply(lambda x: x > 1.0 if pd.notna(x) else False)
+
+        return {
+            "odi_tools": odi_tools,
+            "is_swiss_jd":is_swiss_jd
+        }
