@@ -11,7 +11,7 @@ from nltk.corpus import stopwords
 from collections import Counter, defaultdict
 from sklearn.feature_extraction.text import TfidfVectorizer
 from itertools import combinations
-import networkx as nx
+from typing import List, Dict, Optional
 
 
 nltk.download('punkt',quiet=True)
@@ -154,8 +154,11 @@ class Analyst:
         docs = list(role_docs.values())
 
         vectorizer = TfidfVectorizer()
+        if not any(d.strip() for d in docs):
+            return {}
+        
         X = vectorizer.fit_transform(docs)  # shape: (num_roles, num_skills)
-
+        
         feature_names = vectorizer.get_feature_names_out()
 
         top_k = 10
@@ -164,9 +167,10 @@ class Analyst:
         for i, role in enumerate(roles):
             row = X[i].toarray()[0]  # index i's TF-IDF vector
             top_indices = np.argsort(row)[::-1][:top_k]
-            top_skills = [(feature_names[j], row[j]) for j in top_indices if row[j] > 0]
-            role_top_skills[role] = top_skills
-
+            role_top_skills[role] = [
+            {"skill": feature_names[j], "score": float(row[j])}
+            for j in top_indices if row[j] > 0
+        ]
         return role_top_skills
 
 
@@ -212,21 +216,23 @@ class Analyst:
             for (s1, s2), pmi in pmi_scores.items()
             if pair_freq[(s1, s2)] >= MIN_COFREQ and pmi > 0
         }
-        G = nx.Graph()
 
-        for (s1, s2), pmi in pmi_filtered.items():
-            G.add_edge(s1, s2, weight=pmi)
-            
-        return G
+        edges = [
+        {"source": s1, "target": s2, "weight": pmi}
+        for (s1, s2), pmi in pmi_filtered.items()
+    ]
+
+        return edges
 
     def assess_swiss_knife_job(self):
-
         def count_action_verbs(responsibilities: List[str]) -> int:
             text = " ".join(r.replace("_", " ") for r in responsibilities)
             doc = self.nlp(text)
             return sum(1 for token in doc if token.pos_ == "VERB")
 
-        def compute_odi_tools(row):
+        results = []
+
+        for idx, row in self.df.iterrows():
             skills = (
                 row["programming_languages"]
                 + row["frameworks_tools"]
@@ -237,14 +243,14 @@ class Analyst:
             )
             num_skills = len(set(skills))
             num_verbs = count_action_verbs(row["responsibilities"])
-            if num_verbs == 0:
-                return None
-            return round(num_skills / num_verbs, 2)
+            odi = round(num_skills / num_verbs, 2) if num_verbs > 0 else None
 
-        odi_tools = self.df.apply(compute_odi_tools, axis=1)
-        is_swiss_jd = self.df["ODI_tools"].apply(lambda x: x > 1.0 if pd.notna(x) else False)
+            results.append({
+                "index": int(idx),
+                "role": row.get("role"),
+                "company": row.get("company"),
+                "odi_tools": odi,
+                "is_swiss_jd": bool(odi and odi > 1.0)
+            })
 
-        return {
-            "odi_tools": odi_tools,
-            "is_swiss_jd":is_swiss_jd
-        }
+        return results

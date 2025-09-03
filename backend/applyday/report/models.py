@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 
 class JobDescription(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+
     company = models.CharField(max_length=255)
     role = models.CharField(max_length=255, null=True, blank=True)
     level = models.CharField(max_length=255, null=True, blank=True)
@@ -37,3 +39,25 @@ class JobDescription(models.Model):
     contact_email_or_phone = models.CharField(max_length=255, null=True)
     industry = models.CharField(max_length=255, null=True)
     language_requirements = models.JSONField(null=True, blank=True)
+
+
+class AnalysisReport(models.Model):
+
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def str(self):
+        return f"Report {self.id} - {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"
+    
+
+class AnalysisResult(models.Model):
+    report  = models.ForeignKey(AnalysisReport, on_delete=models.CASCADE, related_name="results")
+    name = models.CharField(max_length=100)
+    result = models.JSONField(null=True, blank=True)
+
+
+
+
+
+
+
+

@@ -5,6 +5,7 @@ from rest_framework.decorators import action
 
 from .serializers import ApplicationSerializer
 from .models import Application
+from extract.models import JobDescriptionText
 
 
 class ApplicationViewSet(viewsets.ModelViewSet):
@@ -30,24 +31,6 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         if status_param:
             qs = qs.filter(status=status_param.lower())
         return qs
-
-    def partial_update(self, request, *args, **kwargs):
-        """
-        Restrict partial updates to only the 'status', 'stage_notes', and 'job_description' fields.
-        """
-        allowed_fields = {'status', 'stage_notes', 'job_description'}
-        
-        update_fields = set(request.data.keys())
-        if not update_fields.issubset(allowed_fields):
-            return Response({"error": "Invalid fields for partial update."}, status=status.HTTP_400_BAD_REQUEST)
-
-        # filter the data to only include allowed fields
-        filtered_data = {key: value for key, value in request.data.items() if key in allowed_fields}
-        serializer = self.get_serializer(self.get_object(), data=filtered_data, partial=True)
-        serializer.is_valid(raise_exception=True)
-        self.perform_update(serializer)
-
-        return Response(serializer.data)
 
     @action(detail=False, methods=['get'])
     def get_stats(self, request, *args, **kwargs):

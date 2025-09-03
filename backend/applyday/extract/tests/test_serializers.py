@@ -1,86 +1,174 @@
 from django.test import TestCase
+from rest_framework.test import APITestCase
+from application.models import Application
 from extract.models import JobDescriptionText
 from extract.serializers import JobExtractSerializer
 
 
 class JobExtractSerializerTest(TestCase):
-    
+    """Test cases for the JobExtractSerializer."""
+
     def setUp(self):
-        self.valid_data = {"text": "Test job description content"}
-        self.job_desc = JobDescriptionText.objects.create(text="Sample job description")
+        """Set up test data."""
+        self.application = Application.objects.create(
+            company="Test Company",
+            job_title="Software Engineer",
+            status="applied"
+        )
         
-    def test_serializer_with_valid_data(self):
-        """Test serializer with valid data"""
-        serializer = JobExtractSerializer(data=self.valid_data)
+        self.job_description = JobDescriptionText.objects.create(
+            application=self.application,
+            text="Test job description text"
+        )
         
+        self.job_description_data = {
+            'application': self.application.id,
+            'text': 'New job description text'
+        }
+
+    def test_serialize_job_description_text(self):
+        """Test serializing a JobDescriptionText instance."""
+        serializer = JobExtractSerializer(instance=self.job_description)
+        data = serializer.data
+        
+        self.assertEqual(data['application'], self.application.id)
+        self.assertEqual(data['text'], "Test job description text")
+        self.assertIn('id', data)
+        self.assertIn('created_at', data)
+
+    def test_deserialize_job_description_text(self):
+        """Test deserializing job description text data."""
+        serializer = JobExtractSerializer(data=self.job_description_data)
         self.assertTrue(serializer.is_valid())
-        self.assertEqual(serializer.validated_data['text'], self.valid_data['text'])
         
-    def test_serializer_save(self):
-        """Test serializer save method creates object"""
-        serializer = JobExtractSerializer(data=self.valid_data)
-        
-        self.assertTrue(serializer.is_valid())
-        instance = serializer.save()
-        
-        self.assertIsInstance(instance, JobDescriptionText)
-        self.assertEqual(instance.text, self.valid_data['text'])
-        self.assertIsNotNone(instance.created_at)
-        
-    def test_serializer_with_empty_text(self):
-        """Test serializer with empty text"""
-        empty_data = {"text": ""}
-        serializer = JobExtractSerializer(data=empty_data)
-        
-        # Check if empty text is valid or not based on actual behavior
-        is_valid = serializer.is_valid()
-        if is_valid:
-            self.assertTrue(is_valid)  # TextField allows empty strings
-        else:
-            self.assertFalse(is_valid)  # If there are validation rules preventing empty strings
-            self.assertIn('text', serializer.errors)
-        
-    def test_serializer_with_missing_text(self):
-        """Test serializer with missing text field"""
-        serializer = JobExtractSerializer(data={})
-        
-        self.assertFalse(serializer.is_valid())
-        self.assertIn('text', serializer.errors)
-        
-    def test_serializer_serialize_existing_instance(self):
-        """Test serializing existing model instance"""
-        serializer = JobExtractSerializer(self.job_desc)
-        
-        self.assertIn('id', serializer.data)
-        self.assertIn('text', serializer.data)
-        self.assertIn('created_at', serializer.data)
-        self.assertEqual(serializer.data['text'], self.job_desc.text)
-        
-    def test_read_only_fields(self):
-        """Test that id and created_at are read-only"""
-        update_data = {
-            'id': 999,
-            'text': 'Updated text',
-            'created_at': '2023-01-01T00:00:00Z'
+        job_description = serializer.save()
+        self.assertEqual(job_description.application, self.application)
+        self.assertEqual(job_description.text, 'New job description text')
+
+    def test_deserialize_without_application(self):
+        """Test deserializing job description without application."""
+        data = {
+            'text': 'Job description without application'
         }
         
-        serializer = JobExtractSerializer(self.job_desc, data=update_data)
+        serializer = JobExtractSerializer(data=data)
         self.assertTrue(serializer.is_valid())
         
-        updated_instance = serializer.save()
+        job_description = serializer.save()
+        self.assertIsNone(job_description.application)
+        self.assertEqual(job_description.text, 'Job description without application')
+
+    def test_serializer_validation_missing_text(self):
+        """Test serializer validation when text is missing."""
+        invalid_data = {
+            'application': self.application.id
+            # Missing required 'text' field
+        }
         
-        # id and created_at should not be updated
-        self.assertEqual(updated_instance.id, self.job_desc.id)
-        self.assertEqual(updated_instance.created_at, self.job_desc.created_at)
-        self.assertEqual(updated_instance.text, update_data['text'])
+        serializer = JobExtractSerializer(data=invalid_data)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn('text', serializer.errors)
+
+    def test_serializer_validation_empty_text(self):
+        """Test serializer validation with empty text."""
+        data = {
+            'application': self.application.id,
+            'text': ''
+        }
         
-    def test_partial_update(self):
-        """Test partial update with serializer"""
-        partial_data = {'text': 'Partially updated text'}
+        serializer = JobExtractSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn('text', serializer.errors)
+
+    def test_update_job_description_text(self):
+        """Test updating job description text."""
+        update_data = {
+            'text': 'Updated job description text'
+        }
         
-        serializer = JobExtractSerializer(self.job_desc, data=partial_data, partial=True)
+        serializer = JobExtractSerializer(
+            instance=self.job_description,
+            data=update_data,
+            partial=True
+        )
         self.assertTrue(serializer.is_valid())
         
-        updated_instance = serializer.save()
-        self.assertEqual(updated_instance.text, partial_data['text'])
-        self.assertEqual(updated_instance.id, self.job_desc.id)
+        updated_job_description = serializer.save()
+        self.assertEqual(updated_job_description.text, 'Updated job description text')
+        self.assertEqual(updated_job_description.application, self.application)
+
+    def test_read_only_fields(self):
+        """Test that read-only fields cannot be updated."""
+        original_created_at = self.job_description.created_at
+        original_id = self.job_description.id
+        
+        update_data = {
+            'id': 999,  # This should be ignored
+            'created_at': '2023-01-01T00:00:00Z',  # This should be ignored
+            'text': 'Updated text'
+        }
+        
+        serializer = JobExtractSerializer(
+            instance=self.job_description,
+            data=update_data,
+            partial=True
+        )
+        self.assertTrue(serializer.is_valid())
+        
+        updated_job_description = serializer.save()
+        
+        # Read-only fields should remain unchanged
+        self.assertEqual(updated_job_description.id, original_id)
+        self.assertEqual(updated_job_description.created_at, original_created_at)
+        # Non-read-only field should be updated
+        self.assertEqual(updated_job_description.text, 'Updated text')
+
+    def test_serializer_all_fields_included(self):
+        """Test that all model fields are included in serializer."""
+        serializer = JobExtractSerializer(instance=self.job_description)
+        data = serializer.data
+        
+        expected_fields = {'id', 'application', 'text', 'created_at'}
+        actual_fields = set(data.keys())
+        
+        self.assertEqual(actual_fields, expected_fields)
+
+    def test_serializer_with_invalid_application_id(self):
+        """Test serializer with non-existent application ID."""
+        data = {
+            'application': 99999,  # Non-existent application ID
+            'text': 'Test job description'
+        }
+        
+        serializer = JobExtractSerializer(data=data)
+        self.assertFalse(serializer.is_valid())
+        self.assertIn('application', serializer.errors)
+
+    def test_serializer_with_long_text(self):
+        """Test serializer with very long text."""
+        long_text = "This is a very long job description. " * 1000
+        
+        data = {
+            'application': self.application.id,
+            'text': long_text
+        }
+        
+        serializer = JobExtractSerializer(data=data)
+        self.assertTrue(serializer.is_valid())
+        
+        job_description = serializer.save()
+        self.assertEqual(job_description.text, long_text)
+
+    def test_serializer_meta_configuration(self):
+        """Test serializer meta configuration."""
+        serializer = JobExtractSerializer()
+        
+        # Check model
+        self.assertEqual(serializer.Meta.model, JobDescriptionText)
+        
+        # Check fields
+        self.assertEqual(serializer.Meta.fields, '__all__')
+        
+        # Check read_only_fields
+        expected_read_only = ['id', 'created_at']
+        self.assertEqual(list(serializer.Meta.read_only_fields), expected_read_only)

@@ -2,8 +2,10 @@ import {createBrowserRouter} from 'react-router-dom'
 import { RouterProvider } from 'react-router-dom'
 import './App.css'
 import RootLayout from './components/RootLayout'
-import Home from './components/Home'
-import AdminPanel from './components/AdminPanel'
+import Home from "./pages/Home"
+import ApplicationManager from './pages/Application'
+import ExtractManager from './pages/ExtractManager'
+import Report from './pages/Report'
 
 const router = createBrowserRouter([
   {
@@ -15,9 +17,18 @@ const router = createBrowserRouter([
         element: <Home />
       },
       {
-        path: "/admin", 
-        element: <AdminPanel />
+        path: "/app", 
+        element: <ApplicationManager/>
+      },
+      {
+        path:"/extract",
+        element:<ExtractManager/>
+      },
+      {
+        path:"/report",
+        element:<Report/>
       }
+
     ]
   }
 ])

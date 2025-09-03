@@ -46,3 +46,13 @@ export const processExtract = async (startDate, endDate) => {
     throw error;
   }
 };
+
+export const deleteExtract = async (id) => {
+  try {
+    const response = await axios.delete(`${API_BASE_URL}/extract/${id}/`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting extract:", error);
+    throw error;
+  }
+};
