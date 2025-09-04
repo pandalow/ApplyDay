@@ -4,7 +4,7 @@ import './App.css'
 import RootLayout from './components/RootLayout'
 import Home from "./pages/Home"
 import ApplicationManager from './pages/Application'
-import ExtractManager from './pages/ExtractManager'
+import DataManagement from './pages/Data'
 import Report from './pages/Report'
 
 const router = createBrowserRouter([
@@ -16,13 +16,13 @@ const router = createBrowserRouter([
         path: "/", 
         element: <Home />
       },
-      {
+      { 
         path: "/app", 
         element: <ApplicationManager/>
       },
       {
         path:"/extract",
-        element:<ExtractManager/>
+        element:<DataManagement/>
       },
       {
         path:"/report",

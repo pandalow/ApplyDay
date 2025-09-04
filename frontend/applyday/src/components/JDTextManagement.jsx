@@ -6,22 +6,17 @@ import {
   fetchExtracts,
   createExtract,
   partialUpdateExtract,
-  processExtract,
   deleteExtract,
 } from "../service/extract";
 
-const ExtractManager = () => {
-  const [extracts, setExtracts] = useState([]);
+function JDTextManagement() {
+    const [extracts, setExtracts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [formData, setFormData] = useState({ text: "" });
 
-  const [extractProcessing, setExtractProcessing] = useState(false);
-  const [extractDates, setExtractDates] = useState({
-    startDate: "",
-    endDate: "",
-  });
+
 
   const loadExtracts = async () => {
     setLoading(true);
@@ -44,10 +39,6 @@ const ExtractManager = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleDateChange = (e) => {
-    const { name, value } = e.target;
-    setExtractDates((prev) => ({ ...prev, [name]: value }));
-  };
 
   const handleCreate = async (e) => {
     e.preventDefault();
@@ -104,40 +95,10 @@ const ExtractManager = () => {
     }
   };
 
-  const handleProcessExtract = async (e) => {
-    e.preventDefault();
-    if (!extractDates.startDate || !extractDates.endDate) {
-      alert("请选择开始和结束日期");
-      return;
-    }
-    setExtractProcessing(true);
-    try {
-      const result = await processExtract(
-        extractDates.startDate + "T00:00:00",
-        extractDates.endDate + "T23:59:59"
-      );
-      alert("提取任务完成！");
-      console.log("Extract result:", result);
-      await loadExtracts();
-    } catch (error) {
-      console.error("Failed to process extract:", error);
-      alert("提取任务失败，请检查控制台错误信息");
-    } finally {
-      setExtractProcessing(false);
-    }
-  };
+
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
-          Data Management
-        </h1>
-        <p className="text-gray-600 dark:text-gray-400">
-          Manage job descriptions and extract valuable insights
-        </p>
-      </div>
 
       {/* 创建按钮 */}
       <div className="mb-6">
@@ -149,7 +110,7 @@ const ExtractManager = () => {
           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
           </svg>
-          新建提取记录
+          Adding Extra JDs
         </button>
       </div>
 
@@ -165,16 +126,6 @@ const ExtractManager = () => {
           />
         </div>
       )}
-
-      {/* 提取任务 */}
-      <div className="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-        <Extracting
-          extractDates={extractDates}
-          handleDateChange={handleDateChange}
-          extractProcessing={extractProcessing}
-          handleProcessExtract={handleProcessExtract}
-        />
-      </div>
 
       {/* 提取记录列表 */}
       <div className="space-y-6">
@@ -230,6 +181,7 @@ const ExtractManager = () => {
       </div>
     </div>
   );
-};
+}
 
-export default ExtractManager;
+
+export default JDTextManagement;

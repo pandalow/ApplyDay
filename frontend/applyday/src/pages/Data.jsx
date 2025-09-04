@@ -1,25 +1,24 @@
-import { useState, useEffect } from "react";
-import '../service/report.js'
-import ReportDetail from "../components/ReportDetail.jsx";
-import JDPage from "../components/JDpage.jsx";
+import { useState } from "react";
+import JDTextManagement from "../components/JDTextManagement";
+import JDPage from "../components/JDpage";
 
-function Report() {
-    const [activeTab, setActiveTab] = useState("report");
+
+const DataManagement = () => {
+    const [activeTab, setActiveTab] = useState("jd");
 
     const tabs = [
-        { id: "report", label: "Analysis Report" },
-        { id: "jd", label: "Job Summary" }
+      { id: "jd", label: "JD Management" },
+      { id: "jdtext", label: "JD Text Management" },
     ];
-
     return(
         <div className="max-w-6xl mx-auto px-4 py-6">
             {/* 页面标题 */}
             <div className="mb-8">
                 <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-                    Job Market Analysis
+                    Data Management
                 </h1>
                 <p className="text-gray-600 dark:text-gray-400 mt-2">
-                    Comprehensive analysis of job descriptions and market trends
+                    Manage job descriptions and extract valuable insights
                 </p>
             </div>
 
@@ -45,11 +44,11 @@ function Report() {
 
             {/* Tab Content */}
             <div className="tab-content">
-                {activeTab === "report" && <ReportDetail />}
                 {activeTab === "jd" && <JDPage />}
+                {activeTab === "jdtext" && <JDTextManagement />}
             </div>
         </div>
     )
-}
+};
 
-export default Report;
+export default DataManagement;

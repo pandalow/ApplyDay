@@ -1,6 +1,6 @@
-function ApplicationForm({ onCreate, onChange, onCancel, formData, loading }) {
+function ApplicationForm({ onCreate, onChange, onCancel, formData, loading, isModal = false }) {
   return (
-    <div className="max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
+    <div className={isModal ? "mt-4" : "max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md p-6"}>
       <form onSubmit={onCreate} className="space-y-4">
         {/* 公司 */}
         <div>
@@ -81,19 +81,21 @@ function ApplicationForm({ onCreate, onChange, onCancel, formData, loading }) {
 
         {/* 按钮 */}
         <div className="flex justify-end space-x-3 pt-4">
-          <button
-            type="button"
-            onClick={onCancel}
-            className="px-4 py-2 rounded-md border border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
-          >
-            Cancel
-          </button>
+          {!isModal && (
+            <button
+              type="button"
+              onClick={onCancel}
+              className="px-4 py-2 rounded-md border border-gray-300 bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+            >
+              Cancel
+            </button>
+          )}
           <button
             type="submit"
             disabled={loading}
-            className="px-4 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50"
+            className={`px-6 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50 ${isModal ? 'w-full' : ''}`}
           >
-            {loading ? "Creating..." : "Create"}
+            {loading ? "Creating..." : "Create Application"}
           </button>
         </div>
       </form>

@@ -6,7 +6,7 @@ function Navigation() {
   const links = [
     { to: "/", label: "Home" },
     { to: "/app", label: "Application" },
-    { to: "/extract", label: "Extraction" },
+    { to: "/extract", label: "Data" },
     { to: "/report", label: "Report" }
   ];
 

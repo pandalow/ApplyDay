@@ -1,11 +1,51 @@
-function Extracting({
-  extractDates,
-  handleDateChange,
-  extractProcessing,
-  handleProcessExtract,
-  loading,
-}) {
+import { useState } from "react";
+import { processExtract } from "../service/extract";
+
+function Extracting({ onSuccess }) {
+  const [extractProcessing, setExtractProcessing] = useState(false);
+  const [loading, setLoading] = useState(false);
+  
+
+  const [extractDates, setExtractDates] = useState({
+    startDate: "",
+    endDate: "",
+  });
+
+    const handleDateChange = (e) => {
+    const { name, value } = e.target;
+    setExtractDates((prev) => ({ ...prev, [name]: value }));
+  };
+
+    const handleProcessExtract = async (e) => {
+    e.preventDefault();
+    if (!extractDates.startDate || !extractDates.endDate) {
+      alert("请选择开始和结束日期");
+      return;
+    }
+    setExtractProcessing(true);
+    try {
+      const result = await processExtract(
+        extractDates.startDate + "T00:00:00",
+        extractDates.endDate + "T23:59:59"
+      );
+      alert("提取任务完成！");
+      console.log("Extract result:", result);
+      await loadExtracts();
+      // 调用成功回调
+      if (onSuccess) {
+        onSuccess();
+      }
+    } catch (error) {
+      console.error("Failed to process extract:", error);
+      alert("提取任务失败，请检查控制台错误信息");
+    } finally {
+      setExtractProcessing(false);
+    }
+  };
+
+
   return (
+    
     <div className="bg-white dark:bg-gray-700 rounded-lg shadow p-6">
       {/* 标题 */}
       <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
