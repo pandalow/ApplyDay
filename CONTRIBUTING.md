@@ -115,7 +115,8 @@ cd applyday
 
 # Copy environment file
 cp .env.example .env
-# Edit .env with your settings
+# Edit .env with your AI provider and API key
+# Choose from: openai, anthropic, or google
 
 # Start development environment
 docker compose -f docker-compose.dev.yml up -d

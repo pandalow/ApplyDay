@@ -92,7 +92,7 @@ cd applyday
 
 # Set up environment variables
 cp .env.example .env
-# Edit .env with your OpenAI API key and preferences
+# Edit .env with your AI provider and API key (see Environment Configuration section below)
 
 # Start with Docker Compose
 docker compose up -d
@@ -146,11 +146,19 @@ Visit `http://localhost:5173` for development.
 Create a `.env` file in the root directory:
 
 ```env
-# AI Configuration
-AI_PROVIDER=OPENAI
-AI_MODEL=gpt-4o
-AI_TEMPERATURE=0
+# AI Configuration - Choose your provider
+AI_PROVIDER=openai              # Options: openai, anthropic, google
+AI_MODEL=gpt-4o                 # Model name (varies by provider)
+AI_TEMPERATURE=0                # Response randomness (0.0-1.0)
+
+# OpenAI Configuration (if AI_PROVIDER=openai)
 OPENAI_API_KEY=your_openai_api_key_here
+
+# Anthropic Configuration (if AI_PROVIDER=anthropic)
+ANTHROPIC_API_KEY=your_anthropic_api_key_here
+
+# Google AI Configuration (if AI_PROVIDER=google)
+GOOGLE_API_KEY=your_google_ai_api_key_here
 
 # Django Settings
 DJANGO_SECRET_KEY=your_secret_key_here
@@ -158,6 +166,33 @@ DJANGO_DEBUG=False
 DJANGO_ALLOWED_HOSTS=*
 CORS_ALLOW_ALL_ORIGINS=True
 ```
+
+### 🤖 AI Provider Options
+
+ApplyDay supports multiple AI providers for analysis and insights:
+
+#### OpenAI (Default)
+```env
+AI_PROVIDER=openai
+AI_MODEL=gpt-4o                 # Options: gpt-4o, gpt-4o-mini, gpt-3.5-turbo
+OPENAI_API_KEY=your_key_here
+```
+
+#### Anthropic Claude
+```env
+AI_PROVIDER=anthropic
+AI_MODEL=claude-3-haiku         # Options: claude-3-haiku, claude-3-sonnet, claude-3-opus
+ANTHROPIC_API_KEY=your_key_here
+```
+
+#### Google Gemini
+```env
+AI_PROVIDER=google
+AI_MODEL=gemini-pro             # Options: gemini-pro, gemini-pro-vision
+GOOGLE_API_KEY=your_key_here
+```
+
+**Note**: You only need to set the API key for your chosen provider.
 
 ## 🏗️ Architecture
 

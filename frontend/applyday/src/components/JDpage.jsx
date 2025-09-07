@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import JDItem from "./JDItem.jsx";
-import { fetchJDs, createJD, deleteJD, updateJD } from "../service/application.js";
+import JDItem from "./JDItem";
+import { fetchJDs, createJD, deleteJD, updateJD } from "../service/application";
 
 function JDPage() {
     const [jdList, setJDList] = useState([]);
