@@ -1,0 +1,9 @@
+django
+djangorestframework
+django-cors-headers
+pandas
+nltk
+matplotlib
+seaborn
+wordcloud
+numpy

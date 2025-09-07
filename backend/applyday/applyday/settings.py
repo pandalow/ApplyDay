@@ -30,18 +30,18 @@ ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
 
 # CORS 配置 - 允许前端跨域访问
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000",  # React 默认端口
-    "http://localhost:8080",  # Vue 默认端口  
-    "http://localhost:5173",  # Vite 默认端口
+    "http://localhost:3000",  # React default port
+    "http://localhost:8080",  # Vue default port
+    "http://localhost:5173",  # Vite default port
     "http://127.0.0.1:3000",
     "http://127.0.0.1:8080", 
     "http://127.0.0.1:5173",
 ]
 
-# 开发环境下允许所有跨域请求（生产环境请移除）
+# Development convenience: allow all origins
 CORS_ALLOW_ALL_ORIGINS = DEBUG
 
-# 允许的请求头
+# Allowed headers
 CORS_ALLOW_HEADERS = [
     'accept',
     'accept-encoding',
@@ -54,7 +54,7 @@ CORS_ALLOW_HEADERS = [
     'x-requested-with',
 ]
 
-# 允许的HTTP方法
+# Allowed HTTP methods
 CORS_ALLOW_METHODS = [
     'DELETE',
     'GET',
@@ -69,7 +69,6 @@ CORS_ALLOW_CREDENTIALS = True
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -81,7 +80,7 @@ INSTALLED_APPS = [
     'corsheaders',  # 添加 CORS 支持
     'application',
     'report',
-    'extract'
+    'ai',
 ]
 
 MIDDLEWARE = [
@@ -161,6 +160,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

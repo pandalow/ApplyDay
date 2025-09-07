@@ -192,15 +192,13 @@ class Analyst:
         pair_freq = Counter()
         total_docs = len(job_skills_list)
 
+        pmi_scores = {}
         for skill_list in job_skills_list:
             skills = set(skill_list)  # 去重，只考虑“是否出现”
             for s in skills:
                 skill_freq[s] += 1
             for s1, s2 in combinations(sorted(skills), 2):  # 排序 + 两两组合
                 pair_freq[(s1, s2)] += 1
-
-            pmi_scores = {}
-
             for (s1, s2), co_freq in pair_freq.items():
                 p_x = skill_freq[s1] / total_docs
                 p_y = skill_freq[s2] / total_docs

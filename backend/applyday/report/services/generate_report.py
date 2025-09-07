@@ -1,5 +1,5 @@
 from .analyst import Analyst
-from ..models import AnalysisReport, AnalysisResult, JobDescription
+from ..models import AnalysisReport, AnalysisResult
 
 class AnalysisService:
     freq_choices = [
@@ -13,44 +13,30 @@ class AnalysisService:
     ]
 
     @staticmethod
-    def generate_report(analyst: Analyst):
-        report  = AnalysisReport.objects.create()
+    def analyze(analyst: Analyst) -> dict:
+        """Returns a dict of analysis results."""
+        results = {}
 
-        results = []
-        roles = dict(analyst.get_frequencies("role", text_mode=True).most_common(20))
-        results.append(
-            AnalysisResult(report=report, name="freq.role", result=roles)
-        )
-        # Dynamically get frequencies for all freq_choices
+        results["freq.role"] = dict(analyst.get_frequencies("role", text_mode=True).most_common(20))
         for choice in AnalysisService.freq_choices:
-            results.append(
-                AnalysisResult(report=report, 
-                               name=f"freq.{choice}", 
-                               result=dict(analyst.get_frequencies(
-                                   choice, 
-                                   text_mode=False
-                                   ))))
+            results[f"freq.{choice}"] = dict(analyst.get_frequencies(choice, text_mode=False))
 
-        # Responsibilities pos_tag with phrases
-        responsibilities = analyst.get_pos_tags_tokens("responsibilities")
-        results.append(
-            AnalysisResult(report=report, name="pos.responsibilities", result=responsibilities)
-        )
+        results["pos.responsibilities"] = analyst.get_pos_tags_tokens("responsibilities")
+        results["tfidf.skills"] = analyst.get_tfidf_skills()
+        results["graph.skills"] = analyst.get_PMI_networks()
+        results["swiss_knife"] = analyst.assess_swiss_knife_job()
+        return results
+    
+    @staticmethod
+    def generate_report(analyst: Analyst) -> AnalysisReport:
+        """Generates and saves an AnalysisReport based on the provided Analyst."""
+        analysis_results = AnalysisService.analyze(analyst)
 
-        role_top_skills = analyst.get_tfidf_skills()
-        results.append(
-            AnalysisResult(report=report, name="tfidf.skills", result=role_top_skills)
-        )
 
-        skills_PMI = analyst.get_PMI_networks()
-        results.append(
-            AnalysisResult(report=report, name="graph.skills", result=skills_PMI)
-        )
-
-        swiss_knife = analyst.assess_swiss_knife_job()
-        results.append(
-            AnalysisResult(report=report, name="swiss_knife", result=swiss_knife)
-        )
-        AnalysisResult.objects.bulk_create(results)
-
+        report = AnalysisReport.objects.create()
+        objs = [
+            AnalysisResult(report=report, name=k, result=v)
+            for k, v in analysis_results.items()
+        ]
+        AnalysisResult.objects.bulk_create(objs)
         return report

@@ -7,7 +7,7 @@ import {
   createExtract,
   partialUpdateExtract,
   deleteExtract,
-} from "../service/extract";
+} from "../service/application";
 
 function JDTextManagement() {
     const [extracts, setExtracts] = useState([]);

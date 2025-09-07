@@ -1,28 +1,21 @@
-#
-
-from datetime import datetime
-import os, sys, traceback
-from pathlib import Path
+# ai/chain/jd_extract_chain.py
+# Build a LangChain chain to extract job description info using LLMs
 import logging
+import sys, traceback
+from typing import Optional
 from dotenv import load_dotenv
+load_dotenv() # Load environment variables from .env file
+
 from langchain.prompts import PromptTemplate
 from langchain.output_parsers import PydanticOutputParser
-from langchain_openai import ChatOpenAI
-from .schema import JobSchema
 
-from ..models import JobDescriptionText
-from report.models import JobDescription
-
+from ai.schema.jd_schema import JobSchema
+from ai.factory import get_llm
 
 logger = logging.getLogger(__name__)
-load_dotenv()  # Reading env
 
 
 def build_chain():
-
-    logger.info("=== Diagnostics ===")
-    logger.info("OPENAI_API_KEY set: %s", bool(os.getenv("OPENAI_API_KEY")))
-    logger.info("===================\n")
     try:
         parser = PydanticOutputParser(pydantic_object=JobSchema)
         prompt = PromptTemplate(
@@ -43,7 +36,7 @@ def build_chain():
             partial_variables={"format_instructions": parser.get_format_instructions()},
         )
 
-        model = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+        model = get_llm()
         chain = prompt | model | parser
         logger.info("✅ Chain constructed.\n")
         return chain
@@ -52,7 +45,7 @@ def build_chain():
         traceback.print_exc()
         sys.exit(1)
 
-def extract_job_description(chain, jd_text:str) -> JobSchema:
+def extract_job_description(chain, jd_text:Optional[str]) -> JobSchema:
     try:
         one = chain.invoke({"jd_text": jd_text})
         logger.info("✅ Single invoke OK. Sample output keys: %s", list(one.dict().keys())[:5])
@@ -62,19 +55,3 @@ def extract_job_description(chain, jd_text:str) -> JobSchema:
         traceback.print_exc()
         sys.exit(1)
 
-
-def process_extract(start, end):
-    qs = JobDescriptionText.objects.all()
-    if start and end:
-        start_dt = datetime.fromisoformat(start)
-        end_dt = datetime.fromisoformat(end)
-        qs = qs.filter(created_at__range = [start_dt, end_dt])
-    
-    logger.info("Found %s job descriptions", qs.count())
-
-    chain = build_chain()
-    for job in qs:
-        obj: JobSchema = extract_job_description(chain, job.text)
-
-        data = obj.model_dump()
-        jd = JobDescription.objects.create(**data)

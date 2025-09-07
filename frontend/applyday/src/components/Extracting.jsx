@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { processExtract } from "../service/extract";
+import { processExtract } from "../service/report";
 
 function Extracting({ onSuccess }) {
   const [extractProcessing, setExtractProcessing] = useState(false);

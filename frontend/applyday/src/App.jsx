@@ -20,15 +20,15 @@ const router = createBrowserRouter([
         path: "/app", 
         element: <ApplicationManager/>
       },
+
+      {
+        path:"/report",
+        element:<Report/>
+      },
       {
         path:"/extract",
         element:<DataManagement/>
       },
-      {
-        path:"/report",
-        element:<Report/>
-      }
-
     ]
   }
 ])

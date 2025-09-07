@@ -1,51 +1,11 @@
 import axios from "axios";
+import API_CONFIG from '../config/api';
 
-const API_BASE_URL = 'http://127.0.0.1:8000';
-
-export const fetchJDs = async () => {
-  try {
-    const response = await axios.get(`${API_BASE_URL}/report/jd/`);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching job descriptions:', error);
-    throw error;
-  }
-};  
-
-export const createJD = async (jdData) => {
-  try {
-    const response = await axios.post(`${API_BASE_URL}/report/jd/`, jdData);
-    return response.data;
-  } catch (error) {
-    console.error('Error creating job description:', error);
-    throw error;
-  }
-};
-
-export const deleteJD = async (jobId) => {
-  try {
-    const response = await axios.delete(`${API_BASE_URL}/report/jd/${jobId}/`);
-    return response.data;
-  } catch (error) {
-    console.error('Error deleting job description:', error);
-    throw error;
-  }
-};
-
-
-export const updateJD = async (jobId, jdData) => {
-  try {
-    const response = await axios.put(`${API_BASE_URL}/report/jd/${jobId}/`, jdData);
-    return response.data;
-  } catch (error) {
-    console.error('Error updating job description:', error);
-    throw error;
-  }
-};
+const API_BASE_URL = API_CONFIG.REPORT_API;
 
 export const getReport = async (reportId) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/report/reports/${reportId}/`);
+    const response = await axios.get(`${API_BASE_URL}${reportId}/`);
     return response.data;
   } catch (error) {
     console.error('Error fetching report:', error);
@@ -53,10 +13,9 @@ export const getReport = async (reportId) => {
   }
 };
 
-
 export const createReport = async (reportData) => {
   try {
-    const response = await axios.post(`${API_BASE_URL}/report/reports/`, reportData);
+    const response = await axios.post(`${API_BASE_URL}`, reportData);
     return response.data;
   } catch (error) {
     console.error('Error creating report:', error);
@@ -66,7 +25,7 @@ export const createReport = async (reportData) => {
 
 export const deleteReport = async (reportId) => {
   try {
-    const response = await axios.delete(`${API_BASE_URL}/report/reports/${reportId}/`);
+    const response = await axios.delete(`${API_BASE_URL}${reportId}/`);
     return response.data;
   } catch (error) {
     console.error('Error deleting report:', error);
@@ -77,10 +36,45 @@ export const deleteReport = async (reportId) => {
 
 export const fetchReports = async () => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/report/reports/`);
+    const response = await axios.get(`${API_BASE_URL}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching reports:', error);
     throw error;
   }
 };
+
+// 单独的 extract 功能 - 处理提取任务
+export const processExtract = async (startDate, endDate) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}extract/`, {
+      start: startDate,
+      end: endDate
+    });
+    return response.data;
+  } catch (error) {
+    console.error("Error processing extract:", error);
+    throw error;
+  }
+};
+
+
+export const generatePipeline = async (data) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}run/`, data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching applications:', error);
+    throw error;
+  }
+};
+
+export const createSummary = async (reportId, resumeId) => {
+  try {
+    const response = await axios.post(`${API_BASE_URL}${reportId}/insight/`, { resume_id: resumeId });
+    return response.data;
+  } catch (error) {
+    console.error("Error creating summary:", error);
+    throw error;
+  }
+}

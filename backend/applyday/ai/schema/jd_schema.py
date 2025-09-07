@@ -2,7 +2,6 @@ from typing import List, Optional, Literal
 from pydantic import BaseModel, Field, field_validator
 import re
 
-# -------- Helpers: normalization & sorting --------
 _WS = re.compile(r"\s+")
 _MULTI_US = re.compile(r"_+")
 

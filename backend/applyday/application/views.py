@@ -3,10 +3,8 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from .serializers import ApplicationSerializer
-from .models import Application
-from extract.models import JobDescriptionText
-
+from .serializers import ApplicationSerializer, JobExtractSerializer, JobDescriptionSerializer, ResumeTextSerializer
+from .models import Application , JobDescription, JobDescriptionText, ResumeText
 
 class ApplicationViewSet(viewsets.ModelViewSet):
     """
@@ -45,3 +43,35 @@ class ApplicationViewSet(viewsets.ModelViewSet):
             "offered": Application.objects.filter(status='offered').count(),
         }
         return Response({'data': total_applications}, status=status.HTTP_200_OK)
+
+
+class JDViewSet(viewsets.ModelViewSet):
+    queryset = JobDescription.objects.all()
+    serializer_class = JobDescriptionSerializer
+
+
+class JobExtract(viewsets.ModelViewSet):
+    """
+    """
+    serializer_class = JobExtractSerializer
+    queryset = JobDescriptionText.objects.all()
+
+    def partial_update(self, request , *args, **kwargs):
+        """
+        """
+        allowed_fields = ["text"]
+
+        update_field = set(request.data.keys())
+        if not update_field.issubset(allowed_fields):
+            return Response({"error": "Invalid fields for partial update."}, status=status.HTTP_400_BAD_REQUEST)
+        
+        filtered_data  = {key:value for key, value in request.data.items() if key in allowed_fields}
+        serializer = self.get_serializer(self.get_object(), data=filtered_data, partial=True)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+
+        return Response(serializer.data)
+
+class ResumeTextViewSet(viewsets.ModelViewSet):
+    queryset = ResumeText.objects.all()
+    serializer_class = ResumeTextSerializer

@@ -2,7 +2,7 @@ function ApplicationForm({ onCreate, onChange, onCancel, formData, loading, isMo
   return (
     <div className={isModal ? "mt-4" : "max-w-lg mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md p-6"}>
       <form onSubmit={onCreate} className="space-y-4">
-        {/* 公司 */}
+        {/* Company */}
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Company Name
@@ -17,7 +17,7 @@ function ApplicationForm({ onCreate, onChange, onCancel, formData, loading, isMo
           />
         </div>
 
-        {/* 职位 */}
+        {/* Role*/}
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Role
@@ -32,7 +32,7 @@ function ApplicationForm({ onCreate, onChange, onCancel, formData, loading, isMo
           />
         </div>
 
-        {/* 描述 */}
+        {/* Description */}
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Job Description
@@ -46,7 +46,7 @@ function ApplicationForm({ onCreate, onChange, onCancel, formData, loading, isMo
           />
         </div>
 
-        {/* 状态 */}
+        {/* Status */}
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Status
@@ -65,7 +65,7 @@ function ApplicationForm({ onCreate, onChange, onCancel, formData, loading, isMo
           </select>
         </div>
 
-        {/* 备注 */}
+        {/* Stage Notes */}
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
             Stage Notes
@@ -79,7 +79,7 @@ function ApplicationForm({ onCreate, onChange, onCancel, formData, loading, isMo
           />
         </div>
 
-        {/* 按钮 */}
+        {/* Buttons */}
         <div className="flex justify-end space-x-3 pt-4">
           {!isModal && (
             <button
@@ -95,7 +95,7 @@ function ApplicationForm({ onCreate, onChange, onCancel, formData, loading, isMo
             disabled={loading}
             className={`px-6 py-2 rounded-md bg-indigo-600 text-white hover:bg-indigo-700 disabled:opacity-50 ${isModal ? 'w-full' : ''}`}
           >
-            {loading ? "Creating..." : "Create Application"}
+            {loading ? "Processing..." : "Submit"}
           </button>
         </div>
       </form>

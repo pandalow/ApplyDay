@@ -6,18 +6,18 @@ function Navigation() {
   const links = [
     { to: "/", label: "Home" },
     { to: "/app", label: "Application" },
+    { to: "/report", label: "Report" },
     { to: "/extract", label: "Data" },
-    { to: "/report", label: "Report" }
   ];
 
   return (
     <nav className="bg-white dark:bg-gray-900 shadow-md">
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex justify-between items-center h-14">
-          {/* 左侧 Logo */}
+          {/* Left side Logo */}
           <h1 className="text-xl font-bold text-indigo-600">ApplyDay</h1>
 
-          {/* 右侧导航链接 */}
+          {/* Right side navigation links */}
           <div className="flex space-x-6">
             {links.map((link) => (
               <Link
