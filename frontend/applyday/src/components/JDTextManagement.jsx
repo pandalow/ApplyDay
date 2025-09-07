@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import ExtractionForm from "../components/ExtractionForm";
 import ExtractionItem from "../components/ExtractionItem";
 import Extracting from "../components/Extracting";
@@ -9,14 +9,18 @@ import {
   deleteExtract,
 } from "../service/application";
 
-function JDTextManagement() {
+const JDTextManagement = forwardRef((props, ref) => {
     const [extracts, setExtracts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [editingId, setEditingId] = useState(null);
   const [showCreateForm, setShowCreateForm] = useState(false);
+  const [showExtractDialog, setShowExtractDialog] = useState(false);
   const [formData, setFormData] = useState({ text: "" });
 
-
+  // 暴露方法给父组件
+  useImperativeHandle(ref, () => ({
+    showExtractDialog: () => setShowExtractDialog(true)
+  }));
 
   const loadExtracts = async () => {
     setLoading(true);
@@ -98,10 +102,34 @@ function JDTextManagement() {
 
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="space-y-6">
+      {/* Extract New JDs Dialog */}
+      {showExtractDialog && (
+        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-6">
+          <div className="flex items-center justify-between mb-4">
+            <h4 className="text-lg font-medium text-gray-900 dark:text-white">
+              Extract New Job Descriptions
+            </h4>
+            <button
+              onClick={() => setShowExtractDialog(false)}
+              className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <Extracting 
+            onSuccess={() => {
+              loadExtracts();
+              setShowExtractDialog(false);
+            }} 
+          />
+        </div>
+      )}
 
       {/* 创建按钮 */}
-      <div className="mb-6">
+      <div>
         <button
           onClick={() => setShowCreateForm(true)}
           disabled={loading || showCreateForm || editingId}
@@ -116,7 +144,7 @@ function JDTextManagement() {
 
       {/* 创建表单 */}
       {showCreateForm && (
-        <div className="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+        <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-6">
           <ExtractionForm
             formData={formData}
             onCreate={handleCreate}
@@ -130,9 +158,9 @@ function JDTextManagement() {
       {/* 提取记录列表 */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
+          <h4 className="text-lg font-medium text-gray-900 dark:text-gray-100">
             Job Description List
-          </h3>
+          </h4>
           <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-indigo-100 text-indigo-800 dark:bg-indigo-900 dark:text-indigo-200">
             {extracts.length} records
           </span>
@@ -154,7 +182,7 @@ function JDTextManagement() {
             {extracts.map((extract) => (
               <div
                 key={extract.id}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"
+                className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-6"
               >
                 {editingId === extract.id ? (
                   <ExtractionForm
@@ -181,7 +209,6 @@ function JDTextManagement() {
       </div>
     </div>
   );
-}
-
+});
 
 export default JDTextManagement;

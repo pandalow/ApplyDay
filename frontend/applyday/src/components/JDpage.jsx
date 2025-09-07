@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Extracting from "./Extracting";
 import JDItem from "./JDItem";
 import { fetchJDs, createJD, deleteJD, updateJD } from "../service/application";
 
@@ -110,37 +109,20 @@ function JDPage() {
     const uniqueCompanies = [...new Set(jdList.map(jd => jd.company).filter(Boolean))];
 
     return (
-        <div className="max-w-6xl mx-auto p-6">
-            <div className="mb-8">
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                    Job Descriptions
-                </h1>
-                <p className="text-gray-600 dark:text-gray-400">
-                    Manage and review extracted job descriptions
-                </p>
-            </div>
-
+        <div className="space-y-6">
             {/* Error Message */}
             {error && (
                 <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="mb-6 p-4 bg-red-100 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg"
+                    className="p-4 bg-red-100 dark:bg-red-900/20 border border-red-300 dark:border-red-700 rounded-lg"
                 >
                     <p className="text-red-700 dark:text-red-400">{error}</p>
                 </motion.div>
             )}
 
-            {/* Extracting Section */}
-            <div className="mb-8 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                    Extract New Job Descriptions
-                </h2>
-                <Extracting onSuccess={loadJDs} />
-            </div>
-
             {/* Controls Section */}
-            <div className="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+            <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-6">
                 <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-4 mb-4">
                     <div className="flex flex-col sm:flex-row gap-4 flex-1">
                         {/* Search */}
@@ -203,11 +185,10 @@ function JDPage() {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="mb-6 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6"
-                    >
-                        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                        className="mb-6 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-6">
+                        <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-4">
                             Create New Job Description
-                        </h3>
+                        </h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                             <div>
                                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
@@ -305,12 +286,11 @@ function JDPage() {
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                className="text-center py-12 bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700"
-                            >
+                                className="text-center py-12 bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
                                 <div className="text-gray-400 dark:text-gray-500 text-6xl mb-4">📄</div>
-                                <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
+                                <h4 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
                                     No job descriptions found
-                                </h3>
+                                </h4>
                                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                                     {searchTerm || filterLevel || filterCompany
                                         ? "Try adjusting your search filters"
