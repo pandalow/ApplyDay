@@ -64,9 +64,11 @@ class ReportViewSet(viewsets.ModelViewSet):
     def pipeline(self, request, *args, **kwargs):
         job_ids = request.data.get("job_ids", [])
         resume_id = request.data.get("resume_id")
+        languages = request.data.get("languages" )
+
 
         report = PipelineService.run_extraction_pipeline(job_ids=job_ids or None)
-        summary = PipelineService.run_insight_pipeline(report.id, resume_id)
+        summary = PipelineService.run_insight_pipeline(report.id, resume_id, languages=languages)
 
         serializer = AnalysisReportSerializer(report)
         return Response(
@@ -80,7 +82,7 @@ class ReportViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=['post'], url_path='insight')
     def create_summary(self, request, pk=None):
         resume_id = request.data.get("resume_id")
-        summary = PipelineService.run_insight_pipeline(pk, resume_id)
+        summary = PipelineService.run_insight_pipeline(pk, resume_id, languages="en")
         return Response({"summary": summary}, status=status.HTTP_200_OK)
 
 

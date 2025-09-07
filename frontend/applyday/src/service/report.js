@@ -61,10 +61,15 @@ export const processExtract = async (startDate, endDate) => {
 
 export const generatePipeline = async (data) => {
   try {
+    console.log("Sending pipeline request with data:", data);
     const response = await axios.post(`${API_BASE_URL}run/`, data);
+    console.log("Pipeline response received:", response);
+    console.log("Pipeline response data:", response.data);
     return response.data;
   } catch (error) {
-    console.error('Error fetching applications:', error);
+    console.error('Error in generatePipeline:', error);
+    console.error('Error response:', error.response?.data);
+    console.error('Error status:', error.response?.status);
     throw error;
   }
 };

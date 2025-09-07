@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-+1*%i%33_v@ernh1s_ns%(2z+u68mtnmj5@$s(z=#ufh-f%bd('
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-+1*%i%33_v@ernh1s_ns%(2z+u68mtnmj5@$s(z=#ufh-f%bd(')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() == 'true'
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0']
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1,0.0.0.0').split(',')
 
 # CORS 配置 - 允许前端跨域访问
 CORS_ALLOWED_ORIGINS = [
@@ -36,10 +36,12 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://127.0.0.1:8080", 
     "http://127.0.0.1:5173",
+    "http://localhost",       # Docker frontend
+    "http://localhost:80",    # Docker frontend explicit port
 ]
 
 # Development convenience: allow all origins
-CORS_ALLOW_ALL_ORIGINS = DEBUG
+CORS_ALLOW_ALL_ORIGINS = os.environ.get('CORS_ALLOW_ALL_ORIGINS', str(DEBUG)).lower() == 'true'
 
 # Allowed headers
 CORS_ALLOW_HEADERS = [

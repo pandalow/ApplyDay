@@ -2,7 +2,18 @@ import ReactECharts from "echarts-for-react";
 import "echarts-wordcloud";
 
 const WordCloudChart = ({ words }) => {
-  if (!words || words.length === 0) {
+  // 检查数据是否为空
+  if (!words) {
+    return (
+      <div className="flex items-center justify-center h-64 text-gray-500 dark:text-gray-400">
+        <p>No data available</p>
+      </div>
+    );
+  }
+
+  // 如果是数组且为空，或者是对象但没有键值
+  if ((Array.isArray(words) && words.length === 0) || 
+      (typeof words === 'object' && Object.keys(words).length === 0)) {
     return (
       <div className="flex items-center justify-center h-64 text-gray-500 dark:text-gray-400">
         <p>No data available</p>

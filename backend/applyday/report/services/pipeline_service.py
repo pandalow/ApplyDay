@@ -27,6 +27,6 @@ class PipelineService:
     
 
     @staticmethod
-    def run_insight_pipeline(report_id, resume_id):
-        report = get_insights(report_id, resume_id)
+    def run_insight_pipeline(report_id, resume_id, languages):
+        report = get_insights(report_id, resume_id, languages=languages)
         return report

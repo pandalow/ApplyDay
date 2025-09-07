@@ -8,6 +8,7 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
   const [analysisMode, setAnalysisMode] = useState("selected"); // selected, dateRange, all
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [aiLanguage, setAiLanguage] = useState("en"); // en, zh
   const navigate = useNavigate();
 
   const handleGenerateReport = async (mode = analysisMode) => {
@@ -26,6 +27,7 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
           }
           requestData = {
             job_ids: selectedApplicationIds,
+            languages: aiLanguage,
             ...(selectedResumeId && { resume_id: selectedResumeId })
           };
           break;
@@ -40,6 +42,7 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
           requestData = {
             start_date: startDate,
             end_date: endDate,
+            languages: aiLanguage,
             ...(selectedResumeId && { resume_id: selectedResumeId })
           };
           break;
@@ -47,6 +50,7 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
         case "all":
           // 分析全部数据
           requestData = {
+            languages: aiLanguage,
             ...(selectedResumeId && { resume_id: selectedResumeId })
           };
           break;
@@ -59,14 +63,24 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
 
       console.log("Generating report with data:", requestData);
       
-      const report = await generatePipeline(requestData);
+      const response = await generatePipeline(requestData);
+      console.log("Report generation response:", response);
       
       // 跳转到报告详情页
-      if (report && report.id) {
-        navigate(`/report?report_id=${report.id}`);
-      } else if (report && report.report_id) {
-        navigate(`/report?report_id=${report.report_id}`);
+      // API返回格式: { report: { id: ... }, summary: ... }
+      if (response && response.report && response.report.id) {
+        console.log("Navigating to report with ID:", response.report.id);
+        navigate(`/report?report_id=${response.report.id}`);
+      } else if (response && response.id) {
+        // 备用方案：如果直接返回报告对象
+        console.log("Navigating to report with direct ID:", response.id);
+        navigate(`/report?report_id=${response.id}`);
+      } else if (response && response.report_id) {
+        // 备用方案：如果有report_id字段
+        console.log("Navigating to report with report_id:", response.report_id);
+        navigate(`/report?report_id=${response.report_id}`);
       } else {
+        console.error("Unexpected response structure:", response);
         alert("Report generated but missing report ID in response");
       }
     } catch (error) {
@@ -79,17 +93,19 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
   };
 
   const getButtonText = () => {
+    const languageIndicator = aiLanguage === "en" ? "🇺🇸" : "🇨🇳";
+    
     switch (analysisMode) {
       case "selected":
-        return `Generate Report (${selectedApplicationIds.length} selected)`;
+        return `Generate Report ${languageIndicator} (${selectedApplicationIds.length} selected)`;
       case "dateRange":
         return startDate && endDate 
-          ? `Generate Report (${startDate} to ${endDate})`
-          : "Generate Report (Date Range)";
+          ? `Generate Report ${languageIndicator} (${startDate} to ${endDate})`
+          : `Generate Report ${languageIndicator} (Date Range)`;
       case "all":
-        return "Generate Report (All Data)";
+        return `Generate Report ${languageIndicator} (All Data)`;
       default:
-        return "Generate Report";
+        return `Generate Report ${languageIndicator}`;
     }
   };
 
@@ -179,6 +195,13 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
                 {analysisMode === "selected" && "Selected Apps"}
                 {analysisMode === "dateRange" && "Date Range"}
                 {analysisMode === "all" && "All Data"}
+              </span>
+            </div>
+            <div className="flex items-center justify-between">
+              <span>AI Language:</span>
+              <span className="font-medium text-green-600 dark:text-green-400 flex items-center space-x-1">
+                <span>{aiLanguage === "en" ? "🇺🇸" : "🇨🇳"}</span>
+                <span>{aiLanguage === "en" ? "English" : "中文"}</span>
               </span>
             </div>
             {analysisMode === "selected" && selectedApplicationIds.length > 0 && (
@@ -282,6 +305,45 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
                 </div>
               </label>
             </div>
+          </div>
+
+          {/* AI 报告语言选择 */}
+          <div className="space-y-3">
+            <h6 className="text-sm font-medium text-gray-900 dark:text-gray-100">
+              AI Analysis Language
+            </h6>
+            <div className="grid grid-cols-2 gap-3">
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="radio"
+                  value="en"
+                  checked={aiLanguage === "en"}
+                  onChange={(e) => setAiLanguage(e.target.value)}
+                  className="accent-blue-600"
+                />
+                <div className="flex items-center space-x-2">
+                  <span className="text-xl">🇺🇸</span>
+                  <span className="text-sm">English</span>
+                </div>
+              </label>
+              
+              <label className="flex items-center space-x-2 cursor-pointer">
+                <input
+                  type="radio"
+                  value="zh"
+                  checked={aiLanguage === "zh"}
+                  onChange={(e) => setAiLanguage(e.target.value)}
+                  className="accent-blue-600"
+                />
+                <div className="flex items-center space-x-2">
+                  <span className="text-xl">🇨🇳</span>
+                  <span className="text-sm">中文</span>
+                </div>
+              </label>
+            </div>
+            <p className="text-xs text-gray-500">
+              Select the language for AI-generated analysis reports
+            </p>
           </div>
           
           {/* 底部按钮 */}

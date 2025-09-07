@@ -2,6 +2,7 @@ import FrequencyChart from "../charts/FrequencyChart";
 import WordCloudChart from "../charts/WordCloudChart";
 import PieChart from "../charts/PieChart";
 import TfidfGroupedChart from "../charts/TFIDFChart";
+import SkillsNetworkChart from "../charts/SkillsNetworkChart";
 
 function ReportItem({ result }) {
   const { name, result: data } = result;
@@ -95,6 +96,14 @@ function ReportItem({ result }) {
 
   // 词性分析组件
   if (name.startsWith("pos")) {
+    // 调试信息
+    console.log('POS Tags Data:', {
+      name,
+      dataType: typeof data,
+      dataKeys: data ? Object.keys(data) : null,
+      nounsSample: data?.nouns ? Object.entries(data.nouns).slice(0, 3) : null
+    });
+
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
         <div className="border-b border-gray-200 dark:border-gray-700 pb-3 mb-6">
@@ -105,7 +114,12 @@ function ReportItem({ result }) {
             Word cloud visualization by grammatical categories
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {!data ? (
+          <div className="text-center py-8 text-gray-500 dark:text-gray-400">
+            <p>No POS data available</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-4">
             <div className="flex items-center justify-between mb-3">
               <h5 className="text-sm font-semibold text-gray-800 dark:text-gray-200">Nouns</h5>
@@ -143,6 +157,7 @@ function ReportItem({ result }) {
             <WordCloudChart words={data.all} />
           </div>
         </div>
+        )}
       </div>
     );
   }
@@ -161,6 +176,35 @@ function ReportItem({ result }) {
         </div>
         <div className="chart-container">
           <TfidfGroupedChart data={data} />
+        </div>
+      </div>
+    );
+  }
+
+  // 技能关系网络图组件
+  if (name.startsWith("graph")) {
+    return (
+      <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
+        <div className="border-b border-gray-200 dark:border-gray-700 pb-3 mb-4">
+          <h4 className="text-lg font-semibold text-gray-800 dark:text-gray-100">
+            Skills Relationship Network
+          </h4>
+          <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
+            Interactive network showing relationships between skills and technologies
+          </p>
+          {data && data.length > 0 && (
+            <div className="mt-2 flex items-center space-x-4 text-xs text-gray-600 dark:text-gray-400">
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
+                {data.length} connections
+              </span>
+              <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                {new Set([...data.map(d => d.source), ...data.map(d => d.target)]).size} nodes
+              </span>
+            </div>
+          )}
+        </div>
+        <div className="chart-container">
+          <SkillsNetworkChart data={data} />
         </div>
       </div>
     );

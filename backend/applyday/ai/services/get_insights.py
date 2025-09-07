@@ -3,7 +3,7 @@ from application.models import ResumeText
 from report.models import AnalysisReport, Summary
 from ai.chain.chain_insights import run_analysis, chain_analysis
 
-def get_insights(report_id, resume_id=NotImplementedError):
+def get_insights(report_id, resume_id=NotImplementedError, languages="en") -> str:
     # Analyze the resume data and extract insights 
 
     resume_qs = ResumeText.objects.filter(id=resume_id).first()
@@ -19,7 +19,7 @@ def get_insights(report_id, resume_id=NotImplementedError):
     
 
     chain = chain_analysis()
-    report_md = run_analysis(chain, market_data, resume_text)
+    report_md = run_analysis(chain, market_data, resume_text, languages=languages)
     summary = Summary.objects.create(
         report=report_obj,
         content=report_md  
