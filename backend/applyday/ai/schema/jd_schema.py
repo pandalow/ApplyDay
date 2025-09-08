@@ -1,11 +1,17 @@
+# backend/applyday/ai/schema/jd_schema.py
+# Author: Zhuang Xiaojian 
+
+import re
 from typing import List, Optional, Literal
 from pydantic import BaseModel, Field, field_validator
-import re
 
+# Utility functions for normalization and validation
 _WS = re.compile(r"\s+")
 _MULTI_US = re.compile(r"_+")
 
+
 def fuzzy_role_mapper(text: str) -> str:
+    """Map various role descriptions to standardized role identifiers."""
     t = text.lower()
     if "react" in t or "flutter" in t:
         return "frontend"
@@ -34,6 +40,7 @@ def fuzzy_role_mapper(text: str) -> str:
 
 
 def to_lower_snake(s: str) -> str:
+    """Convert a string to lower_snake_case."""
     s = s.strip().lower()
     s = _WS.sub("_", s)
     s = s.replace("-", "_").replace("/", "_")
@@ -41,6 +48,7 @@ def to_lower_snake(s: str) -> str:
     return s.strip("_")
 
 def dedupe_sorted(items: List[str]) -> List[str]:
+    """Dedupe and sort a list of strings, case-insensitively."""
     seen = {}
     for it in items:
         key = to_lower_snake(it)
@@ -48,6 +56,7 @@ def dedupe_sorted(items: List[str]) -> List[str]:
     return sorted(seen.values())
 
 def to_bool_or_none(v):
+    """Convert various truthy/falsey inputs to boolean or None."""
     if v in (None, "", "null"):
         return None
     if isinstance(v, bool):
@@ -62,13 +71,13 @@ def to_bool_or_none(v):
             return False
     return None
 
+# Define which fields are arrays for normalization
 ARRAY_FIELDS = [
     "benefits","responsibilities","required_core_skills","desirable_skills",
     "programming_languages","frameworks_tools","databases","cloud_platforms",
     "api_protocols","methodologies","mobile_technologies","domain_keywords",
     "language_requirements",
 ]
-
 LEVEL_MAP = {
     "entry-level": "junior",
     "graduate": "junior",
@@ -78,7 +87,10 @@ LEVEL_MAP = {
 }
 
 class JobSchema(BaseModel):
-    # ---- existing fields
+    """
+    Pydantic model for structured job description data.
+    Includes normalization and validation logic.
+    """
     company: Optional[str] = None
     role: Optional[str] = None
     level: Optional[Literal["intern","junior","mid","senior","lead","manager"]] = None
@@ -110,14 +122,15 @@ class JobSchema(BaseModel):
     industry: Optional[str] = None
     language_requirements: List[str] = Field(default_factory=list)
 
-    # ---- strings: strip empty -> None
     @field_validator(
         "company","role","location","education_required",
         "contact_person","contact_email_or_phone",
         mode="before"
     )
+    
     @classmethod
     def _strip_text(cls, v):
+        """Strip leading/trailing whitespace; convert empty to None."""
         if v is None:
             return None
         if isinstance(v, str):
@@ -125,10 +138,10 @@ class JobSchema(BaseModel):
             return v if v else None
         return v
 
-    # ---- normalize certain single-string fields to snake_case
     @field_validator("industry", mode="before")
     @classmethod
     def _norm_industry(cls, v):
+        """Normalize industry to lower_snake_case or None."""
         if v is None:
             return None
         if isinstance(v, str):
@@ -139,6 +152,7 @@ class JobSchema(BaseModel):
     @field_validator("location", mode="before")
     @classmethod
     def _norm_location(cls, v):
+        """Normalize location to 'City, Country' format if possible.""" 
         if v is None:
             return None
         if isinstance(v, str):
@@ -154,6 +168,7 @@ class JobSchema(BaseModel):
     @field_validator("level", mode="before")
     @classmethod
     def _norm_level(cls, v):
+        """Normalize level to one of the allowed literals or None."""
         if v is None:
             return None
         if isinstance(v, str):
@@ -164,20 +179,21 @@ class JobSchema(BaseModel):
     @field_validator("role", mode="before")
     @classmethod
     def _normalize_role(cls, v):
+        """Normalize role to standardized identifiers using fuzzy mapping."""
         if v is None:
             return None
         return fuzzy_role_mapper(v)
 
-    # ---- booleans: parse flexible truthy/falsey
     @field_validator("work_permit_required","visa_sponsorship", mode="before")
     @classmethod
     def _to_bool(cls, v):
+        """Convert various truthy/falsey inputs to boolean or None."""
         return to_bool_or_none(v)
 
-    # ---- floats: to float or None
     @field_validator("salary_eur_min","salary_eur_max","bonus_percent", mode="before")
     @classmethod
     def _to_float_or_none(cls, v):
+        """Convert to float or None."""
         if v in (None, "", "null"):
             return None
         try:
@@ -189,6 +205,7 @@ class JobSchema(BaseModel):
     @field_validator("years_experience_min","years_experience_max", mode="before")
     @classmethod
     def _to_int_or_none(cls, v):
+        """Convert to int or None."""
         if v in (None, "", "null"):
             return None
         try:
@@ -200,6 +217,7 @@ class JobSchema(BaseModel):
     @field_validator(*ARRAY_FIELDS, mode="before")
     @classmethod
     def _normalize_array(cls, v):
+        """Ensure field is a list of normalized, deduped, sorted strings."""
         if v is None:
             return []
         if isinstance(v, str):

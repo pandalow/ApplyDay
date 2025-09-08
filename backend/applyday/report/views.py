@@ -8,7 +8,7 @@ from rest_framework.decorators import action
 from .models import AnalysisReport
 from .serializers import  AnalysisReportSerializer
 from .services.generate_report import AnalysisService
-from .services.analyst import Analyst
+from analysis.tools.analyst import Analyst
 from ai.services.extract_jd import process_extract
 from application.models import JobDescription, Application
 from report.services.pipeline_service import PipelineService

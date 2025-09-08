@@ -12,6 +12,16 @@ function ReportDetail({ reportId }) {
   const [showAll, setShowAll] = useState(false);
   const [activeReportTab, setActiveReportTab] = useState("visualization"); // 新增：子tab状态
   const [deletingReportId, setDeletingReportId] = useState(null); // 新增：删除状态
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
+
+  // 监听窗口大小变化
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isLargeScreen = windowWidth >= 1024;
 
   // 加载报告列表
   useEffect(() => {
@@ -86,9 +96,17 @@ function ReportDetail({ reportId }) {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div style={{ 
+      display: 'flex', 
+      flexDirection: isLargeScreen ? 'row' : 'column', 
+      gap: '24px', 
+      width: '100%' 
+    }}>
       {/* 左边：报告列表（可折叠） */}
-      <div className="lg:col-span-1">
+      <div style={{ 
+        width: isLargeScreen ? '320px' : '100%', 
+        flexShrink: 0 
+      }}>
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-6">
           <div className="flex items-center justify-between mb-4">
             <h4 className="text-md font-medium text-gray-900 dark:text-gray-100">
@@ -193,7 +211,11 @@ function ReportDetail({ reportId }) {
       </div>
 
       {/* 右边：报告详情 */}
-      <div className="lg:col-span-2">
+      <div style={{ 
+        flex: isLargeScreen ? 1 : 'none', 
+        minWidth: 0,
+        width: isLargeScreen ? 'auto' : '100%'
+      }}>
         {loadingReport ? (
           <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-8 flex justify-center items-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-purple-500"></div>

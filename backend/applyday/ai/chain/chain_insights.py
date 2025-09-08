@@ -1,12 +1,21 @@
+# backend/applyday/ai/chain/chain_insights.py
+# Author: Zhuang Xiaojian
+
+import logging, traceback
 from langchain.prompts import PromptTemplate
-import logging
-import traceback
+
 from ai.factory import get_llm
 
 logger = logging.getLogger(__name__)
 
 def chain_analysis():
-    """Chain for market analysis + resume comparison"""
+    """
+    Chain for market analysis + resume comparison
+    1. Input structured market data + optional resume text
+    2. Output concise, practical insights report in markdown
+    3. Focus on actionable advice grounded in real projects/experience
+    4. Respond in specified language (English or Chinese)
+    """
     try:
 
         prompt = PromptTemplate(
@@ -88,8 +97,7 @@ def run_analysis(chain, data, resume_text=None, languages="en") -> str:
             "english": "English",
             "chinese": "Chinese (中文)"
         }
-        
-        # 安全处理 languages 参数
+        # normalize language input
         safe_languages = languages or "en"
         if not isinstance(safe_languages, str):
             safe_languages = str(safe_languages)
@@ -103,18 +111,18 @@ def run_analysis(chain, data, resume_text=None, languages="en") -> str:
         })
         logger.info("✅ Analysis invoke OK.")
         
-        # 提取响应内容
+        # Extract content from response
         if response and hasattr(response, "content"):
             content = response.content
         else:
             content = str(response)
         
-        # 清理可能的markdown代码块包裹
+        # Clean up markdown code block wrappers if present
         if content.startswith("```markdown\n") and content.endswith("\n```"):
-            content = content[12:-4]  # 移除 ```markdown\n 和 \n```
+            content = content[12:-4]  # Remove ```markdown\n and \n```
         elif content.startswith("```\n") and content.endswith("\n```"):
-            content = content[4:-4]  # 移除 ```\n 和 \n```
-        
+            content = content[4:-4]  # Remove ```\n and \n```
+
         return content
     except Exception as e:
         logger.error("❌ Analysis invoke error: %s", repr(e))

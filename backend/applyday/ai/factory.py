@@ -1,3 +1,4 @@
+# backend/applyday/ai/factory.py
 import os
 from langchain_openai import ChatOpenAI
 from langchain_anthropic import ChatAnthropic
@@ -5,6 +6,7 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 
 
 def get_llm():
+    """Factory function to get LLM instance based on environment variables."""
     provider = os.getenv("AI_PROVIDER", "openai").lower()
     model_name = os.getenv("AI_MODEL", "gpt-4o-mini")
     temperature = float(os.getenv("AI_TEMPERATURE", "0"))

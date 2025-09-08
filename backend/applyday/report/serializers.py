@@ -1,12 +1,13 @@
+# backend/applyday/report/serializers.py
+# Author: Zhuang Xiaojian
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
 
 from .models import AnalysisReport, AnalysisResult, Summary
 
-
 class AnalysisResultSerializer(ModelSerializer):
     class Meta:
         model = AnalysisResult
-        fields = ["id", "name", "result"]   # 👈 记得包含 result
+        fields = ["id", "name", "result"]
         read_only_fields = ['id', 'name', 'result']
 
 class SummarySerializer(ModelSerializer):

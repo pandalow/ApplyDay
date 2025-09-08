@@ -1,8 +1,14 @@
+# backend/applyday/application/models.py
+# Author: Zhuang Xiaojian <zxj000hugh@gmail.com>
+
 from django.db import models
 from django.core.validators import FileExtensionValidator
 
 class Application(models.Model):
-    """Model representing a job application."""
+    """
+    Model representing a job application.
+    ONE-TO-ONE relationship with JobDescriptionText for storing job description text.
+    """
     STATUS_CHOICES = [
         ('prepared', 'Prepared'),
         ('applied', 'Applied'),
@@ -12,7 +18,6 @@ class Application(models.Model):
     ]
     company = models.CharField(max_length=255)
     job_title = models.CharField(max_length=255)
-    
     application_date = models.DateField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='applied')
     stage_notes = models.TextField(blank=True, null=True)
@@ -25,17 +30,23 @@ class Application(models.Model):
         verbose_name = 'Application'
         verbose_name_plural = 'Applications'
 
-
 class JobDescriptionText(models.Model):
+    """
+    Model to store the raw job description text.
+    ONE-TO-ONE relationship with Application.
+    """
     application = models.OneToOneField(Application, on_delete=models.CASCADE, related_name="apply_description", null=True, blank=True)
-    
     text = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
-
 class JobDescription(models.Model):
+    """
+    Model to store structured job description data extracted from JobDescriptionText.
+    ONE-TO-ONE relationship with JobDescriptionText.
+    """
     job_text = models.OneToOneField(JobDescriptionText, on_delete=models.CASCADE, related_name="text_description")
-
+    
+    # Fields for structured job description data
     created_at = models.DateTimeField(auto_now_add=True)
     company = models.CharField(max_length=255)
     role = models.CharField(max_length=255, null=True, blank=True)
@@ -73,6 +84,7 @@ class JobDescription(models.Model):
     language_requirements = models.JSONField(null=True, blank=True)
 
 class ResumeText(models.Model):
+    """Model to store uploaded resume files and extracted text."""
     name = models.CharField(max_length=100)
     text = models.TextField()  # The extracted text from the resume
     uploaded_at = models.DateTimeField(auto_now_add=True)

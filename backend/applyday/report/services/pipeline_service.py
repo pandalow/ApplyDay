@@ -4,7 +4,7 @@ from application.models import Application
 from ai.services.extract_jd import process_extract
 from ai.services.get_insights import get_insights
 from report.services.generate_report import AnalysisService
-from report.services.analyst import Analyst
+from analysis.tools.analyst import Analyst
 
 class PipelineService:
     

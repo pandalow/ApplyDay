@@ -114,7 +114,7 @@ function Report() {
             </div>
 
             {/* Main Content with Tab Views */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="py-6">
                 {activeTab === "reports" && (
                     <motion.div
                         key="reports-tab"
@@ -123,10 +123,9 @@ function Report() {
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.3 }}
                     >
-                        {/* Reports Section */}
-                        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-                            {/* Reports Header */}
-                            <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+                        {/* Reports Section Header */}
+                        <div className="mb-6 px-4 sm:px-6 lg:px-8">
+                            <div className="max-w-7xl mx-auto">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-3">
                                         <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
@@ -147,9 +146,11 @@ function Report() {
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
-                            {/* Reports Content */}
-                            <div className="p-6">
+                        {/* Reports Content - Full width container */}
+                        <div className="px-4 sm:px-6 lg:px-8">
+                            <div className="max-w-7xl mx-auto">
                                 <ReportDetail reportId={reportId} />
                             </div>
                         </div>

@@ -1,4 +1,4 @@
-from .analyst import Analyst
+from analysis.tools.analyst import Analyst
 from ..models import AnalysisReport, AnalysisResult
 
 class AnalysisService:

@@ -69,7 +69,6 @@ CORS_ALLOW_METHODS = [
 # Allow the credentials sending cookies
 CORS_ALLOW_CREDENTIALS = True
 
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -79,14 +78,15 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'corsheaders',  # 添加 CORS 支持
+    'corsheaders',  # CORS headers
     'application',
     'report',
     'ai',
+    'analysis',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',  # CORS 中间件需要放在最上面
+    'corsheaders.middleware.CorsMiddleware',  # CORS headers middleware must be at the top
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -125,7 +125,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

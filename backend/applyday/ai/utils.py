@@ -1,3 +1,4 @@
+# backend/applyday/ai/utils.py
 import logging
 import time
 from functools import wraps
@@ -5,10 +6,12 @@ from typing import Any, Callable
 
 logger = logging.getLogger(__name__)
 
-
 def retry_on_timeout(max_retries: int = 3, delay: float = 1.0):
     """
+    The code is modified by Claude in vibe coding.
     Decorator to retry AI API calls on timeout or connection errors
+    Prevents transient network issues from causing failures in AI calls
+    with exponential backoff.
     """
     def decorator(func: Callable) -> Callable:
         @wraps(func)

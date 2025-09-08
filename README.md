@@ -32,26 +32,61 @@ Most resume assistants and job platforms focus on "how to package yourself"—wi
 
 <table>
 <tr>
-<td align="center" width="33%">
-<img src="docs/images/localhost_ (1).png" alt="Dashboard Overview" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 350px; object-fit: contain;"/>
+<td align="center" width="50%">
+<img src="docs/images/homepage.png" alt="Homepage Overview" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 400px; object-fit: contain;"/>
 <br/>
-<b>📊 Dashboard Overview</b>
+<b>🏠 Homepage Overview</b>
 <br/>
-<em>Track your application pipeline and progress</em>
+<em>Personal dashboard with growth insights and analytics</em>
 </td>
-<td align="center" width="33%">
-<img src="docs/images/localhost_ (2).png" alt="Data Analytics" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 350px; object-fit: contain;"/>
+<td align="center" width="50%">
+<img src="docs/images/application.png" alt="Application Management" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 400px; object-fit: contain;"/>
 <br/>
-<b>🔍 Data Analytics</b>
+<b>� Application Management</b>
 <br/>
-<em>AI-powered insights and skill analysis</em>
+<em>Track and manage job applications with detailed records</em>
 </td>
-<td align="center" width="33%">
-<img src="docs/images/localhost_ (3).png" alt="Reports & Insights" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 350px; object-fit: contain;"/>
+</tr>
+</table>
+
+### 📊 Data Analytics & Reports
+
+<table>
+<tr>
+<td align="center" width="50%">
+<img src="docs/images/data_analysis.png" alt="Data Analytics Dashboard" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 350px; object-fit: contain;"/>
 <br/>
-<b>📈 Reports & Insights</b>
+<b>📈 Analytics Dashboard</b>
 <br/>
-<em>Generate actionable growth recommendations</em>
+<em>AI-powered insights and comprehensive analysis</em>
+</td>
+<td align="center" width="50%">
+<img src="docs/images/data_top.png" alt="Data Overview" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 350px; object-fit: contain;"/>
+<br/>
+<b>📊 Data Overview</b>
+<br/>
+<em>High-level statistics and market trends</em>
+</td>
+</tr>
+</table>
+
+### 📈 Detailed Report Views
+
+<table>
+<tr>
+<td align="center" width="50%">
+<img src="docs/images/data_mid.png" alt="Detailed Analysis" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 300px; object-fit: contain;"/>
+<br/>
+<b>🔍 Detailed Analysis</b>
+<br/>
+<em>In-depth data exploration and pattern recognition</em>
+</td>
+<td align="center" width="50%">
+<img src="docs/images/data_bottom.png" alt="Insights Summary" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 300px; object-fit: contain;"/>
+<br/>
+<b>💡 Insights & Recommendations</b>
+<br/>
+<em>Actionable recommendations and growth strategies</em>
 </td>
 </tr>
 </table>
@@ -264,19 +299,33 @@ GOOGLE_API_KEY=your_key_here
 ```
 ApplyDay/
 ├── frontend/           # React + Vite frontend
-│   ├── src/
-│   │   ├── components/ # Reusable UI components
-│   │   ├── pages/      # Main application pages
-│   │   ├── charts/     # Data visualization components
-│   │   └── service/    # API integration
+│   ├── applyday/
+│   │   ├── src/
+│   │   │   ├── components/ # Reusable UI components
+│   │   │   ├── pages/      # Main application pages
+│   │   │   ├── charts/     # Data visualization components
+│   │   │   └── service/    # API integration
+│   │   ├── public/         # Static assets
+│   │   └── package.json
 │   └── Dockerfile
 ├── backend/            # Django backend
 │   ├── applyday/       # Main Django project
-│   ├── application/    # Application tracking models
-│   ├── report/         # Analysis and reporting
-│   ├── ai/             # AI integration services
-│   └── Dockerfile
+│   │   ├── applyday/   # Django settings & configuration
+│   │   ├── application/# Application tracking models & APIs
+│   │   ├── report/     # Analysis reports & data management
+│   │   ├── ai/         # AI integration services
+│   │   │   ├── chain/  # LangChain prompts & chains
+│   │   │   ├── schema/ # AI data schemas
+│   │   │   └── services/ # AI service implementations
+│   │   ├── analysis/   # Data analysis & processing
+│   │   │   ├── tools/  # Analysis algorithms & utilities
+│   │   │   └── app.py  # Analysis application entry
+│   │   └── manage.py
+│   └── requirements.txt
 ├── data/               # Sample data and uploads
+├── docs/               # Documentation & screenshots
+├── deploy.sh           # One-click deployment (Linux/macOS)
+├── deploy.bat          # One-click deployment (Windows)
 └── docker-compose.yml  # Full-stack deployment
 ```
 
@@ -288,6 +337,7 @@ ApplyDay/
 - **TailwindCSS** - Utility-first styling
 - **ECharts** - Interactive data visualization
 - **Framer Motion** - Smooth animations
+- **React Router** - Client-side routing
 
 ### Backend  
 - **Django 5.2** - Robust web framework
@@ -298,9 +348,17 @@ ApplyDay/
 
 ### AI & Analytics
 - **OpenAI GPT-4** - Advanced language model
+- **Anthropic Claude** - Alternative AI provider
+- **Google Gemini** - Alternative AI provider
 - **scikit-learn** - Machine learning algorithms
 - **pandas** - Data manipulation and analysis
 - **numpy** - Numerical computing
+
+### Data Analysis
+- **Word Frequency Analysis** - Skill demand identification
+- **TF-IDF Analysis** - Role-specific skill differentiation
+- **Network Analysis** - Skill relationship mapping
+- **Swiss-Knife Detection** - Overloaded JD identification
 
 ### DevOps
 - **Docker** - Containerization

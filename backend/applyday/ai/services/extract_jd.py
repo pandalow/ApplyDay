@@ -1,3 +1,5 @@
+#backend/applyday/ai/services/extract_jd.py
+# Author: Zhuang Xiaojian 
 import logging
 from datetime import datetime
 
@@ -8,6 +10,16 @@ from ai.schema.jd_schema import JobSchema
 logger = logging.getLogger(__name__)
 
 def process_extract(job_ids=None, start=None, end=None):
+    """
+    Process job description extraction for given job IDs or date range.
+    If no parameters are provided, process all JobDescriptionText entries.
+    Args:
+        job_ids (list of int, optional): List of JobDescriptionText IDs to process.
+        start (str, optional): Start date in ISO format (YYYY-MM-DD).
+        end (str, optional): End date in ISO format (YYYY-MM-DD).
+    Returns:
+        list of JobDescription: Created JobDescription instances.
+    """
     qs = JobDescriptionText.objects.all()
 
     if job_ids:
@@ -21,14 +33,14 @@ def process_extract(job_ids=None, start=None, end=None):
     results = []
 
     for job in qs:
-        # 先检查数据库里是否已经有 JobDescription
+        # Check JobDescription
         jd = JobDescription.objects.filter(job_text=job).first()
         if jd:
-            print(f"⚡ 已存在 JobDescription，跳过抽取: {job.id}")
+            print(f"JobDescription exists, skipping extraction: {job.id}")
             results.append(jd)
-            continue  # ⬅️ 跳过 LLM 抽取
+            continue  # Skip LLM extraction
 
-        # 只有没有时才去跑 LLM
+        # Only run LLM if not exists
         obj: JobSchema = extract_job_description(chain, job.text)
         data = obj.model_dump()
         print("Extracted data:", data)

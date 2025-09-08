@@ -5,7 +5,6 @@ import sys, traceback
 from typing import Optional
 from dotenv import load_dotenv
 load_dotenv() # Load environment variables from .env file
-
 from langchain.prompts import PromptTemplate
 from langchain.output_parsers import PydanticOutputParser
 
@@ -14,8 +13,11 @@ from ai.factory import get_llm
 
 logger = logging.getLogger(__name__)
 
-
 def build_chain():
+    """
+    Build a LangChain chain for extracting structured job description info.
+    Uses a prompt template with specific instructions and a Pydantic output parser.
+    """
     try:
         parser = PydanticOutputParser(pydantic_object=JobSchema)
         prompt = PromptTemplate(
@@ -35,7 +37,6 @@ def build_chain():
             input_variables=["jd_text"],
             partial_variables={"format_instructions": parser.get_format_instructions()},
         )
-
         model = get_llm()
         chain = prompt | model | parser
         logger.info("✅ Chain constructed.\n")
@@ -43,9 +44,10 @@ def build_chain():
     except Exception as e:
         logger.error("❌ Chain construct error: %s", repr(e))
         traceback.print_exc()
-        sys.exit(1)
+        raise RuntimeError(f"Failed to construct extraction chain: {e}")
 
 def extract_job_description(chain, jd_text:Optional[str]) -> JobSchema:
+    """Invoke the extraction chain on the provided job description text."""
     try:
         one = chain.invoke({"jd_text": jd_text})
         logger.info("✅ Single invoke OK. Sample output keys: %s", list(one.dict().keys())[:5])
@@ -53,5 +55,4 @@ def extract_job_description(chain, jd_text:Optional[str]) -> JobSchema:
     except Exception as e:
         logger.error("❌ Single invoke error: %s", repr(e))
         traceback.print_exc()
-        sys.exit(1)
-
+        raise RuntimeError(f"Failed to invoke extraction chain: {e}")

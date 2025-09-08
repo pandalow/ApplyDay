@@ -1,9 +1,12 @@
-from django.shortcuts import  get_object_or_404
+# backend/applyday/application/views.py
+# Author: Zhuang Xiaojian 
+
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
 
-from .serializers import ApplicationSerializer, JobExtractSerializer, JobDescriptionSerializer, ResumeTextSerializer
+from .serializers import ApplicationSerializer, JobDescriptionTextSerializer, JobDescriptionSerializer, ResumeTextSerializer
 from .models import Application , JobDescription, JobDescriptionText, ResumeText
 
 class ApplicationViewSet(viewsets.ModelViewSet):
@@ -17,7 +20,18 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     queryset = Application.objects.all()
 
     def get_queryset(self):
+        """
+        Filter applications based on query parameters.
+        Args:
+            job_title (str): Filter by job title (partial match).
+            company (str): Filter by company name (partial match).
+            status (str): Filter by application status (exact match).
+                in ['prepared', 'applied', 'interviewed', 'offered', 'rejected']
+        Returns:
+            QuerySet: Filtered applications queryset.
+        """
         qs = super().get_queryset()
+        
         job_title = self.request.query_params.get('job_title')
         company = self.request.query_params.get('company')
         status_param = self.request.query_params.get('status')
@@ -34,6 +48,8 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     def get_stats(self, request, *args, **kwargs):
         """
         Custom action to get application statistics.
+        Returns:
+            JSON response with total applications and counts by status.
         """
         total_applications = {
             'total': Application.objects.count(),
@@ -44,20 +60,26 @@ class ApplicationViewSet(viewsets.ModelViewSet):
         }
         return Response({'data': total_applications}, status=status.HTTP_200_OK)
 
-
 class JDViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for managing job descriptions.
+    Provides CRUD operations.
+    """
     queryset = JobDescription.objects.all()
     serializer_class = JobDescriptionSerializer
 
 
 class JobExtract(viewsets.ModelViewSet):
     """
+    ViewSet for managing job extraction.
     """
-    serializer_class = JobExtractSerializer
+    serializer_class = JobDescriptionTextSerializer
     queryset = JobDescriptionText.objects.all()
 
     def partial_update(self, request , *args, **kwargs):
         """
+        ViewSet for managing job extraction.
+        Only allows partial updates on the 'text' field.
         """
         allowed_fields = ["text"]
 
@@ -73,5 +95,11 @@ class JobExtract(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 class ResumeTextViewSet(viewsets.ModelViewSet):
+    """
+    ViewSet for managing resume texts.
+    Provides CRUD operations and handles PDF uploads.
+    Args:
+        file (File): PDF file upload.
+    """
     queryset = ResumeText.objects.all()
     serializer_class = ResumeTextSerializer

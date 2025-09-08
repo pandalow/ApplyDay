@@ -1,11 +1,11 @@
-
+# backend/applyday/ai/services/get_insights.py
+# Author: Zhuang Xiaojian 
 from application.models import ResumeText
 from report.models import AnalysisReport, Summary
 from ai.chain.chain_insights import run_analysis, chain_analysis
 
 def get_insights(report_id, resume_id=NotImplementedError, languages="en") -> str:
-    # Analyze the resume data and extract insights 
-
+    """Generate insights report based on market analysis and optional resume."""
     resume_qs = ResumeText.objects.filter(id=resume_id).first()
     resume_text = resume_qs.text if resume_qs else ""
 
