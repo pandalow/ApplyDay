@@ -1,4 +1,4 @@
-# ApplyDay – Your Personal Job Application Dashboard
+# ApplyDay – Personal Job Application Consultant
 
 <div align="center">
 
@@ -41,8 +41,7 @@ Most resume assistants and job platforms focus on "how to package yourself"—wi
 - Auto-submit resumes or fabricate experiences
 - Upload your data to cloud (100% local)
 - Replace your critical thinking and decision-making
-
-
+  
 ---
 
 ## 🚀 Quick Start
