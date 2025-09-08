@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import JDItem from "./JDItem";
+import JDItem from "./JDitem";
 import { fetchJDs, createJD, deleteJD, updateJD } from "../service/application";
 
 function JDPage() {

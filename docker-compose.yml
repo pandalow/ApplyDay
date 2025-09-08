@@ -7,8 +7,8 @@ services:
       dockerfile: Dockerfile
     container_name: applyday_api
     volumes:
-      - ./backend/applyday/db.sqlite3:/app/db.sqlite3
       - ./data:/app/data
+      - db_data:/app
     env_file:
       - .env
     environment:
@@ -23,7 +23,8 @@ services:
       test: ["CMD", "curl", "-f", "http://localhost:8000/app/info/"]
       interval: 30s
       timeout: 10s
-      retries: 3
+      retries: 5
+      start_period: 60s
 
   frontend:
     build:
@@ -41,5 +42,6 @@ services:
 networks:
   applyday-network:
     driver: bridge
-      
-    
+
+volumes:
+  db_data:
