@@ -36,34 +36,9 @@ Most resume assistants and job platforms focus on "how to package yourself"—wi
 
 ## 📸 Showcase
 
-<table>
-<tr>
-<td align="center" width="16.66%">
-<img src="docs/images/homepage.png" alt="Homepage" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
-<br/><b>🏠 Dashboard</b>
-</td>
-<td align="center" width="16.66%">
-<img src="docs/images/application.png" alt="Applications" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
-<br/><b>📋 Applications</b>
-</td>
-<td align="center" width="16.66%">
-<img src="docs/images/data_analysis.png" alt="Analytics" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
-<br/><b>📊 AI Analytics</b>
-</td>
-<td align="center" width="16.66%">
-<img src="docs/images/data_top.png" alt="Data Top View" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
-<br/><b>📈 Data Overview</b>
-</td>
-<td align="center" width="16.66%">
-<img src="docs/images/data_mid.png" alt="Data Mid View" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
-<br/><b>📊 Data Insights</b>
-</td>
-<td align="center" width="16.66%">
-<img src="docs/images/data_bottom.png" alt="Data Bottom View" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
-<br/><b>📋 Data Details</b>
-</td>
-</tr>
-</table>
+<div align="center">
+<img src="docs/images/showcase.gif" alt="ApplyDay Demo" width="800" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+</div>
 
 ---
 

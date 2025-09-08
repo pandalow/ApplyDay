@@ -1,6 +1,6 @@
 // Language configuration entry file
-import en from './en.js';
-import zh from './zh.js';
+import { en } from './en.js';
+import { zh } from './zh.js';
 
 const translations = {
   en,

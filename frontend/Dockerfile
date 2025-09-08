@@ -2,7 +2,10 @@ FROM node:22.19.0 AS build
 WORKDIR /app
 
 COPY applyday/package*.json ./
-RUN npm ci --silent
+
+# 清理缓存并安装依赖，添加更宽松的配置
+RUN npm cache clean --force && \
+    npm ci --silent --legacy-peer-deps --no-audit --no-fund
 
 COPY applyday ./
 
@@ -12,6 +15,10 @@ ENV VITE_API_BASE_URL=/api
 ENV VITE_APPLICATION_API=/api/app/
 ENV VITE_REPORT_API=/api/report/
 
+# 增加 Node.js 内存限制，解决 Rollup 构建问题
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+
+# 构建应用
 RUN npm run build
 
 FROM nginx:1.27-alpine
