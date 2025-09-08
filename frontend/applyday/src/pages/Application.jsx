@@ -29,7 +29,7 @@ const ApplicationManager = () => {
   });
   const [selectedIds, setSelectedIds] = useState([]);
   const [selectedResumeId, setSelectedResumeId] = useState(null);
-  const [activeTab, setActiveTab] = useState("dashboard"); // 新增：Tab状态
+  const [activeTab, setActiveTab] = useState("dashboard"); // New: Tab state
   
   const navigate = useNavigate();
   // Select/Deselect application for report
@@ -109,7 +109,7 @@ const ApplicationManager = () => {
       setLoading(true);
       const application = await getApplication(id);
       
-      // 处理job description数据 - 从apply_description字段提取
+      // Process job description data - extract from apply_description field
       let jobDescription = "";
       if (application.apply_description && Array.isArray(application.apply_description) && application.apply_description.length > 0) {
         jobDescription = application.apply_description[0]?.text || "";
@@ -304,7 +304,7 @@ const ApplicationManager = () => {
                     ✓
                   </span>
                 )}
-                {/* 提示用户需要选择resume */}
+                {/* Prompt user to select resume */}
                 {!selectedResumeId && selectedIds.length > 0 && (
                   <span className="absolute -top-1 -right-1 flex h-3 w-3">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>

@@ -7,11 +7,11 @@ import { fetchReports } from "../service/report";
 function Report() {
     const [searchParams] = useSearchParams();
     const reportId = searchParams.get("report_id");
-    const [activeTab, setActiveTab] = useState("reports"); // Tab状态
+    const [activeTab, setActiveTab] = useState("reports"); // Tab state
     const [reportStats, setReportStats] = useState({ total: 0, recent: 0 });
     const [loading, setLoading] = useState(true);
 
-    // 加载报告统计信息
+    // Load report statistics
     useEffect(() => {
         const loadReportStats = async () => {
             try {
@@ -43,7 +43,7 @@ function Report() {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-14">
                         <div className="flex items-center space-x-4">
-                            {/* 简化的页面指示器 */}
+                            {/* Simplified page indicator */}
                             <div className="flex items-center space-x-2">
                                 <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
                                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Analysis Reports</span>

@@ -19,7 +19,7 @@ function Extracting({ onSuccess }) {
     const handleProcessExtract = async (e) => {
     e.preventDefault();
     if (!extractDates.startDate || !extractDates.endDate) {
-      alert("请选择开始和结束日期");
+      alert("Please select both start and end dates.");
       return;
     }
     setExtractProcessing(true);
@@ -28,16 +28,16 @@ function Extracting({ onSuccess }) {
         extractDates.startDate + "T00:00:00",
         extractDates.endDate + "T23:59:59"
       );
-      alert("提取任务完成！");
+      alert("Extraction task completed!");
       console.log("Extract result:", result);
       await loadExtracts();
-      // 调用成功回调
+      // Call success callback
       if (onSuccess) {
         onSuccess();
       }
     } catch (error) {
       console.error("Failed to process extract:", error);
-      alert("提取任务失败，请检查控制台错误信息");
+      alert("Extraction task failed, please check the console for error messages");
     } finally {
       setExtractProcessing(false);
     }
@@ -47,7 +47,7 @@ function Extracting({ onSuccess }) {
   return (
     
     <div className="bg-white dark:bg-gray-700 rounded-lg shadow p-6">
-      {/* 标题 */}
+      {/* Title */}
       <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-2">
         Extracting job description information
       </h3>
@@ -55,7 +55,7 @@ function Extracting({ onSuccess }) {
         Select a date range to process the extraction task
       </p>
 
-      {/* 表单 */}
+      {/* Form */}
       <form onSubmit={handleProcessExtract} className="space-y-4">
         {/* Start Date */}
         <div>
@@ -89,7 +89,7 @@ function Extracting({ onSuccess }) {
           />
         </div>
 
-        {/* 执行按钮 */}
+        {/* Execute button */}
         <div>
           <button
             type="submit"
@@ -102,7 +102,7 @@ function Extracting({ onSuccess }) {
         </div>
       </form>
 
-      {/* Processing 状态提示 */}
+      {/* Processing status prompt */}
       {extractProcessing && (
         <div className="mt-4 p-3 rounded-md bg-yellow-50 dark:bg-yellow-800">
           <p className="text-sm text-yellow-800 dark:text-yellow-200">

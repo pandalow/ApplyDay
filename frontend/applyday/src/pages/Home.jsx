@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import Dashboard from "../components/Dashboard";
 import { getTranslations, availableLanguages, defaultLanguage } from "../locales";
 import "../css/Home.css";
 
 function Home() {
   const [isFading, setIsFading] = useState(false);
-  const [language, setLanguage] = useState(defaultLanguage); // 使用默认语言
+  const [language, setLanguage] = useState(defaultLanguage); // Use default language
   const [dataFlow, setDataFlow] = useState([]);
   const [llmProcessing, setLlmProcessing] = useState(false);
   const [technologiesFlow, setTechnologiesFlow] = useState([]);
   const navigate = useNavigate();
 
-  // 获取当前语言的翻译文本
+  // Get current language translation text
   const t = getTranslations(language);
 
-  // 动态更新分析步骤
+  // Dynamically update analysis steps
   const [analysisSteps, setAnalysisSteps] = useState([]);
   
   useEffect(() => {
@@ -29,7 +28,7 @@ function Home() {
     ]);
   }, [language]);
 
-  // 生成数据流动画
+  // Generate data flow animation
   useEffect(() => {
     const generateDataFlow = () => {
       const flows = [];
@@ -52,7 +51,7 @@ function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  // 技术栈流动效果
+  // Technology stack flow effect
   useEffect(() => {
     const technologies = ['React', 'Python', 'OpenAI', 'FastAPI', 'TailwindCSS', 'PostgreSQL', 'Docker', 'AWS'];
     const generateTechFlow = () => {
@@ -79,7 +78,7 @@ function Home() {
     const startLLMProcessing = () => {
       setLlmProcessing(true);
       let currentStep = 0;
-      const totalSteps = 5; // 固定步骤数量，避免依赖分析步骤数组
+      const totalSteps = 5; // Fixed number of steps, avoid depending on analysis steps array
       
       const processSteps = () => {
         setAnalysisSteps(prev => prev.map((step, index) => ({
@@ -129,7 +128,7 @@ function Home() {
 
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
-      {/* 动态背景粒子 */}
+      {/* Dynamic background particles */}
       <div className="absolute inset-0">
         {dataFlow.map((item) => (
           <motion.div
@@ -153,7 +152,7 @@ function Home() {
         ))}
       </div>
 
-      {/* 技术栈流动背景 */}
+      {/* Technology stack flow background */}
       <div className="absolute inset-0 pointer-events-none">
         {technologiesFlow.map((tech) => (
           <motion.div
@@ -174,7 +173,7 @@ function Home() {
       </div>
 
       <div className="relative z-10 flex flex-col items-center min-h-screen px-4 py-8">
-        {/* 主标题 */}
+        {/* Main title */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -201,7 +200,7 @@ function Home() {
             {t.subtitle}
           </motion.div>
           
-          {/* 语言切换按钮 */}
+          {/* Language toggle button */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -230,7 +229,7 @@ function Home() {
           </motion.div>
         </motion.div>
 
-        {/* 核心理念介绍 */}
+        {/* Core philosophy introduction */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -246,7 +245,7 @@ function Home() {
             </p>
           </div>
           
-          {/* 三步成长循环 */}
+          {/* Three-step growth cycle */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             {[
               { 
@@ -283,7 +282,7 @@ function Home() {
             ))}
           </div>
           
-          {/* 特色功能标签 */}
+          {/* Featured function tags */}
           <div className="flex flex-wrap justify-center gap-3">
             {t.features.map((feature, index) => (
               <motion.div
@@ -301,14 +300,14 @@ function Home() {
           </div>
         </motion.div>
 
-        {/* 能力对比 */}
+        {/* Capability comparison */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 2.2, duration: 0.8 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8 w-full max-w-4xl"
         >
-          {/* 它可以做的 */}
+          {/* What it can do */}
           <div className="bg-gradient-to-br from-green-800/50 to-emerald-900/50 backdrop-blur-sm border border-green-400/30 rounded-xl p-6">
             <h3 className="text-lg font-semibold text-green-200 mb-4 flex items-center">
               <span className="mr-2">✅</span>
@@ -321,7 +320,7 @@ function Home() {
             </ul>
           </div>
 
-          {/* 它不会做的 */}
+          {/* What it won't do */}
           <div className="bg-gradient-to-br from-red-800/50 to-pink-900/50 backdrop-blur-sm border border-red-400/30 rounded-xl p-6">
             <h3 className="text-lg font-semibold text-red-200 mb-4 flex items-center">
               <span className="mr-2">🚫</span>
@@ -398,7 +397,7 @@ function Home() {
           </div>
         </motion.div>
 
-        {/* 开源社区介绍 */}
+        {/* Open source community introduction */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -421,7 +420,7 @@ function Home() {
         </motion.div>
 
 
-        {/* 底部CTA */}
+        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -442,7 +441,7 @@ function Home() {
         </motion.div>
       </div>
 
-      {/* 装饰性光效 */}
+      {/* Decorative light effects */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
     </div>

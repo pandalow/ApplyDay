@@ -28,7 +28,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', 'True').lower() == 'true'
 
 ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1,0.0.0.0').split(',')
 
-# CORS 配置 - 允许前端跨域访问
+# CORS configuration - Allow frontend cross-origin access
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",  # React default port
     "http://localhost:8080",  # Vue default port

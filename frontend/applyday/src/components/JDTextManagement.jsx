@@ -17,7 +17,7 @@ const JDTextManagement = forwardRef((props, ref) => {
   const [showExtractDialog, setShowExtractDialog] = useState(false);
   const [formData, setFormData] = useState({ text: "" });
 
-  // 暴露方法给父组件
+  // Expose methods to parent component
   useImperativeHandle(ref, () => ({
     showExtractDialog: () => setShowExtractDialog(true)
   }));
@@ -128,7 +128,7 @@ const JDTextManagement = forwardRef((props, ref) => {
         </div>
       )}
 
-      {/* 创建按钮 */}
+      {/* Create button */}
       <div>
         <button
           onClick={() => setShowCreateForm(true)}
@@ -142,7 +142,7 @@ const JDTextManagement = forwardRef((props, ref) => {
         </button>
       </div>
 
-      {/* 创建表单 */}
+      {/* Create form */}
       {showCreateForm && (
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600 p-6">
           <ExtractionForm
@@ -155,7 +155,7 @@ const JDTextManagement = forwardRef((props, ref) => {
         </div>
       )}
 
-      {/* 提取记录列表 */}
+      {/* Extraction record list */}
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h4 className="text-lg font-medium text-gray-900 dark:text-gray-100">

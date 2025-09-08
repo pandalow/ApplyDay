@@ -44,7 +44,7 @@ export const fetchReports = async () => {
   }
 };
 
-// 单独的 extract 功能 - 处理提取任务
+// Separate extract functionality - handle extraction tasks
 export const processExtract = async (startDate, endDate) => {
   try {
     const response = await axios.post(`${API_BASE_URL}extract/`, {

@@ -10,11 +10,11 @@ function ReportDetail({ reportId }) {
   const [loading, setLoading] = useState(true);
   const [loadingReport, setLoadingReport] = useState(false);
   const [showAll, setShowAll] = useState(false);
-  const [activeReportTab, setActiveReportTab] = useState("visualization"); // 新增：子tab状态
-  const [deletingReportId, setDeletingReportId] = useState(null); // 新增：删除状态
+  const [activeReportTab, setActiveReportTab] = useState("visualization"); // New: sub-tab state
+  const [deletingReportId, setDeletingReportId] = useState(null); // New: delete state
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
-  // 监听窗口大小变化
+  // Listen for window size changes
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener('resize', handleResize);
@@ -23,13 +23,13 @@ function ReportDetail({ reportId }) {
 
   const isLargeScreen = windowWidth >= 1024;
 
-  // 加载报告列表
+  // Load report list
   useEffect(() => {
     const loadReports = async () => {
       try {
         setLoading(true);
         const data = await fetchReports();
-        // 倒序排列，最新在前
+        // Sort in descending order, newest first
         const sorted = [...data].sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
         setReportList(sorted);
       } catch (error) {
@@ -41,7 +41,7 @@ function ReportDetail({ reportId }) {
     loadReports();
   }, []);
 
-  // 页面初次加载或 reportId 变化时自动选中对应报告
+  // Auto-select corresponding report when page first loads or reportId changes
   useEffect(() => {
     if (reportId) {
       handleViewReport(reportId);
@@ -54,7 +54,7 @@ function ReportDetail({ reportId }) {
       setLoadingReport(true);
       const fullReport = await getReport(id);
       setSelectedReport(fullReport);
-      setActiveReportTab("visualization"); // 重置为默认tab
+      setActiveReportTab("visualization"); // Reset to default tab
     } catch (error) {
       console.error("Error loading report:", error);
     } finally {
@@ -71,10 +71,10 @@ function ReportDetail({ reportId }) {
       setDeletingReportId(reportId);
       await deleteReport(reportId);
       
-      // 更新报告列表
+      // Update report list
       setReportList(prev => prev.filter(report => report.id !== reportId));
       
-      // 如果删除的是当前选中的报告，清空选中状态
+      // If the deleted report is currently selected, clear selection
       if (selectedReport && selectedReport.id === reportId) {
         setSelectedReport(null);
       }
@@ -102,7 +102,7 @@ function ReportDetail({ reportId }) {
       gap: '24px', 
       width: '100%' 
     }}>
-      {/* 左边：报告列表（可折叠） */}
+      {/* Left side: Report list (collapsible) */}
       <div style={{ 
         width: isLargeScreen ? '320px' : '100%', 
         flexShrink: 0 
@@ -126,7 +126,7 @@ function ReportDetail({ reportId }) {
               </div>
             ) : (
               <>
-                {/* 折叠按钮 */}
+                {/* Collapse button */}
                 <div className="flex justify-end mb-1">
                   <button
                     className="text-xs text-purple-600 dark:text-purple-400 hover:underline focus:outline-none"
@@ -135,10 +135,10 @@ function ReportDetail({ reportId }) {
                     {showAll ? 'Collapse All' : 'Expand All'}
                   </button>
                 </div>
-                {/* 报告项 */}
+                {/* Report items */}
                 {(showAll ? reportList : reportList.slice(0, 1)).map((r, idx, arr) => {
                   const isOpen = selectedReport?.id == r.id;
-                  // 统一圆角：首个和最后一个item都加圆角
+                  // Unified border radius: add rounded corners to first and last items
                   const isFirst = idx === 0;
                   const isLast = idx === arr.length - 1;
                   return (
@@ -210,7 +210,7 @@ function ReportDetail({ reportId }) {
         </div>
       </div>
 
-      {/* 右边：报告详情 */}
+      {/* Right side: Report details */}
       <div style={{ 
         flex: isLargeScreen ? 1 : 'none', 
         minWidth: 0,
@@ -225,7 +225,7 @@ function ReportDetail({ reportId }) {
           <div className="space-y-6">
           
 
-            {/* 子Tab导航 */}
+            {/* Sub-tab navigation */}
             <div className="bg-gray-50 dark:bg-gray-700 rounded-lg border border-gray-200 dark:border-gray-600">
               <div className="border-b border-gray-200 dark:border-gray-600">
                 <nav className="flex space-x-8 px-6">
@@ -254,7 +254,7 @@ function ReportDetail({ reportId }) {
                 </nav>
               </div>
 
-              {/* 子Tab内容 */}
+              {/* Sub-tab content */}
               <div className="p-6">
                 {activeReportTab === "visualization" && (
                   <div className="space-y-6">

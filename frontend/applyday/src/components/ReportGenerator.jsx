@@ -19,7 +19,7 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
       
       switch (mode) {
         case "selected":
-          // 使用选中的应用和简历
+          // Selected applications
           if (selectedApplicationIds.length === 0) {
             alert("Please select at least one job application.");
             setGenerating(false);
@@ -33,7 +33,7 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
           break;
           
         case "dateRange":
-          // 使用日期范围
+          // Use date range
           if (!startDate || !endDate) {
             alert("Please select both start and end dates.");
             setGenerating(false);
@@ -48,7 +48,7 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
           break;
           
         case "all":
-          // 分析全部数据
+          // Analyze all data
           requestData = {
             languages: aiLanguage,
             ...(selectedResumeId && { resume_id: selectedResumeId })
@@ -65,18 +65,18 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
       
       const response = await generatePipeline(requestData);
       console.log("Report generation response:", response);
-      
-      // 跳转到报告详情页
-      // API返回格式: { report: { id: ... }, summary: ... }
+
+      // Navigate to report details page
+      // API response format: { report: { id: ... }, summary: ... }
       if (response && response.report && response.report.id) {
         console.log("Navigating to report with ID:", response.report.id);
         navigate(`/report?report_id=${response.report.id}`);
       } else if (response && response.id) {
-        // 备用方案：如果直接返回报告对象
+        // Fallback: if the report object is returned directly
         console.log("Navigating to report with direct ID:", response.id);
         navigate(`/report?report_id=${response.id}`);
       } else if (response && response.report_id) {
-        // 备用方案：如果有report_id字段
+        // Fallback: if the report_id field is present
         console.log("Navigating to report with report_id:", response.report_id);
         navigate(`/report?report_id=${response.report_id}`);
       } else {
@@ -185,7 +185,7 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
         </div>
       )}
 
-      {/* 状态信息 - 只在非compact模式下显示 */}
+      {/* Status Information - Only displayed in non-compact mode */}
       {!compact && (
         <div className="bg-gray-50 dark:bg-gray-700 rounded-lg p-3">
           <div className="text-sm text-gray-600 dark:text-gray-400 space-y-2">
@@ -221,7 +221,7 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
         </div>
       )}
 
-      {/* 选项面板 */}
+      {/* Options Panel */}
       {showOptions && (
         <div className={`
           bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 p-4 space-y-4
@@ -230,11 +230,11 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
           <h5 className="text-lg font-semibold text-gray-900 dark:text-gray-100">
             Report Generation Options
           </h5>
-          
-          {/* 分析模式选择 */}
+
+          {/* Analysis Mode Selection */}
           <div className="space-y-3">
             <div className="space-y-2">
-              {/* 选中的应用 */}
+              {/* Selected Applications */}
               <label className="flex items-start space-x-3 cursor-pointer">
                 <input
                   type="radio"
@@ -250,8 +250,8 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
                   </p>
                 </div>
               </label>
-              
-              {/* 日期范围 */}
+
+              {/* Date Range */}
               <label className="flex items-start space-x-3 cursor-pointer">
                 <input
                   type="radio"
@@ -289,8 +289,8 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
                   )}
                 </div>
               </label>
-              
-              {/* 全部数据 */}
+
+              {/* All Data */}
               <label className="flex items-start space-x-3 cursor-pointer">
                 <input
                   type="radio"
@@ -307,7 +307,7 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
             </div>
           </div>
 
-          {/* AI 报告语言选择 */}
+          {/* AI Report Language Selection */}
           <div className="space-y-3">
             <h6 className="text-sm font-medium text-gray-900 dark:text-gray-100">
               AI Analysis Language
@@ -345,8 +345,8 @@ function ReportGenerator({ selectedApplicationIds, selectedResumeId, compact = f
               Select the language for AI-generated analysis reports
             </p>
           </div>
-          
-          {/* 底部按钮 */}
+
+          {/* Bottom Buttons */}
           <div className="flex justify-end space-x-3 pt-3 border-t border-gray-200 dark:border-gray-700">
             <button
               onClick={() => setShowOptions(false)}

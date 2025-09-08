@@ -9,14 +9,14 @@ const SkillsNetworkChart = ({ data }) => {
     );
   }
 
-  // 从边数据中提取所有唯一的节点
+  // Extract all unique nodes from edge data
   const nodeSet = new Set();
   data.forEach(edge => {
     nodeSet.add(edge.source);
     nodeSet.add(edge.target);
   });
 
-  // 计算每个节点的连接数和总权重
+  // Calculate connection count and total weight for each node
   const nodeStats = {};
   data.forEach(edge => {
     if (!nodeStats[edge.source]) {
@@ -32,20 +32,20 @@ const SkillsNetworkChart = ({ data }) => {
     nodeStats[edge.target].totalWeight += edge.weight;
   });
 
-  // 定义颜色方案
+  // Define color scheme
   const getNodeColor = (totalWeight) => {
-    if (totalWeight > 2) return '#ef4444'; // 红色 - 高权重
-    if (totalWeight > 1) return '#f59e0b'; // 橙色 - 中权重
-    return '#4f46e5'; // 蓝色 - 低权重
+    if (totalWeight > 2) return '#ef4444'; // Red - high weight
+    if (totalWeight > 1) return '#f59e0b'; // Orange - medium weight
+    return '#4f46e5'; // Blue - low weight
   };
 
-  // 创建节点数据
+  // Create node data
   const nodes = Array.from(nodeSet).map(name => {
     const stats = nodeStats[name] || { connections: 0, totalWeight: 0 };
     return {
       id: name,
       name: name,
-      symbolSize: Math.max(25, Math.min(70, stats.totalWeight * 20)), // 根据总权重调整节点大小
+      symbolSize: Math.max(25, Math.min(70, stats.totalWeight * 20)), // Adjust node size based on total weight
       value: stats.totalWeight,
       connections: stats.connections,
       category: 0,
@@ -68,20 +68,20 @@ const SkillsNetworkChart = ({ data }) => {
     };
   });
 
-  // 创建边数据
+  // Create edge data
   const links = data.map(edge => ({
     source: edge.source,
     target: edge.target,
     value: edge.weight,
     lineStyle: {
-      width: Math.max(1, Math.min(6, edge.weight * 2.5)), // 根据权重调整线条粗细
+      width: Math.max(1, Math.min(6, edge.weight * 2.5)), // Adjust line thickness based on weight
       color: edge.weight > 1.5 ? '#ef4444' : edge.weight > 0.8 ? '#f59e0b' : '#6b7280',
       opacity: 0.8,
       shadowBlur: 5,
       shadowColor: 'rgba(0, 0, 0, 0.2)'
     },
     label: {
-      show: edge.weight > 1.2, // 只显示较高权重边的标签
+      show: edge.weight > 1.2, // Only show labels for higher weight edges
       position: 'middle',
       fontSize: 9,
       color: '#374151',
@@ -161,8 +161,8 @@ const SkillsNetworkChart = ({ data }) => {
             }
           }
         ],
-        roam: true, // 允许缩放和拖拽
-        focusNodeAdjacency: true, // 高亮相邻节点
+        roam: true, // Allow zoom and drag
+        focusNodeAdjacency: true, // Highlight adjacent nodes
         draggable: true,
         force: {
           repulsion: 200,

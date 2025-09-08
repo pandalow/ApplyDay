@@ -1,4 +1,4 @@
-// 中文翻译文件
+// Chinese translation file
 export const zh = {
   title: "ApplyDay",
   subtitle: "你的个人求职助理",

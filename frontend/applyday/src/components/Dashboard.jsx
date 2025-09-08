@@ -18,7 +18,7 @@ function Dashboard() {
       try {
         setLoading(true)
         const response = await getStats()
-        console.log("API Response:", response) // 调试用
+        console.log("API Response:", response) // For debugging
 
         if (response && response.data) {
           setStats(response.data)
@@ -49,7 +49,7 @@ function Dashboard() {
     </div>
   )
 
-  // 计算漏斗数据 - 移除Applied（因为总是100%）
+  // Calculate funnel data - remove Applied (as it's always 100%)
   const funnelData = [
     { 
       label: "Interview", 
@@ -69,7 +69,7 @@ function Dashboard() {
 
   return (
     <div className="w-full space-y-4">
-      {/* 数据概览 - 压缩布局 */}
+      {/* Data overview - compressed layout */}
       <div className="grid grid-cols-5 gap-2 md:gap-3">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -122,7 +122,7 @@ function Dashboard() {
         </motion.div>
       </div>
 
-      {/* 转化漏斗 - 压缩版本 */}
+      {/* Conversion funnel - compressed version */}
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -142,7 +142,7 @@ function Dashboard() {
               transition={{ duration: 0.5, delay: 0.8 + index * 0.2 }}
               className="relative"
             >
-              {/* 漏斗条 */}
+              {/* Funnel bar */}
               <div className="flex items-center space-x-3">
                 <div className="flex items-center space-x-2 w-20">
                   <span className="text-md">{stage.icon}</span>
@@ -152,21 +152,21 @@ function Dashboard() {
                 </div>
                 
                 <div className="flex-1 relative">
-                  {/* 背景条 */}
+                  {/* Background bar */}
                   <div className="h-6 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
-                    {/* 进度条 */}
+                    {/* Progress bar */}
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${stage.percentage}%` }}
                       transition={{ duration: 1, delay: 1 + index * 0.2, ease: "easeOut" }}
                       className={`h-full ${stage.color} relative overflow-hidden`}
                     >
-                      {/* 动画光效 */}
+                      {/* Animation light effect */}
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse"></div>
                     </motion.div>
                   </div>
                   
-                  {/* 数值显示 */}
+                  {/* Value display */}
                   <div className="absolute right-0 top-0 h-6 flex items-center pr-2">
                     <span className="text-xs font-bold text-white mix-blend-difference">
                       {stage.value} ({stage.percentage.toFixed(1)}%)
@@ -175,7 +175,7 @@ function Dashboard() {
                 </div>
               </div>
               
-              {/* 连接线 */}
+              {/* Connection line */}
               {index < funnelData.length - 1 && (
                 <div className="flex justify-center mt-1 mb-1">
                   <motion.div

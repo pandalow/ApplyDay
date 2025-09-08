@@ -44,7 +44,7 @@ const FrequencyChart = ({ data }) => {
         type: "bar",
         data: counts,
         itemStyle: {
-          color: "#4f46e5", // 你原来 Recharts 的颜色
+          color: "#4f46e5", // Your original Recharts color
         },
       },
     ],

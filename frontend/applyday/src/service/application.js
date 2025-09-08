@@ -3,7 +3,7 @@ import API_CONFIG from '../config/api';
 
 const API_BASE_URL = API_CONFIG.APPLICATION_API;
 
-// Application CRUD 接口
+// Application CRUD interfaces
 export const fetchApplications = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}info/`);
@@ -63,7 +63,7 @@ export const getStats = async () => {
     throw error;
   }
 };
-// Job Description CRUD 接口
+// Job Description CRUD interfaces
 export const fetchJDs = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}jd/`);
@@ -105,7 +105,7 @@ export const updateJD = async (jobId, jdData) => {
 };
 
 
-// Extract CRUD 接口
+// Extract CRUD interfaces
 export const fetchExtracts = async () => {
   try {
     const response = await axios.get(`${API_BASE_URL}extract/`);

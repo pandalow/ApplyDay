@@ -6,7 +6,7 @@ function ResumeManager({ onSelectResume, selectedResumeId }) {
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
 
-  // 加载简历列表
+  // Load resume list
   useEffect(() => {
     loadResumes();
   }, []);
@@ -23,12 +23,12 @@ function ResumeManager({ onSelectResume, selectedResumeId }) {
     }
   };
 
-  // 处理文件上传
+  // Handle file upload
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
     if (!file) return;
 
-    // 验证文件类型
+    // Validate file type
     const allowedTypes = [
       'application/pdf',
       'application/msword',
@@ -48,19 +48,19 @@ function ResumeManager({ onSelectResume, selectedResumeId }) {
     try {
       const newResume = await createResume(formData);
       setResumes(prev => [...prev, newResume]);
-      // 自动选择刚上传的简历
+      // Auto-select the newly uploaded resume
       onSelectResume(newResume.id);
     } catch (error) {
       console.error("Error uploading resume:", error);
       alert("Failed to upload resume. Please try again.");
     } finally {
       setUploading(false);
-      // 清空input
+      // Clear input
       event.target.value = '';
     }
   };
 
-  // 删除简历
+  // Delete resume
   const handleDeleteResume = async (resumeId) => {
     if (!window.confirm("Are you sure you want to delete this resume?")) {
       return;
@@ -69,7 +69,7 @@ function ResumeManager({ onSelectResume, selectedResumeId }) {
     try {
       await deleteResume(resumeId);
       setResumes(prev => prev.filter(resume => resume.id !== resumeId));
-      // 如果删除的是当前选中的简历，清空选择
+      // If the deleted resume is currently selected, clear selection
       if (selectedResumeId === resumeId) {
         onSelectResume(null);
       }

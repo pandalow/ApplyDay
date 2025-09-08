@@ -9,7 +9,7 @@ const TfidfGroupedChart = ({ data }) => {
 
   const roles = Object.keys(data);
 
-  // 找出所有出现过的技能
+  // Find all skills that appeared
   const allSkills = [
     ...new Set(roles.flatMap((r) => data[r].map((s) => s.skill))),
   ];

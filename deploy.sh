@@ -1,66 +1,66 @@
 #!/bin/bash
 
-# ApplyDay 一键部署脚本 (Linux/macOS)
-# 作者: ApplyDay Team
-# 日期: 2025-09-08
+# ApplyDay One-Click Deployment Script (Linux/macOS)
+# Author: ApplyDay Team
+# Date: 2025-09-08
 
-set -e  # 遇到错误立即退出
+set -e  # Exit immediately if a command exits with a non-zero status
 
-# 颜色定义
+# Color definitions
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-# 打印带颜色的消息
+# Print colored messages
 print_message() {
     echo -e "${2}${1}${NC}"
 }
 
-# 检查命令是否存在
+# Check if a command exists
 check_command() {
     if ! command -v $1 &> /dev/null; then
-        print_message "错误: $1 未安装，请先安装 $1" $RED
+        print_message "Error: $1 is not installed. Please install $1 first." $RED
         exit 1
     fi
 }
 
-# 检查文件是否存在
+# Check if a file exists
 check_file() {
     if [ ! -f "$1" ]; then
-        print_message "错误: 文件 $1 不存在" $RED
+        print_message "Error: File $1 does not exist." $RED
         exit 1
     fi
 }
 
-# 主函数
+# Main function
 main() {
-    print_message "🚀 ApplyDay 一键部署开始..." $BLUE
+    print_message "🚀 ApplyDay One-Click Deployment Script Starting..." $BLUE
     print_message "========================================" $BLUE
-    
-    # 检查依赖
-    print_message "📋 检查系统依赖..." $YELLOW
+
+    # Check dependencies
+    print_message "📋 Checking system dependencies..." $YELLOW
     check_command "docker"
     check_command "docker-compose"
     check_command "git"
-    
-    # 检查必要文件
-    print_message "📁 检查项目文件..." $YELLOW
+
+    # Check required files
+    print_message "📁 Checking project files..." $YELLOW
     check_file "docker-compose.yml"
     check_file "backend/Dockerfile"
     check_file "frontend/Dockerfile"
-    
-    # 创建环境变量文件
-    print_message "⚙️  配置环境变量..." $YELLOW
+
+    # Create environment variable file
+    print_message "⚙️  Configuring environment variables..." $YELLOW
     if [ ! -f ".env" ]; then
         cat > .env << EOF
-# Django 配置
+# Django configuration
 DJANGO_SECRET_KEY=your-secret-key-change-in-production
 DJANGO_DEBUG=False
 DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1,0.0.0.0
 
-# AI 配置 (根据需要配置其中一个)
+# AI configuration (configure one as needed)
 # OpenAI
 OPENAI_API_KEY=your-openai-api-key
 
@@ -70,152 +70,152 @@ ANTHROPIC_API_KEY=your-anthropic-api-key
 # Google
 GOOGLE_API_KEY=your-google-api-key
 
-# 数据库配置
+# Database configuration
 DATABASE_URL=sqlite:///app/db.sqlite3
 
-# CORS 配置
+# CORS configuration
 CORS_ALLOW_ALL_ORIGINS=True
 CORS_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:80,http://127.0.0.1:3000,http://127.0.0.1:80
 EOF
-        print_message "✅ 已创建 .env 文件，请根据需要修改配置" $GREEN
-        print_message "⚠️  请确保配置正确的 AI API Key!" $YELLOW
+        print_message "✅ .env file created. Please modify the configuration as needed." $GREEN
+        print_message "⚠️  Please ensure the correct AI API Key is configured!" $YELLOW
     else
-        print_message "✅ .env 文件已存在" $GREEN
+        print_message "✅ .env file already exists." $GREEN
     fi
-    
-    # 创建数据目录
-    print_message "📂 创建数据目录..." $YELLOW
+
+    # Create data directories
+    print_message "📂 Creating data directories..." $YELLOW
     mkdir -p data
     mkdir -p backend/applyday
-    
-    # 停止现有容器
-    print_message "🛑 停止现有服务..." $YELLOW
+
+    # Stop existing containers
+    print_message "🛑 Stopping existing services..." $YELLOW
     docker-compose down --remove-orphans || true
-    
-    # 清理旧镜像 (可选)
-    read -p "是否清理旧的 Docker 镜像? (y/N): " clean_images
+
+    # Clean up old images (optional)
+    read -p "Do you want to clean up old Docker images? (y/N): " clean_images
     if [[ $clean_images =~ ^[Yy]$ ]]; then
-        print_message "🧹 清理旧镜像..." $YELLOW
+        print_message "🧹 Cleaning up old images..." $YELLOW
         docker system prune -f
         docker image prune -a -f
     fi
-    
-    # 构建和启动服务
-    print_message "🔨 构建 Docker 镜像..." $YELLOW
+
+    # Build and start services
+    print_message "🔨 Building Docker images..." $YELLOW
     docker-compose build --no-cache
-    
-    print_message "🚀 启动服务..." $YELLOW
+
+    print_message "🚀 Starting services..." $YELLOW
     docker-compose up -d
-    
-    # 等待服务启动
-    print_message "⏳ 等待服务启动..." $YELLOW
+
+    # Wait for services to start
+    print_message "⏳ Waiting for services to start..." $YELLOW
     sleep 10
-    
-    # 运行数据库迁移
-    print_message "🗃️  运行数据库迁移..." $YELLOW
+
+    # Run database migrations
+    print_message "🗃️  Running database migrations..." $YELLOW
     docker-compose exec -T api python manage.py migrate
-    
-    # 创建超级用户 (可选)
-    read -p "是否创建 Django 超级用户? (y/N): " create_superuser
+
+    # Create superuser (optional)
+    read -p "Do you want to create a Django superuser? (y/N): " create_superuser
     if [[ $create_superuser =~ ^[Yy]$ ]]; then
-        print_message "👤 创建超级用户..." $YELLOW
+        print_message "👤 Creating superuser..." $YELLOW
         docker-compose exec api python manage.py createsuperuser
     fi
-    
-    # 收集静态文件
-    print_message "📦 收集静态文件..." $YELLOW
+
+    # Collect static files
+    print_message "📦 Collecting static files..." $YELLOW
     docker-compose exec -T api python manage.py collectstatic --noinput || true
-    
-    # 检查服务状态
-    print_message "🔍 检查服务状态..." $YELLOW
+
+    # Check service status
+    print_message "🔍 Checking service status..." $YELLOW
     docker-compose ps
-    
-    # 健康检查
-    print_message "🏥 进行健康检查..." $YELLOW
+
+    # Health check
+    print_message "🏥 Performing health checks..." $YELLOW
     sleep 5
-    
-    # 检查后端
+
+    # Check backend
     if curl -f http://localhost:8000/app/info/ > /dev/null 2>&1; then
-        print_message "✅ 后端服务运行正常" $GREEN
+        print_message "✅ Backend service is running normally" $GREEN
     else
-        print_message "❌ 后端服务可能有问题" $RED
+        print_message "❌ Backend service may have issues" $RED
     fi
-    
-    # 检查前端
+
+    # Check frontend
     if curl -f http://localhost:80 > /dev/null 2>&1; then
-        print_message "✅ 前端服务运行正常" $GREEN
+        print_message "✅ Frontend service is running normally" $GREEN
     else
-        print_message "❌ 前端服务可能有问题" $RED
+        print_message "❌ Frontend service may have issues" $RED
     fi
-    
-    # 部署完成
+
+    # Deployment complete
     print_message "========================================" $BLUE
-    print_message "🎉 部署完成!" $GREEN
-    print_message "📱 前端地址: http://localhost" $GREEN
-    print_message "🔧 后端 API: http://localhost:8000" $GREEN
-    print_message "📊 管理后台: http://localhost:8000/admin" $GREEN
+    print_message "🎉 Deployment complete!" $GREEN
+    print_message "📱 Frontend URL: http://localhost" $GREEN
+    print_message "🔧 Backend API: http://localhost:8000" $GREEN
+    print_message "📊 Admin Panel: http://localhost:8000/admin" $GREEN
     print_message "========================================" $BLUE
-    
-    # 显示日志
-    read -p "是否查看实时日志? (y/N): " show_logs
+
+    # Show logs
+    read -p "Do you want to view real-time logs? (y/N): " show_logs
     if [[ $show_logs =~ ^[Yy]$ ]]; then
-        print_message "📄 显示实时日志 (按 Ctrl+C 退出)..." $YELLOW
+        print_message "📄 Showing real-time logs (Press Ctrl+C to exit)..." $YELLOW
         docker-compose logs -f
     fi
 }
 
-# 帮助信息
+# Help information
 show_help() {
-    echo "ApplyDay 一键部署脚本"
+    echo "ApplyDay One-Click Deployment Script"
     echo ""
-    echo "用法: $0 [选项]"
+    echo "Usage: $0 [options]"
     echo ""
-    echo "选项:"
-    echo "  -h, --help     显示帮助信息"
-    echo "  -c, --clean    清理模式 (停止并删除所有容器和镜像)"
-    echo "  -r, --restart  重启服务"
-    echo "  -l, --logs     显示日志"
-    echo "  -s, --status   显示服务状态"
+    echo "Options:"
+    echo "  -h, --help     Show help information"
+    echo "  -c, --clean    Clean mode (stop and remove all containers and images)"
+    echo "  -r, --restart  Restart services"
+    echo "  -l, --logs     Show logs"
+    echo "  -s, --status   Show service status"
     echo ""
-    echo "示例:"
-    echo "  $0              # 正常部署"
-    echo "  $0 --clean     # 清理模式部署"
-    echo "  $0 --restart   # 重启服务"
-    echo "  $0 --logs      # 查看日志"
+    echo "Examples:"
+    echo "  $0              # Normal deployment"
+    echo "  $0 --clean     # Clean mode deployment"
+    echo "  $0 --restart   # Restart services"
+    echo "  $0 --logs      # Show logs"
 }
 
-# 清理模式
+# Clean mode
 clean_mode() {
-    print_message "🧹 清理模式启动..." $YELLOW
+    print_message "🧹 Clean mode activated..." $YELLOW
     docker-compose down --volumes --remove-orphans
     docker system prune -a -f
     docker volume prune -f
-    print_message "✅ 清理完成" $GREEN
+    print_message "✅ Cleanup complete" $GREEN
 }
 
-# 重启服务
+# Restart services
 restart_services() {
-    print_message "🔄 重启服务..." $YELLOW
+    print_message "🔄 Restarting services..." $YELLOW
     docker-compose restart
-    print_message "✅ 服务已重启" $GREEN
+    print_message "✅ Services restarted" $GREEN
 }
 
-# 显示日志
+# Show logs
 show_logs() {
-    print_message "📄 显示日志..." $YELLOW
+    print_message "📄 Showing logs..." $YELLOW
     docker-compose logs -f
 }
 
-# 显示状态
+# Show status
 show_status() {
-    print_message "📊 服务状态:" $YELLOW
+    print_message "📊 Service status:" $YELLOW
     docker-compose ps
     echo ""
-    print_message "💾 磁盘使用:" $YELLOW
+    print_message "💾 Disk usage:" $YELLOW
     docker system df
 }
 
-# 解析命令行参数
+# Parse command line arguments
 case "${1:-}" in
     -h|--help)
         show_help
@@ -243,7 +243,7 @@ case "${1:-}" in
         exit 0
         ;;
     *)
-        print_message "未知选项: $1" $RED
+        print_message "Unknown option: $1" $RED
         show_help
         exit 1
         ;;

@@ -2,7 +2,7 @@ import ReactECharts from "echarts-for-react";
 import "echarts-wordcloud";
 
 const WordCloudChart = ({ words }) => {
-  // 检查数据是否为空
+  // Check if data is empty
   if (!words) {
     return (
       <div className="flex items-center justify-center h-64 text-gray-500 dark:text-gray-400">
@@ -11,7 +11,7 @@ const WordCloudChart = ({ words }) => {
     );
   }
 
-  // 如果是数组且为空，或者是对象但没有键值
+  // If it's an array and empty, or an object without key-value pairs
   if ((Array.isArray(words) && words.length === 0) || 
       (typeof words === 'object' && Object.keys(words).length === 0)) {
     return (
@@ -21,14 +21,14 @@ const WordCloudChart = ({ words }) => {
     );
   }
 
-  // 如果传进来是数组，先统计频率
+  // If input is an array, calculate frequency first
   let freq = {};
   if (Array.isArray(words)) {
     words.forEach((w) => {
       freq[w] = (freq[w] || 0) + 1;
     });
   } else {
-    freq = words; // 已经是对象
+    freq = words; // Already an object
   }
 
   const data = Object.entries(freq).map(([name, value]) => ({ name, value }));

@@ -30,7 +30,7 @@ const PieChart = ({ data }) => {
       {
         name: "Frequency",
         type: "pie",
-        radius: ["40%", "70%"], // 环形饼图
+        radius: ["40%", "70%"], // Donut chart
         avoidLabelOverlap: false,
         itemStyle: {
           borderRadius: 10,

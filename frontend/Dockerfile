@@ -17,13 +17,13 @@ RUN npm run build
 FROM nginx:1.27-alpine
 WORKDIR /usr/share/nginx/html
 
-# 删除默认的nginx静态资源
+# Remove default nginx static assets
 RUN rm -rf ./*
 
-# 从构建阶段复制构建结果
+# Copy build results from build stage
 COPY --from=build /app/dist . 
 
-# 创建nginx配置
+# Create nginx configuration
 RUN echo 'server { \
     listen 80; \
     server_name localhost; \

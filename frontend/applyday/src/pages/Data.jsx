@@ -10,16 +10,16 @@ const DataManagement = () => {
     const [loading, setLoading] = useState(true);
     const jdTextManagementRef = useRef();
 
-    // 加载数据统计信息
+    // Load data statistics
     useEffect(() => {
         const loadDataStats = async () => {
             try {
                 setLoading(true);
                 const jdData = await fetchJDs();
-                // 这里可以添加获取文本数据的API调用
+                // Add API call to get text data here when available
                 setDataStats({
                     jds: jdData.length,
-                    texts: 0 // 暂时设为0，等有相关API时更新
+                    texts: 0 // Temporarily set to 0, update when API is available
                 });
             } catch (error) {
                 console.error("Failed to load data stats:", error);
@@ -37,7 +37,7 @@ const DataManagement = () => {
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-14">
                         <div className="flex items-center space-x-4">
-                            {/* 简化的页面指示器 */}
+                            {/* Simplified page indicator */}
                             <div className="flex items-center space-x-2">
                                 <div className="w-2 h-2 bg-indigo-500 rounded-full"></div>
                                 <span className="text-sm font-medium text-gray-700 dark:text-gray-300">Data Management</span>

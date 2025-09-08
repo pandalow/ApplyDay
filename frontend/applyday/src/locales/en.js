@@ -1,4 +1,4 @@
-// 英文翻译文件
+// English translation file
 export const en = {
   title: "ApplyDay",
   subtitle: "Your Personal Job Assistant",

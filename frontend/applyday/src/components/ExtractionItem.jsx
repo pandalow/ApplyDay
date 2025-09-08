@@ -1,7 +1,7 @@
 function ExtractionItem({ extract, loading, editingId, showCreateForm, handleEdit, handleDelete }) {
   return (
     <div className="flex justify-between items-center bg-white dark:bg-gray-800 rounded-lg shadow p-4">
-      {/* 左侧信息 */}
+      {/* Left side information */}
       <div className="flex-1 min-w-0">
         <h5 className="text-sm font-semibold text-gray-800 dark:text-gray-200">
           ID: {extract.id}
@@ -17,7 +17,7 @@ function ExtractionItem({ extract, loading, editingId, showCreateForm, handleEdi
         </p>
       </div>
 
-      {/* 右侧按钮 */}
+      {/* Right side buttons */}
       <div className="flex-shrink-0 ml-4 space-x-2">
         <button
           onClick={() => handleEdit(extract)}

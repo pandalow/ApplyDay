@@ -2,7 +2,7 @@ function ExtractionForm({ formData, onCreate, onChange, onCancel, loading }) {
   return (
     <div className="max-w-2xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md p-6">
       <form onSubmit={onCreate} className="space-y-4">
-        {/* 输入区 */}
+        {/* Input area */}
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             Job Description Text
@@ -18,7 +18,7 @@ function ExtractionForm({ formData, onCreate, onChange, onCancel, loading }) {
           />
         </div>
 
-        {/* 按钮区 */}
+        {/* Button area */}
         <div className="flex justify-end space-x-3 pt-2">
           <button
             type="button"

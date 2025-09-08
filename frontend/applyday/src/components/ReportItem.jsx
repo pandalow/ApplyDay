@@ -7,7 +7,7 @@ import SkillsNetworkChart from "../charts/SkillsNetworkChart";
 function ReportItem({ result }) {
   const { name, result: data } = result;
 
-  // 频率分析组件
+  // Frequency analysis component
   if (name.startsWith("freq")) {
     const pieFields = ["freq.role", "freq.level", "freq.employment_type"];
 
@@ -94,9 +94,9 @@ function ReportItem({ result }) {
     );
   }
 
-  // 词性分析组件
+  // Part-of-speech analysis component
   if (name.startsWith("pos")) {
-    // 调试信息
+    // Debug information
     console.log('POS Tags Data:', {
       name,
       dataType: typeof data,
@@ -181,7 +181,7 @@ function ReportItem({ result }) {
     );
   }
 
-  // 技能关系网络图组件
+  // Skill relationship network graph component
   if (name.startsWith("graph")) {
     return (
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
@@ -210,7 +210,7 @@ function ReportItem({ result }) {
     );
   }
 
-  // 默认JSON显示组件
+  // Default JSON display component
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-6 mb-6">
       <div className="border-b border-gray-200 dark:border-gray-700 pb-3 mb-4">
