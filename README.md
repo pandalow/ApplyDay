@@ -45,7 +45,6 @@ Most resume assistants and job platforms focus on "how to package yourself"—wi
 ---
 
 ## 🚀 Quick Start
-
 ### ⚡ One-Click Deployment
 
 **Linux/macOS:**
