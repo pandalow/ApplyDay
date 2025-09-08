@@ -32,12 +32,14 @@ This project was born from my own job search. I built it to track applications, 
 Most resume assistants and job platforms focus on "how to package yourself"—with fancier wording, or even fabricated experiences, to fit a role. But that's only a short-term tactic. What truly determines long-term success is the real skills you possess and continuously improve.
 
 ### ✅ What ApplyDay CAN do
+
 - Record applications with conversion funnel tracking
 - AI-powered skill gap analysis and market insights  
 - Generate personalized learning roadmaps
 - Support multiple LLM providers (OpenAI, Anthropic, Google)
 
 ### ❌ What ApplyDay WON'T do
+
 - Auto-submit resumes or fabricate experiences
 - Share your data with third parties (100% local deployment, only interacts with your specified LLM)
 - Replace your critical thinking and decision-making
