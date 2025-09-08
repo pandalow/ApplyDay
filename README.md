@@ -10,6 +10,8 @@
 
 **Human-in-the-Loop • Data-Driven Growth • Open Source**
 
+📖 **[Quick Deployment Guide](DEPLOYMENT.md)** | 🚀 **[Get Started](#quick-start)** | 💡 **[Features](#features)**
+
 </div>
 
 ## 🎯 Why ApplyDay?
@@ -112,12 +114,41 @@ graph LR
 
 ## 🚀 Quick Start
 
+> **🎯 One-Click Deployment Available!**  
+> We provide automated deployment scripts for easy setup. For detailed instructions and troubleshooting, see our [**📖 Deployment Guide**](DEPLOYMENT.md).
+
+### ⚡ One-Click Deployment
+
+**Linux/macOS:**
+```bash
+git clone https://github.com/pandalow/applyday.git
+cd applyday
+chmod +x deploy.sh
+./deploy.sh
+```
+
+**Windows:**
+```cmd
+git clone https://github.com/pandalow/applyday.git
+cd applyday
+deploy.bat
+```
+
+The script will automatically:
+- ✅ Check system requirements (Docker, Docker Compose)
+- ✅ Create environment configuration
+- ✅ Build and start all services
+- ✅ Run database migrations
+- ✅ Perform health checks
+
 ### Prerequisites
 
 - **Docker & Docker Compose** (Recommended)
 - **OR** Node.js 20+, Python 3.12+, and PostgreSQL (for development)
 
-### 🐳 Production Deployment (Docker)
+### 🐳 Manual Docker Deployment
+
+If you prefer manual setup or need customization:
 
 ```bash
 # Clone the repository
@@ -363,6 +394,36 @@ We welcome contributions from the community! Here's how to get involved:
 - 📋 Job board integration
 - 📋 Community features and skill sharing
 - 📋 Advanced visualization dashboards
+
+## 📦 Deployment Options
+
+ApplyDay offers multiple deployment methods to suit different needs:
+
+### 🎯 Recommended: One-Click Deployment
+- **Best for**: Quick setup, new users, production deployment
+- **Requirements**: Docker + Docker Compose
+- **Setup time**: ~5 minutes
+- **Documentation**: [Complete Deployment Guide](DEPLOYMENT.md)
+
+### 🛠️ Development Setup
+- **Best for**: Contributing, customization, learning
+- **Requirements**: Node.js, Python, PostgreSQL
+- **Setup time**: ~15 minutes
+- **See**: [Development Setup](#development-setup)
+
+### 🏢 Enterprise/Custom
+- **Best for**: Organizations, specific requirements
+- **Features**: Custom configurations, scaling, integrations
+- **Contact**: [Open an issue](https://github.com/pandalow/applyday/issues) for enterprise support
+
+### Deployment Troubleshooting
+
+If you encounter issues during deployment:
+
+1. **Check the [Deployment Guide](DEPLOYMENT.md)** for detailed troubleshooting
+2. **Verify system requirements** (Docker, ports 80/8000 available)
+3. **Review logs** using `./deploy.sh --logs` or `deploy.bat --logs`
+4. **Open an issue** with error details if problems persist
 
 ## 🆘 Support & FAQ
 

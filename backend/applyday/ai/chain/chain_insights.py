@@ -23,38 +23,39 @@ def chain_analysis():
                 ### Candidate Resume (may be empty if not provided)
                 {resume_text}
 
-                ### Analysis Tasks
+                ## Analysis Tasks
+                0. **Executive Summary**
+                - Start with a short summary (3–4 sentences) highlighting key market trends and the candidate’s overall alignment.
+
                 1. **Must-Have Skills**
-                - From frequency results (freq.programming_languages, freq.frameworks_tools, freq.cloud_platforms, freq.databases), 
-                    identify the top recurring skills that appear most often across jobs.
-                - List them clearly as “must-learn” core skills.
+                - Identify top recurring skills from frequency results (programming_languages, frameworks_tools, cloud_platforms, databases).
+                - List them as must-learn core skills.
 
                 2. **Differentiating Skills**
-                - From TF-IDF (tfidf.skills), extract the top distinctive skills per role.
+                - Extract top distinctive skills per role from TF-IDF.
                 - Explain why these skills matter for specialization.
 
                 3. **Skill Synergies**
-                - From graph.skills (co-occurrence network), highlight the strongest skill pairs or clusters.
-                - Suggest how a candidate could learn them together as a bundle.
+                - From skill co-occurrence graph, highlight strongest skill pairs/clusters.
+                - Suggest how to learn them together.
 
                 4. **Swiss-Knife JD Check**
-                - From swiss_knife results, identify if there are jobs with high ODI (overloaded JD with too many skills).
-                - Give advice on how to recognize and handle such postings.
+                - Identify overloaded JDs (high ODI) and give advice on recognizing/handling them.
 
-                5. **Candidate Fit Analysis (only if resume is provided)**
-                - Compare the candidate’s skills and experiences against the identified must-have and differentiating skills.
-                - Highlight strengths (skills the candidate already has that align with market demand).
-                - Highlight gaps (missing must-have or differentiating skills).
-                - Suggest tailored development directions based on these gaps.
+                5. **Candidate Fit Analysis (only if resume provided)**
+                - Compare candidate’s skills and experiences against must-have/differentiating skills.
+                - Focus on practical evidence (work experience, projects, tangible outcomes), not just listed keywords.
+                - Highlight strengths and gaps.
+                - Suggest tailored directions grounded in past projects.
 
                 6. **Action Plan**
-                - Provide exactly **3 realistic, actionable tasks** the candidate can do in the next 1–2 months 
-                    to improve their competitiveness.
-                - Tasks should be specific (e.g., “Take an online Python + SQL mini-project”, “Get AWS Cloud Practitioner certification”).
+                - Provide exactly 3 realistic, actionable tasks for the next 1–2 months.
+                - Each task should build on existing work/project experience (e.g., extend a project with SQL optimization, add AWS deployment, integrate CI/CD), not generic courses.
 
-                ### Output Requirements
-                - Respond in **Markdown format**.
-                - Use clear sections with `##` headings:
+                ## Output Requirements
+                - Respond in Markdown format directly (no code blocks).
+                - Use clear `##` headings:
+                - Executive Summary
                 - Must-Have Skills
                 - Differentiating Skills
                 - Skill Synergies
@@ -63,6 +64,7 @@ def chain_analysis():
                 - 3-Step Action Plan
                 - Be concise, insightful, and practical.
                 - ⚠️ Respond exclusively in {languages}.
+                - ⚠️ Do NOT wrap response in ```markdown``` code blocks.
                 """
             ),
             input_variables=["data", "resume_text", "languages"],
@@ -101,9 +103,19 @@ def run_analysis(chain, data, resume_text=None, languages="en") -> str:
         })
         logger.info("✅ Analysis invoke OK.")
         
+        # 提取响应内容
         if response and hasattr(response, "content"):
-            return response.content
-        return str(response)
+            content = response.content
+        else:
+            content = str(response)
+        
+        # 清理可能的markdown代码块包裹
+        if content.startswith("```markdown\n") and content.endswith("\n```"):
+            content = content[12:-4]  # 移除 ```markdown\n 和 \n```
+        elif content.startswith("```\n") and content.endswith("\n```"):
+            content = content[4:-4]  # 移除 ```\n 和 \n```
+        
+        return content
     except Exception as e:
         logger.error("❌ Analysis invoke error: %s", repr(e))
         traceback.print_exc()
