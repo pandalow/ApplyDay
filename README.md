@@ -1,4 +1,4 @@
-# ApplyDay – Personal Job Application Consultant
+# ApplyDay – Personal Job Search Dashboard
 
 <div align="center">
 
