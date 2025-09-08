@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![ApplyDay Banner](https://capsule-render.vercel.app/api?type=cylinder&color=0:a8edea,50:fed6e3,100:ffd89b&height=120&section=header&text=ApplyDay&fontSize=50&fontColor=2c3e50&desc=Human-in-the-Loop%20Growth&descAlignY=80)
+![ApplyDay Banner](https://capsule-render.vercel.app/api?type=cylinder&color=0:a8edea,50:fed6e3,100:ffd89b&height=120&section=header&text=ApplyDay&fontSize=50&fontColor=2c3e50&desc=Your%20personal%20job%20search%20dashboard,%20powered%20by%20data&descAlignY=80)
 
 [![Open Source](https://img.shields.io/badge/Open%20Source-❤️-red?style=flat-square)](https://github.com/pandalow/applyday)
 [![Privacy First](https://img.shields.io/badge/Privacy-🔒%20Local%20Only-green?style=flat-square)](#privacy-first)
@@ -12,6 +12,16 @@
 </div>
 
 > **🎯 One-Click Deployment Available!** – Automated setup scripts for Linux/macOS/Windows. See [**📖 Deployment Guide**](docs/DEPLOYMENT.md).
+
+---
+
+## 📸 Showcase
+
+<div align="center">
+<img src="docs/images/showcase.gif" alt="ApplyDay Demo" width="800" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+</div>
+
+---
 
 ## 📋 Overview
 
@@ -32,13 +42,6 @@ Most resume assistants and job platforms focus on "how to package yourself"—wi
 - Upload your data to cloud (100% local)
 - Replace your critical thinking and decision-making
 
----
-
-## 📸 Showcase
-
-<div align="center">
-<img src="docs/images/showcase.gif" alt="ApplyDay Demo" width="800" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
-</div>
 
 ---
 
