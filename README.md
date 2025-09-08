@@ -87,7 +87,6 @@ GOOGLE_API_KEY=your_key_here         # If using Google
 ---
 
 ## 🔧 Tech Stack
-
 ### 📊 Dependencies Overview
 
 <table>
