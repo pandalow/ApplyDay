@@ -3,26 +3,33 @@ WORKDIR /app
 
 COPY applyday/package*.json ./
 
-# 清理缓存并安装依赖，添加更宽松的配置
+# Clean cache and install dependencies with relaxed configurations
 RUN npm cache clean --force && \
     npm ci --silent --legacy-peer-deps --no-audit --no-fund
 
 COPY applyday ./
 
-# Setting environment variables for production build
+# Set environment variables for production build
 ENV NODE_ENV=production
 ENV VITE_API_BASE_URL=/api
 ENV VITE_APPLICATION_API=/api/app/
 ENV VITE_REPORT_API=/api/report/
 
-# 增加 Node.js 内存限制，解决 Rollup 构建问题
+# Increase Node.js memory limit to resolve Rollup build issues
 ENV NODE_OPTIONS="--max-old-space-size=4096"
 
-# 构建应用
+# Build the application
 RUN npm run build
 
 FROM nginx:1.27-alpine
 WORKDIR /usr/share/nginx/html
+
+# Set timezone for Alpine
+ENV TZ=Europe/Dublin
+RUN apk add --no-cache tzdata && \
+    cp /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone && \
+    apk del tzdata
 
 # Remove default nginx static assets
 RUN rm -rf ./*

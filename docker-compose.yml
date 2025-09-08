@@ -14,6 +14,8 @@ services:
     environment:
       - DJANGO_ALLOWED_HOSTS=*
       - CORS_ALLOW_ALL_ORIGINS=True
+      # Force Ireland timezone for all containers
+      - TZ=Europe/Dublin
     ports:
       - "8000:8000"
     restart: unless-stopped
@@ -33,6 +35,9 @@ services:
     container_name: applyday_frontend
     depends_on:
       - api
+    environment:
+      # Set Ireland timezone for frontend container
+      - TZ=Europe/Dublin
     ports:
       - "80:80"
     restart: unless-stopped

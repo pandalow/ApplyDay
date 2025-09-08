@@ -93,17 +93,19 @@ function JDPage() {
     };
 
     // Filter and search logic
-    const filteredJDs = jdList.filter(jd => {
-        const matchesSearch = searchTerm === "" || 
-            jd.company?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            jd.role?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            jd.location?.toLowerCase().includes(searchTerm.toLowerCase());
-        
-        const matchesLevel = filterLevel === "" || jd.level === filterLevel;
-        const matchesCompany = filterCompany === "" || jd.company === filterCompany;
-        
-        return matchesSearch && matchesLevel && matchesCompany;
-    });
+    const filteredJDs = jdList
+        .filter(jd => {
+            const matchesSearch = searchTerm === "" || 
+                jd.company?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                jd.role?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                jd.location?.toLowerCase().includes(searchTerm.toLowerCase());
+            
+            const matchesLevel = filterLevel === "" || jd.level === filterLevel;
+            const matchesCompany = filterCompany === "" || jd.company === filterCompany;
+            
+            return matchesSearch && matchesLevel && matchesCompany;
+        })
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
     // Get unique companies for filter
     const uniqueCompanies = [...new Set(jdList.map(jd => jd.company).filter(Boolean))];
