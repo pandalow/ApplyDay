@@ -7,14 +7,16 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    name: docker compose build
+  build-push:
+    name: docker compose build (push)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: docker compose -f docker-compose.yml build
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build with Docker Compose
-        run: docker compose -f docker-compose.yml build
+  build-pr:
+    name: docker compose build (pr)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: docker compose -f docker-compose.yml build
