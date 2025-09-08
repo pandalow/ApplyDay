@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build Docker Images
+    name: docker compose build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
