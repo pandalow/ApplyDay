@@ -12,6 +12,7 @@ RUN python -m spacy download en_core_web_sm
 
 COPY applyday /app
 
-CMD ["gunicorn", "applyday.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "3"]
+# Use gunicorn with configuration file
+CMD ["gunicorn", "--config", "gunicorn.conf.py", "applyday.wsgi:application"]
 
 EXPOSE 8000

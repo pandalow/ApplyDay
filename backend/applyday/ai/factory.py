@@ -9,12 +9,30 @@ def get_llm():
     model_name = os.getenv("AI_MODEL", "gpt-4o-mini")
     temperature = float(os.getenv("AI_TEMPERATURE", "0"))
 
+    # Common timeout and retry settings for all providers
+    request_timeout = 120  # 2 minutes timeout
+    max_retries = 2
 
     if provider == "openai":
-        return ChatOpenAI(model=model_name, temperature=temperature)
+        return ChatOpenAI(
+            model=model_name, 
+            temperature=temperature,
+            timeout=request_timeout,
+            max_retries=max_retries
+        )
     elif provider == "anthropic":
-        return ChatAnthropic(model_name="claude-3-haiku", temperature=0, timeout=60, stop=["\n\n"])
+        return ChatAnthropic(
+            model_name="claude-3-haiku", 
+            temperature=0, 
+            timeout=request_timeout, 
+            max_retries=max_retries,
+            stop=["\n\n"]
+        )
     elif provider == "google":
-        return ChatGoogleGenerativeAI(model=model_name, temperature=temperature)
+        return ChatGoogleGenerativeAI(
+            model=model_name, 
+            temperature=temperature,
+            request_timeout=request_timeout
+        )
     else:
         raise ValueError(f"Unsupported AI provider: {provider}")

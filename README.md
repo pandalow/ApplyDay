@@ -22,6 +22,40 @@ In today's recruitment market, every applicant seems reduced to just another "da
 
 Most resume assistants and job platforms focus on "how to package yourself"—with fancier wording, or even fabricated experiences, to fit a role. But that's only a short-term tactic. What truly determines long-term success is the real skills you possess and continuously improve.
 
+## 📸 Showcase
+
+<div align="center">
+
+### See ApplyDay in Action
+
+<table>
+<tr>
+<td align="center" width="33%">
+<img src="docs/images/localhost_ (1).png" alt="Dashboard Overview" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 350px; object-fit: contain;"/>
+<br/>
+<b>📊 Dashboard Overview</b>
+<br/>
+<em>Track your application pipeline and progress</em>
+</td>
+<td align="center" width="33%">
+<img src="docs/images/localhost_ (2).png" alt="Data Analytics" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 350px; object-fit: contain;"/>
+<br/>
+<b>🔍 Data Analytics</b>
+<br/>
+<em>AI-powered insights and skill analysis</em>
+</td>
+<td align="center" width="33%">
+<img src="docs/images/localhost_ (3).png" alt="Reports & Insights" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 350px; object-fit: contain;"/>
+<br/>
+<b>📈 Reports & Insights</b>
+<br/>
+<em>Generate actionable growth recommendations</em>
+</td>
+</tr>
+</table>
+
+</div>
+
 ## 🔄 Philosophy: Human-in-the-Loop Growth Cycle
 
 This open-source project builds a three-step growth cycle: **Record → Analyze → Improve**.
