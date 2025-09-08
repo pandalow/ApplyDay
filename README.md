@@ -249,9 +249,9 @@ npm install && npm run dev
 
 | Version | Status | Features |
 |---------|--------|----------|
-| **v1.0** | ✅ Current | Application tracking, AI analysis, Docker deployment |
-| **v1.1** | 🔄 Planned | Enhanced skill taxonomy, multi-LLM, advanced analytics |
-| **v2.0** | 📋 Future | Interview prep, salary insights, job board integration |
+| **v0.1** | ✅ Current | Application tracking, AI analysis, Docker deployment |
+| **v0.5** | 🔄 Planned | Enhanced skill taxonomy, multi-LLM, advanced analytics |
+| **v1.0** | 📋 Future | Interview prep, salary insights, job board integration |
 
 ---
 
