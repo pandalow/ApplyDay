@@ -39,7 +39,7 @@ Most resume assistants and job platforms focus on "how to package yourself"—wi
 
 ### ❌ What ApplyDay WON'T do
 - Auto-submit resumes or fabricate experiences
-- Upload your data to cloud (100% local)
+- Share your data with third parties (100% local deployment, only interacts with your specified LLM)
 - Replace your critical thinking and decision-making
   
 ---
