@@ -4,517 +4,300 @@
 
 ![ApplyDay Banner](https://capsule-render.vercel.app/api?type=cylinder&color=0:a8edea,50:fed6e3,100:ffd89b&height=120&section=header&text=ApplyDay&fontSize=50&fontColor=2c3e50&desc=Human-in-the-Loop%20Growth&descAlignY=80)
 
-![ApplyDay Logo](https://img.shields.io/badge/ApplyDay-Your%20Personal%20Dashboard-blue?style=for-the-badge)
-
 [![Open Source](https://img.shields.io/badge/Open%20Source-❤️-red?style=flat-square)](https://github.com/pandalow/applyday)
 [![Privacy First](https://img.shields.io/badge/Privacy-🔒%20Local%20Only-green?style=flat-square)](#privacy-first)
 [![Human in Loop](https://img.shields.io/badge/Human--in--Loop-🤝-orange?style=flat-square)](#philosophy)
 
-**Human-in-the-Loop • Data-Driven Growth • Open Source**
-
-📖 **[Quick Deployment Guide](DEPLOYMENT.md)** | 🚀 **[Get Started](#quick-start)** | 💡 **[Features](#features)**
 
 </div>
 
-## 🎯 Why ApplyDay?
+> **🎯 One-Click Deployment Available!** – Automated setup scripts for Linux/macOS/Windows. See [**📖 Deployment Guide**](docs/DEPLOYMENT.md).
 
-This project was born from my own job search. I built it to track applications, analyze trends, and identify gaps—and now it's actively supporting me in the process. I've always believed that **data can help you succeed**. 
+## 📋 Overview
 
-In today's recruitment market, every applicant seems reduced to just another "data point." Companies have powerful dashboards, full business analytics, and market insights to find the right candidates. But what about us—the applicants, the so-called data carriers? 
+This project was born from my own job search. I built it to track applications, analyze trends, and identify gaps—and now it's actively supporting me in the process. I've always believed that **data can help you succeed**. In today's recruitment market, every applicant seems reduced to just another "data point." Companies have powerful dashboards, full business analytics, and market insights to find the right candidates. But what about us—the applicants, the so-called data carriers? 
 
 **This software is my answer: your own personal dashboard system.**
 
 Most resume assistants and job platforms focus on "how to package yourself"—with fancier wording, or even fabricated experiences, to fit a role. But that's only a short-term tactic. What truly determines long-term success is the real skills you possess and continuously improve.
 
+### ✅ What ApplyDay CAN do
+- Record applications with conversion funnel tracking
+- AI-powered skill gap analysis and market insights  
+- Generate personalized learning roadmaps
+- Support multiple LLM providers (OpenAI, Anthropic, Google)
+
+### ❌ What ApplyDay WON'T do
+- Auto-submit resumes or fabricate experiences
+- Upload your data to cloud (100% local)
+- Replace your critical thinking and decision-making
+
+---
+
 ## 📸 Showcase
 
-<div align="center">
-
-### See ApplyDay in Action
-
 <table>
 <tr>
-<td align="center" width="50%">
-<img src="docs/images/homepage.png" alt="Homepage Overview" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 400px; object-fit: contain;"/>
-<br/>
-<b>🏠 Homepage Overview</b>
-<br/>
-<em>Personal dashboard with growth insights and analytics</em>
+<td align="center" width="16.66%">
+<img src="docs/images/homepage.png" alt="Homepage" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
+<br/><b>🏠 Dashboard</b>
 </td>
-<td align="center" width="50%">
-<img src="docs/images/application.png" alt="Application Management" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 400px; object-fit: contain;"/>
-<br/>
-<b>� Application Management</b>
-<br/>
-<em>Track and manage job applications with detailed records</em>
+<td align="center" width="16.66%">
+<img src="docs/images/application.png" alt="Applications" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
+<br/><b>📋 Applications</b>
+</td>
+<td align="center" width="16.66%">
+<img src="docs/images/data_analysis.png" alt="Analytics" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
+<br/><b>📊 AI Analytics</b>
+</td>
+<td align="center" width="16.66%">
+<img src="docs/images/data_top.png" alt="Data Top View" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
+<br/><b>📈 Data Overview</b>
+</td>
+<td align="center" width="16.66%">
+<img src="docs/images/data_mid.png" alt="Data Mid View" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
+<br/><b>📊 Data Insights</b>
+</td>
+<td align="center" width="16.66%">
+<img src="docs/images/data_bottom.png" alt="Data Bottom View" style="border-radius: 8px; height: 200px; object-fit: contain;"/>
+<br/><b>📋 Data Details</b>
 </td>
 </tr>
 </table>
 
-### 📊 Data Analytics & Reports
-
-<table>
-<tr>
-<td align="center" width="50%">
-<img src="docs/images/data_analysis.png" alt="Data Analytics Dashboard" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 350px; object-fit: contain;"/>
-<br/>
-<b>📈 Analytics Dashboard</b>
-<br/>
-<em>AI-powered insights and comprehensive analysis</em>
-</td>
-<td align="center" width="50%">
-<img src="docs/images/data_top.png" alt="Data Overview" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 350px; object-fit: contain;"/>
-<br/>
-<b>📊 Data Overview</b>
-<br/>
-<em>High-level statistics and market trends</em>
-</td>
-</tr>
-</table>
-
-### 📈 Detailed Report Views
-
-<table>
-<tr>
-<td align="center" width="50%">
-<img src="docs/images/data_mid.png" alt="Detailed Analysis" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 300px; object-fit: contain;"/>
-<br/>
-<b>🔍 Detailed Analysis</b>
-<br/>
-<em>In-depth data exploration and pattern recognition</em>
-</td>
-<td align="center" width="50%">
-<img src="docs/images/data_bottom.png" alt="Insights Summary" width="100%" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); height: 300px; object-fit: contain;"/>
-<br/>
-<b>💡 Insights & Recommendations</b>
-<br/>
-<em>Actionable recommendations and growth strategies</em>
-</td>
-</tr>
-</table>
-
-</div>
-
-## 🔄 Philosophy: Human-in-the-Loop Growth Cycle
-
-This open-source project builds a three-step growth cycle: **Record → Analyze → Improve**.
-
-```mermaid
-graph LR
-    A[📝 Record] --> B[🔍 Analyze] 
-    B --> C[🚀 Improve]
-    C --> A
-    
-    A1[Applications<br/>Interviews<br/>Rejections<br/>Requirements] -.-> A
-    B1[Patterns<br/>Progress<br/>Gaps<br/>Trends] -.-> B  
-    C1[Learning Tasks<br/>Growth Paths<br/>Skill Development] -.-> C
-```
-
-### What ApplyDay **CAN** help you do:
-- ✅ Record applications, interviews, rejections, offers with conversion funnel
-- ✅ Lightweight NLP data statistics and trend analysis  
-- ✅ Provide analysis scenarios based on quantitative mining
-- ✅ Reference suggestions for your choice of LLM
-- ✅ Generate personalized growth paths
-
-### What ApplyDay **WON'T** do for you:
-- ❌ Auto-submit resumes or fake cover letters
-- ❌ Pretend to be you when communicating with HR
-- ❌ Fabricate experiences to cater to positions
-- ❌ Upload data to cloud (completely local)
-- ❌ Replace your thinking and decision-making
-
-## ✨ Features
-
-### 📊 Personal Dashboard
-- **Application Tracking**: Monitor your job application pipeline
-- **Conversion Funnel**: Track progression from application to offer
-- **Data Visualization**: Interactive charts and insights
-
-### 🔍 AI-Powered Analysis  
-- **Skills Analysis**: Identify in-demand skills and personal gaps
-- **Market Trends**: Understand job market patterns
-- **Personalized Insights**: AI-generated recommendations for growth
-- **Network Visualization**: See skill relationships and clusters
-
-### 📈 Growth Tools
-- **Resume Integration**: Upload and analyze your resume against market demands
-- **Learning Roadmaps**: Get specific action plans for skill development
-- **Progress Tracking**: Monitor your improvement over time
-
-## 🔒 Privacy First
-
-- **100% Local**: Runs entirely on your machine
-- **No Cloud Upload**: Your data never leaves your computer
-- **Open Source**: Full transparency in how your data is processed
-- **Self-Hosted**: You control everything
+---
 
 ## 🚀 Quick Start
-
-> **🎯 One-Click Deployment Available!**  
-> We provide automated deployment scripts for easy setup. For detailed instructions and troubleshooting, see our [**📖 Deployment Guide**](DEPLOYMENT.md).
 
 ### ⚡ One-Click Deployment
 
 **Linux/macOS:**
 ```bash
-git clone https://github.com/pandalow/applyday.git
-cd applyday
-chmod +x deploy.sh
-./deploy.sh
+git clone https://github.com/pandalow/applyday.git && cd applyday && chmod +x deploy.sh && ./deploy.sh
 ```
 
 **Windows:**
 ```cmd
-git clone https://github.com/pandalow/applyday.git
-cd applyday
-deploy.bat
+git clone https://github.com/pandalow/applyday.git && cd applyday && deploy.bat
 ```
 
-The script will automatically:
-- ✅ Check system requirements (Docker, Docker Compose)
-- ✅ Create environment configuration
-- ✅ Build and start all services
-- ✅ Run database migrations
-- ✅ Perform health checks
+**Access:** Open `http://localhost` after deployment completes.
 
-### Prerequisites
-
-- **Docker & Docker Compose** (Recommended)
-- **OR** Node.js 20+, Python 3.12+, and PostgreSQL (for development)
-
-### 🐳 Manual Docker Deployment
-
-If you prefer manual setup or need customization:
+### 🐳 Manual Docker Setup
 
 ```bash
-# Clone the repository
-git clone https://github.com/pandalow/applyday.git
-cd applyday
-
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your AI provider and API key (see Environment Configuration section below)
-
-# Start with Docker Compose
+git clone https://github.com/pandalow/applyday.git && cd applyday
+cp .env.example .env  # Configure your AI provider
 docker compose up -d
-
-# Access the application
-open http://localhost
 ```
 
-That's it! ApplyDay will be running at `http://localhost` with:
-- Frontend: React app with data visualization
-- Backend: Django API with AI analysis
-- Database: SQLite (automatically created)
+### ⚙️ Environment Configuration
 
-### 🛠️ Development Setup
-
-#### Backend (Django + AI Services)
-
-```bash
-cd backend/applyday
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Set up database
-python manage.py migrate
-
-# Run development server
-python manage.py runserver
-```
-
-#### Frontend (React + Vite)
-
-```bash
-cd frontend/applyday
-
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-```
-
-Visit `http://localhost:5173` for development.
-
-## 📋 Environment Configuration
-
-Create a `.env` file in the root directory:
+Create `.env` file with your AI provider:
 
 ```env
-# AI Configuration - Choose your provider
-AI_PROVIDER=openai              # Options: openai, anthropic, google
-AI_MODEL=gpt-4o                 # Model name (varies by provider)
-AI_TEMPERATURE=0                # Response randomness (0.0-1.0)
+# Choose your AI provider
+AI_PROVIDER=openai                    # Options: openai, anthropic, google
+AI_MODEL=gpt-4o                      # Provider-specific model
+AI_TEMPERATURE=0                     # Response randomness
 
-# OpenAI Configuration (if AI_PROVIDER=openai)
-OPENAI_API_KEY=your_openai_api_key_here
-
-# Anthropic Configuration (if AI_PROVIDER=anthropic)
-ANTHROPIC_API_KEY=your_anthropic_api_key_here
-
-# Google AI Configuration (if AI_PROVIDER=google)
-GOOGLE_API_KEY=your_google_ai_api_key_here
-
-# Django Settings
-DJANGO_SECRET_KEY=your_secret_key_here
-DJANGO_DEBUG=False
-DJANGO_ALLOWED_HOSTS=*
-CORS_ALLOW_ALL_ORIGINS=True
+# Add the API key for your chosen provider
+OPENAI_API_KEY=your_key_here         # If using OpenAI
+ANTHROPIC_API_KEY=your_key_here      # If using Anthropic  
+GOOGLE_API_KEY=your_key_here         # If using Google
 ```
 
-### 🤖 AI Provider Options
-
-ApplyDay supports multiple AI providers for analysis and insights:
-
-#### OpenAI (Default)
-```env
-AI_PROVIDER=openai
-AI_MODEL=gpt-4o                 # Options: gpt-4o, gpt-4o-mini, gpt-3.5-turbo
-OPENAI_API_KEY=your_key_here
-```
-
-#### Anthropic Claude
-```env
-AI_PROVIDER=anthropic
-AI_MODEL=claude-3-haiku         # Options: claude-3-haiku, claude-3-sonnet, claude-3-opus
-ANTHROPIC_API_KEY=your_key_here
-```
-
-#### Google Gemini
-```env
-AI_PROVIDER=google
-AI_MODEL=gemini-pro             # Options: gemini-pro, gemini-pro-vision
-GOOGLE_API_KEY=your_key_here
-```
-
-**Note**: You only need to set the API key for your chosen provider.
-
-## 🏗️ Architecture
-
-```
-ApplyDay/
-├── frontend/           # React + Vite frontend
-│   ├── applyday/
-│   │   ├── src/
-│   │   │   ├── components/ # Reusable UI components
-│   │   │   ├── pages/      # Main application pages
-│   │   │   ├── charts/     # Data visualization components
-│   │   │   └── service/    # API integration
-│   │   ├── public/         # Static assets
-│   │   └── package.json
-│   └── Dockerfile
-├── backend/            # Django backend
-│   ├── applyday/       # Main Django project
-│   │   ├── applyday/   # Django settings & configuration
-│   │   ├── application/# Application tracking models & APIs
-│   │   ├── report/     # Analysis reports & data management
-│   │   ├── ai/         # AI integration services
-│   │   │   ├── chain/  # LangChain prompts & chains
-│   │   │   ├── schema/ # AI data schemas
-│   │   │   └── services/ # AI service implementations
-│   │   ├── analysis/   # Data analysis & processing
-│   │   │   ├── tools/  # Analysis algorithms & utilities
-│   │   │   └── app.py  # Analysis application entry
-│   │   └── manage.py
-│   └── requirements.txt
-├── data/               # Sample data and uploads
-├── docs/               # Documentation & screenshots
-├── deploy.sh           # One-click deployment (Linux/macOS)
-├── deploy.bat          # One-click deployment (Windows)
-└── docker-compose.yml  # Full-stack deployment
-```
+---
 
 ## 🔧 Tech Stack
 
-### Frontend
-- **React 19** - Modern UI framework
-- **Vite** - Fast build tool and dev server
-- **TailwindCSS** - Utility-first styling
-- **ECharts** - Interactive data visualization
-- **Framer Motion** - Smooth animations
-- **React Router** - Client-side routing
+### 📊 Dependencies Overview
 
-### Backend  
-- **Django 5.2** - Robust web framework
-- **Django REST Framework** - API development
-- **spaCy** - Natural language processing
-- **LangChain** - AI integration framework
-- **SQLite** - Lightweight database
+<table>
+<tr>
+<td><b>Frontend</b></td>
+<td><b>Backend</b></td>
+<td><b>AI & Analytics</b></td>
+<td><b>DevOps</b></td>
+</tr>
+<tr>
+<td>
 
-### AI & Analytics
-- **OpenAI GPT-4** - Advanced language model
-- **Anthropic Claude** - Alternative AI provider
-- **Google Gemini** - Alternative AI provider
-- **scikit-learn** - Machine learning algorithms
-- **pandas** - Data manipulation and analysis
-- **numpy** - Numerical computing
+| Package | Version | Purpose |
+|---------|---------|---------|
+| React | 19 | UI Framework |
+| Vite | Latest | Build Tool |
+| TailwindCSS | Latest | Styling |
+| ECharts | Latest | Visualization |
+| Framer Motion | Latest | Animations |
 
-### Data Analysis
-- **Word Frequency Analysis** - Skill demand identification
-- **TF-IDF Analysis** - Role-specific skill differentiation
-- **Network Analysis** - Skill relationship mapping
-- **Swiss-Knife Detection** - Overloaded JD identification
+</td>
+<td>
 
-### DevOps
-- **Docker** - Containerization
-- **Nginx** - Web server and reverse proxy
-- **Gunicorn** - Python WSGI server
+| Package | Version | Purpose |
+|---------|---------|---------|
+| Django | 5.2 | Web Framework |
+| DRF | Latest | API Framework |
+| spaCy | Latest | NLP Processing |
+| SQLite | Default | Database |
+| Gunicorn | Latest | WSGI Server |
+
+</td>
+<td>
+
+| Package | Version | Purpose |
+|---------|---------|---------|
+| LangChain | Latest | AI Integration |
+| OpenAI | Latest | GPT Models |
+| Anthropic | Latest | Claude Models |
+| scikit-learn | Latest | ML Algorithms |
+| pandas | Latest | Data Analysis |
+
+</td>
+<td>
+
+| Package | Version | Purpose |
+|---------|---------|---------|
+| Docker | Latest | Containerization |
+| Nginx | Latest | Web Server |
+| Docker Compose | Latest | Orchestration |
+
+</td>
+</tr>
+</table>
+
+### 🏗️ Architecture
+
+```
+ApplyDay/
+├── 🎨 frontend/           # React + Vite + TailwindCSS
+│   └── applyday/
+│       ├── src/
+│       │   ├── components/    # UI components
+│       │   ├── pages/         # Application pages  
+│       │   ├── charts/        # Data visualizations
+│       │   └── service/       # API integration
+│       └── Dockerfile
+├── ⚙️ backend/            # Django + AI Services
+│   └── applyday/
+│       ├── application/       # Job tracking models
+│       ├── report/           # Analysis & reports
+│       ├── ai/              # AI integration
+│       │   ├── chain/        # LangChain prompts
+│       │   └── services/     # AI implementations
+│       └── requirements.txt
+├── 📄 docs/              # Documentation & screenshots
+├── 🚀 deploy.sh          # One-click deployment
+└── 🐳 docker-compose.yml # Full-stack deployment
+```
+
+---
+
+## ✨ Features
+
+### 📊 Core Capabilities
+- **Application Tracking** – Pipeline management with conversion funnel
+- **AI-Powered Analysis** – Skill gap identification and market insights
+- **Data Visualization** – Interactive charts and network graphs
+- **Resume Integration** – Upload and analyze against market demands
+- **Growth Roadmaps** – Personalized learning paths
+
+### 🔒 Privacy & Security
+- **100% Local** – No cloud uploads, complete data control
+- **Open Source** – Full transparency, community-driven
+- **Self-Hosted** – Your infrastructure, your rules
+
+### 🤖 AI Providers
+
+| Provider | Models | Strengths |
+|----------|---------|-----------|
+| **OpenAI** | GPT-4o, GPT-4o-mini | Best overall performance |
+| **Anthropic** | Claude-3 Haiku/Sonnet/Opus | Strong reasoning, safety |
+| **Google** | Gemini Pro | Fast, cost-effective |
+
+---
 
 ## 📖 User Guide
 
-### 1. Recording Applications
+### 1️⃣ Record Applications
+Navigate to **Applications** → **Add Application** → Fill details (company, role, JD, status)
 
-1. Navigate to **Applications** page
-2. Click **"Add Application"** 
-3. Fill in job details:
-   - Company name
-   - Job title  
-   - Job description
-   - Application status
-   - Stage notes
+### 2️⃣ Upload Resume  
+Go to **Resume Management** → Upload PDF/DOC → Automatic skill extraction
 
-### 2. Uploading Resume
+### 3️⃣ Generate Reports
+Select applications → Choose analysis scope → **Generate Report** → Review AI insights
 
-1. Go to **Resume Management**
-2. Upload your PDF/DOC resume
-3. The system will analyze your skills automatically
-
-### 3. Generating Reports
-
-1. Select applications you want to analyze
-2. Choose analysis options:
-   - Selected applications
-   - Date range
-   - All data
-3. Click **"Generate Report"**
-4. Review AI-powered insights and recommendations
-
-### 4. Understanding Insights
-
-Reports include:
-- **Must-Have Skills**: Market-demanded core competencies
-- **Differentiating Skills**: Specialized skills for your roles
+### 4️⃣ Understand Insights
+- **Must-Have Skills**: Core market demands
+- **Differentiating Skills**: Specialized competencies  
 - **Skill Synergies**: Related skills to learn together
-- **Swiss-Knife Analysis**: Identification of overloaded job descriptions
-- **Personalized Action Plan**: 3-step improvement roadmap
+- **Action Plans**: Step-by-step improvement roadmap
+
+---
 
 ## 🤝 Contributing
 
-We welcome contributions from the community! Here's how to get involved:
+| Type | How to Help |
+|------|-------------|
+| � **Bug Reports** | [Open an issue](https://github.com/pandalow/applyday/issues) |
+| 💡 **Feature Ideas** | [Start a discussion](https://github.com/pandalow/applyday/discussions) |
+| 🔧 **Code** | Fork → Feature branch → Pull request |
+| 📖 **Docs** | Improve guides and documentation |
+| 🏷️ **Skills** | Add industry skills and job categories |
 
-### Ways to Contribute
+### Development Setup
 
-- 🐛 **Bug Reports**: Found an issue? [Open an issue](https://github.com/pandalow/applyday/issues)
-- 💡 **Feature Requests**: Have an idea? [Start a discussion](https://github.com/pandalow/applyday/discussions)
-- 🔧 **Code Contributions**: Submit pull requests for improvements
-- 📖 **Documentation**: Help improve our docs and guides
-- 🏷️ **Skill Tags**: Add new industry skills and job categories
-- 🌍 **Translations**: Help make ApplyDay multilingual
+<details>
+<summary>Click to expand development instructions</summary>
 
-### Development Workflow
+**Backend:**
+```bash
+cd backend/applyday
+python -m venv venv && source venv/bin/activate
+pip install -r requirements.txt
+python manage.py migrate && python manage.py runserver
+```
 
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
-3. **Commit** your changes: `git commit -m 'Add amazing feature'`
-4. **Push** to the branch: `git push origin feature/amazing-feature`
-5. **Open** a Pull Request
+**Frontend:**
+```bash
+cd frontend/applyday
+npm install && npm run dev
+```
+</details>
 
-### Code Style
-
-- **Frontend**: Follow ESLint and Prettier configurations
-- **Backend**: Follow PEP 8 Python style guide
-- **Commits**: Use conventional commit messages
+---
 
 ## 🗺️ Roadmap
 
-### Version 1.0 (Current)
-- ✅ Application tracking and management
-- ✅ Basic AI analysis and insights
-- ✅ Resume upload and parsing
-- ✅ Docker deployment
-- ✅ Data visualization with charts
+| Version | Status | Features |
+|---------|--------|----------|
+| **v1.0** | ✅ Current | Application tracking, AI analysis, Docker deployment |
+| **v1.1** | 🔄 Planned | Enhanced skill taxonomy, multi-LLM, advanced analytics |
+| **v2.0** | 📋 Future | Interview prep, salary insights, job board integration |
 
-### Version 1.1 (Planned)
-- 🔄 Enhanced skill taxonomy and job categories
-- 🔄 Multiple LLM provider support (Anthropic, Cohere, Local models)
-- 🔄 Advanced analytics and trend prediction
-- 🔄 Export functionality (PDF reports, CSV data)
-- 🔄 Mobile-responsive improvements
+---
 
-### Version 2.0 (Future)
-- 📋 Interview preparation tools
-- 📋 Salary analysis and negotiation insights
-- 📋 Job board integration
-- 📋 Community features and skill sharing
-- 📋 Advanced visualization dashboards
+## 🆘 Support
 
-## 📦 Deployment Options
+### Quick Help
 
-ApplyDay offers multiple deployment methods to suit different needs:
+| Issue | Solution |
+|-------|----------|
+| **Empty dashboard** | Check backend container: `docker logs applyday_backend` |
+| **AI analysis fails** | Verify API key in `.env` file |
+| **Build errors** | Run `docker system prune` and retry |
 
-### 🎯 Recommended: One-Click Deployment
-- **Best for**: Quick setup, new users, production deployment
-- **Requirements**: Docker + Docker Compose
-- **Setup time**: ~5 minutes
-- **Documentation**: [Complete Deployment Guide](DEPLOYMENT.md)
+### Get Help
+- 📚 **Documentation**: [GitHub Wiki](https://github.com/pandalow/applyday/wiki)
+- 💬 **Community**: [Discussions](https://github.com/pandalow/applyday/discussions)  
+- 🐛 **Bug Reports**: [Issues](https://github.com/pandalow/applyday/issues)
 
-### 🛠️ Development Setup
-- **Best for**: Contributing, customization, learning
-- **Requirements**: Node.js, Python, PostgreSQL
-- **Setup time**: ~15 minutes
-- **See**: [Development Setup](#development-setup)
-
-### 🏢 Enterprise/Custom
-- **Best for**: Organizations, specific requirements
-- **Features**: Custom configurations, scaling, integrations
-- **Contact**: [Open an issue](https://github.com/pandalow/applyday/issues) for enterprise support
-
-### Deployment Troubleshooting
-
-If you encounter issues during deployment:
-
-1. **Check the [Deployment Guide](DEPLOYMENT.md)** for detailed troubleshooting
-2. **Verify system requirements** (Docker, ports 80/8000 available)
-3. **Review logs** using `./deploy.sh --logs` or `deploy.bat --logs`
-4. **Open an issue** with error details if problems persist
-
-## 🆘 Support & FAQ
-
-### Common Issues
-
-**Q: The frontend shows empty data**
-A: Check that both frontend and backend containers are running. Visit `http://localhost/test.html` to verify API connectivity.
-
-**Q: AI analysis fails**
-A: Ensure your OpenAI API key is correctly set in the `.env` file and you have sufficient credits.
-
-**Q: Docker build fails**
-A: Make sure you have enough disk space and Docker is properly installed. Try `docker system prune` to clean up space.
-
-### Getting Help
-
-- 📚 **Documentation**: Check our [Wiki](https://github.com/pandalow/applyday/wiki)
-- 💬 **Discussions**: Join [GitHub Discussions](https://github.com/pandalow/applyday/discussions)
-- 🐛 **Issues**: Report bugs in [Issues](https://github.com/pandalow/applyday/issues)
-- 📧 **Contact**: Reach out to maintainers for urgent matters
+---
 
 ## 📄 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **Open Source Community** for amazing tools and libraries
-- **Job Seekers Everywhere** who inspired this project
-- **Contributors** who help make ApplyDay better
-- **You** for being part of this journey
+**MIT License** – See [LICENSE](LICENSE) for details.
 
 ---
 
