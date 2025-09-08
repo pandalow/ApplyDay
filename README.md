@@ -2,6 +2,8 @@
 
 <div align="center">
 
+![ApplyDay Banner](https://capsule-render.vercel.app/api?type=cylinder&color=0:a8edea,50:fed6e3,100:ffd89b&height=120&section=header&text=ApplyDay&fontSize=50&fontColor=2c3e50&desc=Human-in-the-Loop%20Growth&descAlignY=80)
+
 ![ApplyDay Logo](https://img.shields.io/badge/ApplyDay-Your%20Personal%20Dashboard-blue?style=for-the-badge)
 
 [![Open Source](https://img.shields.io/badge/Open%20Source-❤️-red?style=flat-square)](https://github.com/pandalow/applyday)
