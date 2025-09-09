@@ -17,7 +17,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     """
     
     serializer_class = ApplicationSerializer
-    queryset = Application.objects.all()
+    queryset = Application.objects.all().order_by('-application_date')
 
     def get_queryset(self):
         """
@@ -65,7 +65,7 @@ class JDViewSet(viewsets.ModelViewSet):
     ViewSet for managing job descriptions.
     Provides CRUD operations.
     """
-    queryset = JobDescription.objects.all()
+    queryset = JobDescription.objects.all().order_by('-created_at')
     serializer_class = JobDescriptionSerializer
 
 

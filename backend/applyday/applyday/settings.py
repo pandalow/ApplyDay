@@ -150,7 +150,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+# Force Ireland timezone for consistent timestamps
+TIME_ZONE = 'Europe/Dublin'  # UPDATED FOR TIMEZONE FIX
 
 USE_I18N = True
 

@@ -70,6 +70,27 @@ cp .env.example .env  # Configure your AI provider
 docker compose up -d
 ```
 
+### 🔄 Deployment Workflow
+
+**First-time deployment:**
+- Run the full deployment script above or use one-click deployment
+- This builds containers from scratch and sets up the environment
+
+**Subsequent restarts/updates:**
+```bash
+# For routine restarts (no code changes)
+docker compose up -d
+
+# For updates with code changes
+docker compose down
+docker compose up -d --build
+
+# Quick restart after minor changes
+docker compose restart
+```
+
+> 💡 **Tip**: If you haven't made code changes and containers are already built, a simple `docker compose up -d` is sufficient for restarting the application.
+
 ### ⚙️ Environment Configuration
 
 Create `.env` file with your AI provider:
