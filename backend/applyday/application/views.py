@@ -17,7 +17,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
     """
     
     serializer_class = ApplicationSerializer
-    queryset = Application.objects.all().order_by('-application_date')
+    queryset = Application.objects.all().order_by('-created_at')  # Sort by precise timestamp
 
     def get_queryset(self):
         """
