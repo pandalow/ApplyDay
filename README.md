@@ -1,6 +1,7 @@
 # ApplyDay – Personal Job Search Dashboard
 
 <div align="center">
+
 🌐 [English](README.md) | [中文](README.zh-CN.md)
 
 ![ApplyDay Banner](https://capsule-render.vercel.app/api?type=cylinder&color=0:a8edea,50:fed6e3,100:ffd89b&height=120&section=header&text=ApplyDay&fontSize=50&fontColor=2c3e50&desc=Your%20personal%20job%20search%20dashboard,%20powered%20by%20data&descAlignY=80)
@@ -9,12 +10,12 @@
 [![Privacy First](https://img.shields.io/badge/Privacy-🔒%20Local%20Only-green?style=flat-square)](#privacy-first)
 [![Human in Loop](https://img.shields.io/badge/Human--in--Loop-🤝-orange?style=flat-square)](#philosophy)
 
-
 </div>
 
 > **🎯 One-Click Deployment Available!** – Automated setup scripts for Linux/macOS/Windows. See [**📖 Deployment Guide**](docs/DEPLOYMENT.md).
 
 ---
+
 
 ## 📸 Showcase
 
