@@ -54,16 +54,17 @@
 git clone https://github.com/pandalow/applyday.git && cd applyday && chmod +x deploy.sh && ./deploy.sh
 **Windows**
 git clone https://github.com/pandalow/applyday.git && cd applyday && deploy.bat
+```
 
 访问地址: 部署完成后打开 http://localhost
 
-🐳 手动 Docker 部署
+### 🐳 手动 Docker 部署
 git clone https://github.com/pandalow/applyday.git && cd applyday
 cp .env.example .env  # 配置你的 AI 提供商
 docker compose up -d
 
 
-🔄 部署流程
+### 🔄 部署流程
 
 首次部署:
 
@@ -73,21 +74,22 @@ docker compose up -d
 
 后续启动/更新:
 
-# 常规重启（无代码变更）
+#### 常规重启（无代码变更）
 docker compose up -d
 
-# 更新代码后
+#### 更新代码后
 docker compose down
 docker compose up -d --build
 
-# 小改动后的快速重启
+#### 小改动后的快速重启
 docker compose restart
 
 💡 提示: 如果未修改代码且容器已构建，简单执行 docker compose up -d 即可。
 
-⚙️ 环境配置
+###⚙️ 环境配置
 
 在根目录创建 .env 文件，配置你的 AI 提供商：
+```
 AI_PROVIDER=openai               # 可选: openai, anthropic, google
 AI_MODEL=gpt-4o                  # 对应模型
 AI_TEMPERATURE=0                 # 回答随机度
@@ -95,15 +97,14 @@ AI_TEMPERATURE=0                 # 回答随机度
 OPENAI_API_KEY=your_key_here     # OpenAI 密钥
 ANTHROPIC_API_KEY=your_key_here  # Anthropic 密钥  
 GOOGLE_API_KEY=your_key_here     # Google 密钥
+```
+
+### 🔧 技术栈
+--
 
 
-🔧 技术栈
 
-（保持和英文版一致，只翻译标题和说明，依赖表格不变）
-
-
-
-✨ 功能特点
+### ✨ 功能特点
 
 申请跟踪 – 管理申请流程和转化漏斗
 
@@ -115,7 +116,7 @@ AI 分析 – 技能差距识别和市场洞察
 
 成长路线 – 个性化学习计划
 
-🔒 隐私与安全
+### 🔒 隐私与安全
 
 100% 本地运行 – 无云端上传，完全掌控数据
 
@@ -123,14 +124,7 @@ AI 分析 – 技能差距识别和市场洞察
 
 自托管 – 运行在你自己的环境中
 
-📖 使用指南
-
-1️⃣ 添加申请
-2️⃣ 上传简历
-3️⃣ 生成报告
-4️⃣ 分析洞察
-
-🤝 贡献
+### 🤝 贡献
 
 欢迎通过 issue、讨论区、PR 改进项目。
 
@@ -140,16 +134,11 @@ AI 分析 – 技能差距识别和市场洞察
 | **v0.5** | 🔄 计划 | 增强技能分类、多模型支持、进阶分析    |
 | **v1.0** | 📋 未来 | 面试准备、薪资洞察、职位平台集成     |
 
-🆘 支持
 
-常见问题见 Wiki
-，或在 Discussions
- 发帖。
 
 📄 许可证
 
 GPL License – 详情见 LICENSE 。
-
 
 <div align="center">
 
