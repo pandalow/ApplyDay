@@ -19,6 +19,7 @@ class Application(models.Model):
     company = models.CharField(max_length=255)
     job_title = models.CharField(max_length=255)
     application_date = models.DateField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)  # Add precise timestamp for sorting
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='applied')
     stage_notes = models.TextField(blank=True, null=True)
 
@@ -26,7 +27,7 @@ class Application(models.Model):
         return f"{self.job_title} at {self.company}"
     
     class Meta:
-        ordering = ['-application_date']
+        ordering = ['-created_at']  # Sort by precise timestamp instead of date
         verbose_name = 'Application'
         verbose_name_plural = 'Applications'
 
