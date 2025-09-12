@@ -49,11 +49,11 @@ class JobDescription(models.Model):
     
     # Fields for structured job description data
     created_at = models.DateTimeField(auto_now_add=True)
-    company = models.CharField(max_length=255)
+    company = models.CharField(max_length=255, null=True, blank=True)
     role = models.CharField(max_length=255, null=True, blank=True)
     level = models.CharField(max_length=255, null=True, blank=True)
     location = models.CharField(max_length=255, null=True, blank=True)
-    employment_type = models.CharField(max_length=255)
+    employment_type = models.CharField(max_length=255, null=True, blank=True)
     salary_eur_min = models.FloatField(null=True, blank=True)
     salary_eur_max = models.FloatField(null=True, blank=True)
     bonus_percent = models.FloatField(null=True, blank=True)
