@@ -236,7 +236,10 @@ Select applications → Choose analysis scope → **Generate Report** → Review
 - **Action Plans**: Step-by-step improvement roadmap
 
 ---
+## API Docs
+- Application Management: [link](docs/api/API_APPLICATION.md)
 
+---
 ## 🤝 Contributing
 
 | Type | How to Help |
