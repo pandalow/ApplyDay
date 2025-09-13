@@ -238,6 +238,7 @@ Select applications → Choose analysis scope → **Generate Report** → Review
 ---
 ## API Docs
 - Application Management: [link](docs/api/API_APPLICATION.md)
+- Report/Analytics: [link](docs/api/API_REPORT_ANALYTICS.md)
 
 ---
 ## 🤝 Contributing
