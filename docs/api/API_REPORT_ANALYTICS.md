@@ -49,12 +49,20 @@ GET /report/
           "id": 1,
           "name": "skill_analysis",
           "result": {
-            "must_have_skills": ["Python", "Django", "REST API"],
-            "nice_to_have_skills": ["Docker", "AWS", "React"],
-            "skill_frequency": {
-              "Python": 45,
-              "Django": 32,
-              "JavaScript": 28
+            "programming_languages": {
+              "python": 15,
+              "javascript": 12,
+              "java": 8
+            },
+            "frameworks_tools": {
+              "django": 10,
+              "react": 8,
+              "spring": 5
+            },
+            "databases": {
+              "postgresql": 7,
+              "mysql": 5,
+              "mongodb": 4
             }
           }
         }
@@ -118,34 +126,28 @@ POST /report/
       "id": 5,
       "name": "skill_analysis",
       "result": {
-        "total_jobs_analyzed": 25,
-        "must_have_skills": ["Python", "SQL", "Git"],
-        "emerging_skills": ["Kubernetes", "GraphQL"],
-        "skill_categories": {
-          "programming_languages": ["Python", "JavaScript", "Java"],
-          "frameworks": ["Django", "React", "Spring"],
-          "tools": ["Docker", "Jenkins", "Git"]
+        "programming_languages": {
+          "python": 23,
+          "javascript": 18,
+          "java": 12,
+          "typescript": 9
         },
-        "experience_levels": {
-          "junior": 5,
-          "mid": 12,
-          "senior": 8
-        }
-      }
-    },
-    {
-      "id": 6,
-      "name": "salary_analysis",
-      "result": {
-        "average_salary_eur": 75000,
-        "salary_range": {
-          "min": 45000,
-          "max": 120000
+        "frameworks_tools": {
+          "react": 15,
+          "django": 14,
+          "spring": 8,
+          "angular": 7
         },
-        "by_experience": {
-          "junior": 52000,
-          "mid": 75000,
-          "senior": 95000
+        "cloud_platforms": {
+          "aws": 16,
+          "azure": 8,
+          "gcp": 5
+        },
+        "databases": {
+          "postgresql": 12,
+          "mysql": 10,
+          "mongodb": 7,
+          "redis": 5
         }
       }
     }
@@ -205,9 +207,7 @@ POST /report/extract/
 **Response:**
 ```json
 {
-  "message": "Extraction completed",
-  "processed_jobs": 15,
-  "extraction_time": "2024-01-16T14:25:00Z"
+  "message": "Extraction completed"
 }
 ```
 
@@ -251,14 +251,29 @@ POST /report/run/
     "results": [
       {
         "id": 7,
-        "name": "market_analysis",
+        "name": "skill_analysis",
         "result": {
-          "top_skills": ["Python", "JavaScript", "SQL"],
-          "trending_technologies": ["AI/ML", "Cloud Computing", "DevOps"],
-          "location_insights": {
-            "remote_friendly": 65,
-            "hybrid": 25,
-            "onsite": 10
+          "programming_languages": {
+            "python": 18,
+            "javascript": 15,
+            "java": 8,
+            "typescript": 6
+          },
+          "frameworks_tools": {
+            "react": 12,
+            "django": 11,
+            "spring": 7,
+            "angular": 5
+          },
+          "cloud_platforms": {
+            "aws": 14,
+            "azure": 7,
+            "gcp": 4
+          },
+          "databases": {
+            "postgresql": 10,
+            "mysql": 8,
+            "mongodb": 6
           }
         }
       }
@@ -269,20 +284,7 @@ POST /report/run/
       "content": "Market analysis reveals strong demand for full-stack developers..."
     }
   },
-  "summary": {
-    "personalized_insights": "Based on your resume, you match 85% of the market requirements...",
-    "skill_gaps": ["Docker", "Kubernetes", "AWS"],
-    "recommended_actions": [
-      "Consider learning containerization technologies",
-      "Gain cloud platform experience",
-      "Strengthen DevOps skills"
-    ],
-    "career_progression": {
-      "current_level": "Mid-level Developer",
-      "next_steps": ["Senior Developer", "Tech Lead"],
-      "timeline": "12-18 months with focused learning"
-    }
-  }
+  "summary": "# Job Market Analysis Summary\n\n## Key Insights\n\nBased on your resume, you match 85% of the market requirements for the analyzed positions. Here's a comprehensive breakdown:\n\n### Your Strengths\n- Excellent Python and Django experience\n- Strong problem-solving skills\n- Good understanding of web technologies\n\n### Skill Gaps to Address\n- **Docker**: High priority - containerization is increasingly important\n- **Kubernetes**: Essential for scalable deployments\n- **AWS**: Cloud platform experience is highly valued\n\n### Recommended Actions\n1. Complete Docker fundamentals course (2-3 weeks)\n2. Gain cloud platform experience with AWS\n3. Strengthen DevOps skills\n\n### Career Progression\n- **Current Level**: Mid-level Developer\n- **Next Steps**: Senior Developer, Tech Lead\n- **Timeline**: 12-18 months with focused learning"
 }
 ```
 
@@ -316,41 +318,7 @@ POST /report/{report_id}/insight/
 **Response:**
 ```json
 {
-  "summary": {
-    "personalized_analysis": "Your profile shows strong alignment with 78% of analyzed positions...",
-    "strengths": [
-      "Excellent Python and Django experience",
-      "Strong problem-solving skills",
-      "Good understanding of web technologies"
-    ],
-    "areas_for_improvement": [
-      "Cloud platforms (AWS/Azure)",
-      "Containerization (Docker/Kubernetes)",
-      "Advanced database optimization"
-    ],
-    "market_insights": {
-      "average_requirements_match": "78%",
-      "top_missing_skills": ["Docker", "AWS", "React"],
-      "salary_potential": {
-        "current_estimate": "€65,000 - €75,000",
-        "with_improvements": "€80,000 - €95,000"
-      }
-    },
-    "action_plan": [
-      {
-        "priority": "High",
-        "skill": "Docker",
-        "learning_path": "Complete Docker fundamentals course",
-        "estimated_time": "2-3 weeks"
-      },
-      {
-        "priority": "High", 
-        "skill": "AWS",
-        "learning_path": "AWS Cloud Practitioner certification",
-        "estimated_time": "4-6 weeks"
-      }
-    ]
-  }
+  "summary": "# Personalized Career Analysis\n\n## Profile Assessment\n\nYour profile shows strong alignment with 78% of analyzed positions in the current job market.\n\n## Key Strengths\n- **Excellent Python and Django experience**: Core technologies in high demand\n- **Strong problem-solving skills**: Essential for technical roles\n- **Good understanding of web technologies**: Solid foundation for full-stack development\n\n## Areas for Improvement\n\n### High Priority Skills\n- **Cloud platforms (AWS/Azure)**: 65% of positions require cloud experience\n- **Containerization (Docker/Kubernetes)**: Critical for modern deployments\n- **Advanced database optimization**: Valuable for senior roles\n\n## Market Insights\n- **Requirements Match**: 78% alignment with target positions\n- **Top Missing Skills**: Docker, AWS, React\n- **Salary Potential**:\n  - Current estimate: €65,000 - €75,000\n  - With improvements: €80,000 - €95,000\n\n## Recommended Action Plan\n\n### Immediate Focus (Next 3 months)\n1. **Docker Fundamentals** (Priority: High)\n   - Complete Docker fundamentals course\n   - Estimated time: 2-3 weeks\n\n2. **AWS Cloud Practitioner** (Priority: High)\n   - AWS certification preparation\n   - Estimated time: 4-6 weeks\n\n### Career Progression\nWith focused learning on these key areas, you can advance to senior developer roles within 12-18 months."
 }
 ```
 
