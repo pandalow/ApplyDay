@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import ApplicationForm from "../components/ApplicationForm";
 import ApplicationItem from "../components/ApplicationItem";
+import ApplicationControls from "../components/ApplicationControls";
 import ResumeManager from "../components/ResumeManager";
 import ReportGenerator from "../components/ReportGenerator";
 import { AnimatePresence, motion } from "framer-motion";
@@ -13,6 +14,7 @@ import {
   deleteApplication,
   getApplication,
 } from "../service/application";
+import { processApplications } from "../utils/applicationUtils";
 
 const ApplicationManager = () => {
   const [applications, setApplications] = useState([]);
@@ -31,12 +33,62 @@ const ApplicationManager = () => {
   const [selectedResumeId, setSelectedResumeId] = useState(null);
   const [activeTab, setActiveTab] = useState("dashboard"); // New: Tab state
   
+  // Search, sort, and filter state
+  const [searchTerm, setSearchTerm] = useState('');
+  const [sortBy, setSortBy] = useState('date');
+  const [sortOrder, setSortOrder] = useState('desc');
+  const [statusFilters, setStatusFilters] = useState([]);
+  const [locationFilters, setLocationFilters] = useState([]);
+  const [roleFilters, setRoleFilters] = useState([]);
+  
   const navigate = useNavigate();
+  
+  // Process applications with search, sort, and filter
+  const processedApplications = useMemo(() => {
+    return processApplications(applications, {
+      searchTerm,
+      statuses: statusFilters,
+      locationTypes: locationFilters,
+      roleTypes: roleFilters,
+      sortBy,
+      sortOrder
+    });
+  }, [applications, searchTerm, statusFilters, locationFilters, roleFilters, sortBy, sortOrder]);
+  
   // Select/Deselect application for report
   const handleSelect = (id) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((sid) => sid !== id) : [...prev, id]
     );
+  };
+  
+  // Search, sort, and filter handlers
+  const handleSearchChange = (term) => {
+    setSearchTerm(term);
+  };
+  
+  const handleSortChange = (newSortBy, newSortOrder) => {
+    setSortBy(newSortBy);
+    setSortOrder(newSortOrder);
+  };
+  
+  const handleStatusFiltersChange = (filters) => {
+    setStatusFilters(filters);
+  };
+  
+  const handleLocationFiltersChange = (filters) => {
+    setLocationFilters(filters);
+  };
+  
+  const handleRoleFiltersChange = (filters) => {
+    setRoleFilters(filters);
+  };
+  
+  const handleClearFilters = () => {
+    setSearchTerm('');
+    setStatusFilters([]);
+    setLocationFilters([]);
+    setRoleFilters([]);
   };
 
   const loadApplications = async () => {
@@ -55,25 +107,50 @@ const ApplicationManager = () => {
     loadApplications();
   }, []);
 
-  // Adding ESC keyboard event listener for modal close (Esc key)
+  // Adding ESC keyboard event listener for modal close (Esc key) and keyboard shortcuts
   useEffect(() => {
-    const handleEscape = (e) => {
+    const handleKeyDown = (e) => {
+      // ESC to close modals
       if (e.key === 'Escape' && (showCreateForm || showEditForm)) {
         handleCancel();
+        return;
+      }
+      
+      // Keyboard shortcuts (only when not in input/textarea/modal)
+      if (!showCreateForm && !showEditForm && !['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target.tagName)) {
+        // Ctrl/Cmd + K to focus search
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+          e.preventDefault();
+          const searchInput = document.querySelector('input[type="text"]');
+          if (searchInput) searchInput.focus();
+        }
+        
+        // Ctrl/Cmd + N to create new application
+        if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
+          e.preventDefault();
+          setShowCreateForm(true);
+        }
+        
+        // Ctrl/Cmd + Shift + C to clear filters
+        if ((e.ctrlKey || e.metaKey) && e.shiftKey && e.key === 'C') {
+          e.preventDefault();
+          handleClearFilters();
+        }
       }
     };
 
+    document.addEventListener('keydown', handleKeyDown);
+    
+    // Prevent background scrolling when modal is open
     if (showCreateForm || showEditForm) {
-      document.addEventListener('keydown', handleEscape);
-      // Prevent background scrolling when modal is open
       document.body.style.overflow = 'hidden';
     }
 
     return () => {
-      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
-  }, [showCreateForm, showEditForm]);
+  }, [showCreateForm, showEditForm, handleClearFilters]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -373,6 +450,23 @@ const ApplicationManager = () => {
 
             {/* Applications Section */}
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+              {/* Search, Sort, and Filter Controls */}
+              <ApplicationControls
+                applications={applications}
+                searchTerm={searchTerm}
+                onSearchChange={handleSearchChange}
+                sortBy={sortBy}
+                sortOrder={sortOrder}
+                onSortChange={handleSortChange}
+                statusFilters={statusFilters}
+                onStatusFiltersChange={handleStatusFiltersChange}
+                locationFilters={locationFilters}
+                onLocationFiltersChange={handleLocationFiltersChange}
+                roleFilters={roleFilters}
+                onRoleFiltersChange={handleRoleFiltersChange}
+                onClearFilters={handleClearFilters}
+              />
+              
           {/* Applications Header */}
           <div className="px-6 py-4 border-b border-gray-200 dark:border-gray-700">
             <div className="flex items-center justify-between">
@@ -381,11 +475,16 @@ const ApplicationManager = () => {
                   Applications
                 </h3>
                 <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200">
-                  {applications.length} total
+                  {processedApplications.length} of {applications.length}
                 </span>
                 {selectedIds.length > 0 && (
                   <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
                     {selectedIds.length} selected
+                  </span>
+                )}
+                {(searchTerm || statusFilters.length > 0 || locationFilters.length > 0 || roleFilters.length > 0) && (
+                  <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200">
+                    filtered
                   </span>
                 )}
               </div>
@@ -409,7 +508,7 @@ const ApplicationManager = () => {
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
                 <span className="ml-3 text-gray-600 dark:text-gray-400">Loading applications...</span>
               </div>
-            ) : applications.length === 0 ? (
+            ) : processedApplications.length === 0 && applications.length === 0 ? (
               <div className="text-center py-12">
                 <div className="text-gray-400 text-6xl mb-4">📝</div>
                 <h3 className="text-xl font-medium text-gray-900 dark:text-gray-100 mb-2">
@@ -428,9 +527,25 @@ const ApplicationManager = () => {
                   Add First Application
                 </button>
               </div>
+            ) : processedApplications.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="text-gray-400 text-4xl mb-4">🔍</div>
+                <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+                  No applications found
+                </h3>
+                <p className="text-gray-500 dark:text-gray-400 mb-4">
+                  Try adjusting your search term or filters
+                </p>
+                <button
+                  onClick={handleClearFilters}
+                  className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm font-medium"
+                >
+                  Clear Filters
+                </button>
+              </div>
             ) : (
-              <div className="space-y-3">
-                {applications.map((application) => (
+              <div className="grid grid-cols-1 gap-4">
+                {processedApplications.map((application) => (
                   <div
                     key={application.id}
                     className={`bg-gray-50 dark:bg-gray-700 rounded-lg p-4 transition-all duration-200 border-2 ${
