@@ -113,8 +113,8 @@ GOOGLE_API_KEY=your_key_here         # If using Google
 
 ## Contributors
 
-<a href="https://github.com/pandalow/ApplyDay/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=pandalow/ApplyDay" />
+<a href="https://github.com/pandalow/applyday/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=pandalow/applyday" />
 </a>
 
 ---
