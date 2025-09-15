@@ -20,7 +20,7 @@
 ## 📸 Showcase
 
 <div align="center">
-<img src="docs/images/showcase.gif" alt="ApplyDay Demo" width="800" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
+<img src="docs/images/showcase.gif" alt="ApplyDay Demo" width="400" style="border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);"/>
 </div>
 
 ---
@@ -111,6 +111,13 @@ GOOGLE_API_KEY=your_key_here         # If using Google
 
 ---
 
+## Contributors
+
+<a href="https://github.com/pandalow/applyday/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=pandalow/applyday" />
+</a>
+
+---
 ## 🔧 Tech Stack
 ### 📊 Dependencies Overview
 
